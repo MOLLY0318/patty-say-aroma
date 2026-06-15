@@ -615,7 +615,7 @@
 
       <!-- 王復生 -->
       <div class="instructor-card">
-        <div class="card-photo-placeholder">照片即將上線</div>
+        <img class="card-photo" src="instructors/photos/fusheng-profile.jpg" alt="王復生">
         <div class="card-name">王復生</div>
         <div class="card-brand">復生慢手</div>
         <p class="card-bio">
@@ -625,6 +625,8 @@
           <span class="service-tag">身心手技</span>
         </div>
         <div class="card-links">
+          <a class="btn-social" href="https://www.instagram.com/fusheng_hand_touch/" target="_blank">Instagram</a>
+          <span class="btn-social" style="cursor:pointer;" onclick="document.getElementById('fusheng-qr-modal').classList.add('active')">LINE</span>
         </div>
       </div>
 
@@ -638,6 +640,15 @@
     <p>掃描加入 Olive 的 LINE 官方帳號</p>
     <img src="instructors/photos/olive-line-qr.jpg" alt="Olive LINE QR Code">
     <div class="qr-close" onclick="document.getElementById('olive-qr-modal').classList.remove('active')">關閉 ✕</div>
+  </div>
+</div>
+
+<!-- LINE QR MODAL: 王復生 -->
+<div class="qr-modal" id="fusheng-qr-modal" onclick="this.classList.remove('active')">
+  <div class="qr-box" onclick="event.stopPropagation()">
+    <p>掃描加入王復生的 LINE</p>
+    <img src="instructors/photos/fusheng-line-qr.png" alt="復生慢手 LINE QR Code">
+    <div class="qr-close" onclick="document.getElementById('fusheng-qr-modal').classList.remove('active')">關閉 ✕</div>
   </div>
 </div>
 
