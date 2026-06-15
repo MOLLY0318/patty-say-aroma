@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>海賊嫚說芳療｜精油側寫師</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #1a1e15;
+      --bg2:      #1f2419;
+      --card:     #252c1e;
+      --gold:     #c8a464;
+      --gold-dim: rgba(200, 164, 100, 0.18);
+      --text:     #e8ddd0;
+      --muted:    #9a9282;
+      --border:   rgba(200, 164, 100, 0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 300;
+      line-height: 1.85;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 2rem;
+      background: rgba(26, 30, 21, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background:
+        radial-gradient(ellipse at 60% 40%, rgba(80,100,50,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 70%, rgba(200,164,100,0.08) 0%, transparent 50%),
+        var(--bg);
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+    #hero h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.05em;
+    }
+    #hero h1 span { color: var(--gold); }
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 3rem;
+    }
+    .hero-scroll {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 6rem 2rem; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 600;
+      margin-bottom: 2.5rem;
+      line-height: 1.4;
+    }
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.5rem 0 2.5rem;
+      opacity: 0.6;
+    }
+
+    /* ── FOUNDER ── */
+    #founder { background: var(--bg2); }
+
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .founder-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 4px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      background: var(--card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+    .founder-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .founder-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .founder-title {
+      color: var(--gold);
+      font-size: 0.88rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+    .founder-bio {
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+    .founder-quote {
+      margin: 2rem 0;
+      padding: 1.2rem 1.5rem;
+      border-left: 2px solid var(--gold);
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-style: italic;
+      line-height: 2;
+    }
+    .founder-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    /* ── WHAT IS OIL PROFILING ── */
+    #what {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+    .what-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .what-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem 1.8rem;
+    }
+    .what-icon {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .what-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    .what-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    /* ── TEAM ── */
+    #team { background: var(--bg2); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .instructor-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .instructor-card:hover {
+      border-color: rgba(200,164,100,0.45);
+      transform: translateY(-4px);
+    }
+    .card-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1.5rem;
+      border: 2px solid var(--border);
+      display: block;
+      background: var(--bg);
+    }
+    .card-photo-placeholder {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+    }
+    .card-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .card-brand {
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+    }
+    .card-bio {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.9;
+      text-align: left;
+      margin-bottom: 1.8rem;
+    }
+    .card-links {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── SOCIAL BUTTONS ── */
+    .btn-social {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-social:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #13160f;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    footer .footer-brand {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.08em;
+    }
+    footer p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 2;
+    }
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--gold); }
+    .footer-disclaimer {
+      margin-top: 1.5rem;
+      font-size: 0.72rem;
+      color: #5a5545;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      nav { gap: 1.2rem; font-size: 0.78rem; }
+      .founder-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .founder-photo { aspect-ratio: 1/1; max-width: 260px; margin: 0 auto; }
+      section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#founder">關於海賊嫚</a>
+  <a href="#what">精油側寫</a>
+  <a href="#team">講師團隊</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-eyebrow">Essential Oil Profiling</p>
+  <h1>海賊嫚<span>說</span>芳療</h1>
+  <p class="hero-sub">透過你與精油之間的直覺連結，讀出當下最真實的身心狀態。</p>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>往下探索</span>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="section-inner">
+    <p class="section-label">Founder</p>
+    <h2 class="section-title">認識創辦人</h2>
+    <div class="founder-grid">
+      <div class="founder-photo">
+        <!-- 照片待提供，放入後請改為：<img src="instructors/photos/patty-profile.jpg" alt="張佩曼"> -->
+        <span>照片即將上線</span>
+      </div>
+      <div>
+        <h3 class="founder-name">張珮嫚</h3>
+        <p class="founder-title">單方精油捉週研發者｜海賊嫚說芳療</p>
+        <div class="divider"></div>
+        <p class="founder-bio">
+          教授精油捉週與臨床實務芳療逾廿年，她相信預防勝於治療是老套卻務實的建議，而精油側寫恰恰就是符合此建議的策略——陪伴尋求解惑者覺察需要，在現代醫療之外找到身心支持的入口。
+        </p>
+        <p class="founder-bio">
+          她的工具組合橫跨精油捉週、小排列與托特塔羅，帶領學員從香氣的直覺反應出發，一步步看見自己身心系統真正的需求。
+        </p>
+        <blockquote class="founder-quote">
+          「教精油側寫這些年，學員來來去去，本是常態，<br>
+          但令我意外地，就有那麼一群學生跟著跟著也好些年過去了。」
+        </blockquote>
+        <div class="founder-links">
+          <a class="btn-social" href="https://www.facebook.com/PattySayAroma/" target="_blank">Facebook</a>
+          <a class="btn-social" href="https://www.instagram.com/peimanzhang/" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS OIL PROFILING -->
+<section id="what">
+  <div class="section-inner">
+    <p class="section-label">What is Oil Profiling</p>
+    <h2 class="section-title">什麼是精油側寫？</h2>
+    <p style="color:var(--muted); font-size:0.95rem; max-width:640px;">
+      精油側寫不是算命，而是一種帶有芳療科學依據的自我覺察工具。透過觀察一個人對精油的直覺反應——哪支吸引你、哪支讓你想退開——來讀出當下的身心狀態。
+    </p>
+    <div class="what-grid">
+      <div class="what-card">
+        <div class="what-icon">🌿</div>
+        <h3>不是算命</h3>
+        <p>精油側寫不預測未來，而是幫你看見「現在」——你的身體正在需要什麼、你的情緒正在說什麼。</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon">🔬</div>
+        <h3>有科學底層</h3>
+        <p>每支精油的化學成分對應不同的生理與情緒系統。側寫師從你的直覺反應中，讀出有依據的信號。</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon">🪞</div>
+        <h3>自我覺察的鏡子</h3>
+        <p>你覺得哪支精油「好聞」或「難以接受」，都不是偶然。那份本能，正指向一個值得被看見的答案。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-inner">
+    <p class="section-label">Our Profilers</p>
+    <h2 class="section-title">精油側寫師團隊</h2>
+    <div class="team-grid">
+
+      <!-- Molly -->
+      <div class="instructor-card">
+        <img class="card-photo" src="instructors/photos/molly-profile.png" alt="Molly">
+        <div class="card-name">Molly 小馨子</div>
+        <div class="card-brand">鑰．本質 Key Essence</div>
+        <p class="card-bio">
+          曾在醫學中心手術室工作二十五年，退休後成為療癒教學工作者。法國普羅芳 Pranarom 認證芳療師、衛福部核可繼續教育講師。她的課堂不強迫你正向思考，而是讓你先把盔甲放下來，找回自己本來的聲音。
+        </p>
+        <div class="card-links">
+          <a class="btn-social" href="https://www.facebook.com/profile.php?id=61586989805894" target="_blank">Facebook</a>
+          <a class="btn-social" href="https://www.instagram.com/molly0318/" target="_blank">Instagram</a>
+          <a class="btn-social" href="https://line.me/R/ti/p/@864ihpsq" target="_blank">LINE</a>
+        </div>
+      </div>
+
+      <!-- Olive -->
+      <div class="instructor-card">
+        <img class="card-photo" src="instructors/photos/olive-profile.jpg" alt="Olive">
+        <div class="card-name">Olive</div>
+        <div class="card-brand">Ease Within｜隨意療</div>
+        <p class="card-bio">
+          隨意療，是一個溫柔陪伴人回到內在的療癒空間。她相信療癒並非來自被給予，而是在心鬆動、流動之時，自然發生的狀態。專注於芳香療癒、薩滿療癒與植物精油側寫，在新竹靜靜守著這一方餘裕。
+        </p>
+        <div class="card-links">
+          <a class="btn-social" href="https://www.facebook.com/olive.ease.within" target="_blank">Facebook</a>
+        </div>
+      </div>
+
+      <!-- Liz -->
+      <div class="instructor-card">
+        <img class="card-photo" src="instructors/photos/liz-profile.jpg" alt="孟寰 Liz">
+        <div class="card-name">孟寰 Liz</div>
+        <div class="card-brand">緩嶼</div>
+        <p class="card-bio">
+          舞蹈動作治療師，同時也是芳療師。運用英國受訓的心理動力觀點，結合精油人格側寫與 21 天整合陪伴，協助人們在語言之外整合深層的情緒與內在感受。一座藏在心裡的小宇宙，當心隨意轉，療癒從內在開始。
+        </p>
+        <div class="card-links">
+          <a class="btn-social" href="https://www.instagram.com/islewithin/" target="_blank">Instagram</a>
+          <a class="btn-social" href="https://www.facebook.com/robintenpassion/" target="_blank">Facebook</a>
+        </div>
+      </div>
+
+      <!-- 癒玥 -->
+      <div class="instructor-card">
+        <img class="card-photo" src="instructors/photos/yuyu-profile.jpg" alt="癒玥">
+        <div class="card-name">玥泫</div>
+        <div class="card-brand">癒玥 Her Flow</div>
+        <p class="card-bio">
+          接觸身體工作逾十五年，深耕精油側寫三年。畢業於國立台東大學身心整合學系，曾任馥蘭朵 Dasha SPA 芳療師，持有美國 NAHA 芳療師證照。大腦超載者的身心落地樹洞，現於桃園提供一對一精油側寫服務。
+        </p>
+        <div class="card-links">
+          <a class="btn-social" href="https://line.me/R/ti/p/@564spama" target="_blank">LINE</a>
+          <a class="btn-social" href="https://yuyuebodymind.netlify.app/" target="_blank">官網</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">海賊嫚說芳療｜精油側寫師</div>
+  <p>
+    <a href="https://www.facebook.com/PattySayAroma/" target="_blank">Facebook</a>
+    　·
+    <a href="https://www.instagram.com/peimanzhang/" target="_blank">Instagram</a>
+  </p>
+  <p class="footer-disclaimer">本網站所提供之精油側寫服務，不具醫療診斷功能，僅作為身心覺察之參考工具。</p>
+</footer>
+
+</body>
+</html>
