@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>海賊嫚說芳療｜精油側寫師</title>
+  <title>海賊嫚說芳療｜精油側寫</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -95,8 +95,8 @@
     .hero-sub {
       font-size: clamp(0.95rem, 2vw, 1.15rem);
       color: var(--muted);
-      max-width: 480px;
       margin-bottom: 3rem;
+      white-space: nowrap;
     }
     .hero-scroll {
       font-size: 0.78rem;
@@ -215,6 +215,63 @@
       margin-top: 1.5rem;
     }
 
+    /* ── CREDENTIALS BLOCKS ── */
+    .cred-section {
+      margin-top: 2.5rem;
+    }
+
+    .cred-section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cred-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .cred-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .cred-list li::before {
+      content: "—";
+      color: var(--gold);
+      opacity: 0.6;
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    .cred-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .cred-tag {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(200,164,100,0.28);
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+
     /* ── WHAT IS OIL PROFILING ── */
     #what {
       background: var(--bg);
@@ -247,6 +304,89 @@
       font-size: 0.88rem;
       color: var(--muted);
       line-height: 1.9;
+    }
+
+    /* ── TEAM ENTRY ── */
+    .team-entry-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .entry-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem 2rem;
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .entry-card.active {
+      border-color: var(--gold);
+      background: linear-gradient(145deg, rgba(200,164,100,0.07), var(--card));
+    }
+
+    .entry-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .entry-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .entry-desc {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.85;
+      flex: 1;
+    }
+
+    .team-subtitle {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (max-width: 680px) {
+      .team-entry-grid { grid-template-columns: 1fr; }
+    }
+
+    .btn-book {
+      display: block;
+      width: 100%;
+      margin-top: 1.2rem;
+      padding: 0.65rem 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-book:hover {
+      background: var(--gold);
+      color: #13160f;
     }
 
     /* ── TEAM ── */
@@ -405,6 +545,254 @@
     }
     .qr-close:hover { color: var(--gold); }
 
+    /* ── COURSE STAGES ── */
+    .stages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+
+    .stage-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .stage-card:hover {
+      border-color: rgba(200,164,100,0.5);
+    }
+
+    .stage-card.highlight {
+      border-color: var(--gold);
+      background: linear-gradient(145deg, rgba(200,164,100,0.07), var(--card));
+    }
+
+    .stage-num {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .stage-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .stage-desc {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.85;
+      flex: 1;
+    }
+
+    .stage-connector {
+      display: none;
+    }
+
+    .btn-apply {
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      background: var(--gold);
+      color: #13160f;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-align: center;
+      transition: opacity 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-apply:hover { opacity: 0.85; }
+
+    /* ── COURSE ── */
+    #course {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+
+    .course-intro {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 2;
+      max-width: 720px;
+      margin-bottom: 4rem;
+      border-left: 2px solid var(--border);
+      padding-left: 1.5rem;
+    }
+
+    .course-block {
+      margin-bottom: 4rem;
+    }
+
+    .course-block-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.04em;
+    }
+
+    .flower-icon {
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+
+    .course-text {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 2;
+      margin-bottom: 1rem;
+    }
+
+    .course-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .course-ol, .course-ul {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .course-ol li {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .course-ol li .num {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.82rem;
+      padding-top: 0.15rem;
+    }
+
+    .course-ul li {
+      display: flex;
+      gap: 0.65rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .course-ul li .spark {
+      color: var(--gold);
+      flex-shrink: 0;
+      padding-top: 0.12rem;
+    }
+
+    .dimensions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .dim-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.8rem 1.6rem;
+      position: relative;
+    }
+
+    .dim-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--gold);
+      border-radius: 6px 0 0 6px;
+      opacity: 0.55;
+    }
+
+    .dim-num {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .dim-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .dim-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .exp-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.8rem 1.6rem;
+      transition: border-color 0.25s;
+    }
+
+    .exp-card:hover {
+      border-color: rgba(200,164,100,0.45);
+    }
+
+    .exp-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .exp-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+
+    .exp-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
     /* ── FOOTER ── */
     footer {
       background: #13160f;
@@ -450,7 +838,8 @@
 <nav>
   <a href="#founder">關於海賊嫚</a>
   <a href="#what">精油側寫</a>
-  <a href="#team">講師團隊</a>
+  <a href="#team">體驗側寫</a>
+  <a href="#course">培訓課程</a>
 </nav>
 
 <!-- HERO -->
@@ -471,24 +860,86 @@
     <h2 class="section-title">認識創辦人</h2>
     <div class="founder-grid">
       <div class="founder-photo">
-        <!-- 照片待提供，放入後請改為：<img src="instructors/photos/patty-profile.jpg" alt="張佩曼"> -->
-        <span>照片即將上線</span>
+        <img src="instructors/photos/patty-profile.jpg" alt="張珮嫚">
       </div>
       <div>
         <h3 class="founder-name">張珮嫚</h3>
-        <p class="founder-title">單方精油捉週研發者｜海賊嫚說芳療</p>
+        <p class="founder-title">單方精油側寫研發者｜海賊嫚說芳療</p>
         <div class="divider"></div>
         <p class="founder-bio">
-          教授精油捉週與臨床實務芳療逾廿年，她相信預防勝於治療是老套卻務實的建議，而精油側寫恰恰就是符合此建議的策略——陪伴尋求解惑者覺察需要，在現代醫療之外找到身心支持的入口。
-        </p>
-        <p class="founder-bio">
-          她的工具組合橫跨精油捉週、小排列與托特塔羅，帶領學員從香氣的直覺反應出發，一步步看見自己身心系統真正的需求。
+          從事芳療教學逾 23 年，擅長單方精油側寫、芳香療法認證課程與芳療居家臨床照護。她相信預防勝於治療是老套卻務實的建議，而精油側寫恰恰就是符合此建議的策略——陪伴尋求解惑者覺察需要，在現代醫療之外找到身心支持的入口。工具組合橫跨精油捉週、小排列與托特塔羅。
         </p>
         <blockquote class="founder-quote">
-          「教精油側寫這些年，學員來來去去，本是常態，<br>
-          但令我意外地，就有那麼一群學生跟著跟著也好些年過去了。」
+          「芳療不是直覺，更不是算命。我用二十三年，建立一套有跡可循的推理系統——從香氣的反應出發，陪你看見身心失衡真正的軌跡。」
         </blockquote>
-        <div class="founder-links">
+
+        <!-- 訓練認證 -->
+        <div class="cred-section">
+          <div class="cred-section-title">訓練認證</div>
+          <ul class="cred-list">
+            <li>美國 NAHA 高階芳療師證照</li>
+            <li>法國 Ecole Internationale d'Aromathérapie — Pierre Franchomme 訓練課程</li>
+            <li>法國 ECOLE PÉNOËL — Docteur Daniel Pénoël 訓練課程</li>
+            <li>法國 Philippe Mailhebiau 訓練課程</li>
+            <li>德國 Kurt Schnaubelt, Ph.D. 訓練課程</li>
+            <li>SO-tai 日本操體技巧合格指導員</li>
+          </ul>
+        </div>
+
+        <!-- 現任 -->
+        <div class="cred-section">
+          <div class="cred-section-title">現任職務</div>
+          <ul class="cred-list">
+            <li>馥蘭朵系列飯店芳療顧問</li>
+            <li>國立臺東大學身心發展與運動休閒產業學系技術講師</li>
+            <li>臺灣身心教育學會芳香療法認證課程講師</li>
+            <li>臺灣身心教育學會精油側寫師認證課程講師</li>
+            <li>FB 社團「海賊嫚芳療團」團長</li>
+            <li>綻悠空間動力品牌芳香療法講師</li>
+          </ul>
+        </div>
+
+        <!-- 服務經歷標籤 -->
+        <div class="cred-section">
+          <div class="cred-section-title">服務醫療機構（部分）</div>
+          <div class="cred-tags">
+            <span class="cred-tag">萬芳醫院</span>
+            <span class="cred-tag">台大醫院</span>
+            <span class="cred-tag">台北榮總</span>
+            <span class="cred-tag">台中榮總</span>
+            <span class="cred-tag">三總</span>
+            <span class="cred-tag">成大醫院</span>
+            <span class="cred-tag">亞東醫院</span>
+            <span class="cred-tag">台東馬偕</span>
+            <span class="cred-tag">林口長庚</span>
+            <span class="cred-tag">高雄義大</span>
+            <span class="cred-tag">振興醫院</span>
+            <span class="cred-tag">新光醫院</span>
+            <span class="cred-tag">耕莘醫院</span>
+            <span class="cred-tag">汐止國泰</span>
+            <span class="cred-tag">壢新醫院</span>
+          </div>
+        </div>
+
+        <div class="cred-section">
+          <div class="cred-section-title">服務學術機構（部分）</div>
+          <div class="cred-tags">
+            <span class="cred-tag">臺灣大學</span>
+            <span class="cred-tag">交通大學</span>
+            <span class="cred-tag">東海大學</span>
+            <span class="cred-tag">東吳大學</span>
+            <span class="cred-tag">宜蘭大學</span>
+            <span class="cred-tag">臺灣藝術大學</span>
+            <span class="cred-tag">臺北醫學大學</span>
+            <span class="cred-tag">臺北護理健康大學</span>
+            <span class="cred-tag">嘉南科技大學</span>
+            <span class="cred-tag">台南應用科技大學</span>
+            <span class="cred-tag">慈濟護理專科學校</span>
+            <span class="cred-tag">臺東大學</span>
+          </div>
+        </div>
+
+        <div class="founder-links" style="margin-top:2rem;">
           <a class="btn-social" href="https://www.facebook.com/PattySayAroma/" target="_blank">Facebook</a>
           <a class="btn-social" href="https://www.instagram.com/peimanzhang/" target="_blank">Instagram</a>
         </div>
@@ -528,8 +979,22 @@
 <!-- TEAM -->
 <section id="team">
   <div class="section-inner">
-    <p class="section-label">Our Profilers</p>
-    <h2 class="section-title">師資團隊</h2>
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">體驗精油側寫</h2>
+
+    <div class="team-entry-grid">
+      <div class="entry-card">
+        <div class="entry-title">參加精油側寫講座</div>
+        <p class="entry-desc">還不確定精油側寫適不適合你？先來參加一場體驗講座，親身感受香氣如何說出你當下的身心狀態，帶走屬於你的第一份側寫印象。</p>
+        <span class="btn-apply" style="background:transparent;color:var(--muted);border:1px solid var(--border);cursor:default;opacity:0.7;">擇期開放</span>
+      </div>
+      <div class="entry-card active">
+        <div class="entry-title">直接預約側寫師</div>
+        <p class="entry-desc">已準備好開始？從下方選擇一位與你氣味相投的側寫師，直接預約一對一精油側寫諮詢。</p>
+      </div>
+    </div>
+
+    <div class="team-subtitle">選擇你的精油側寫師</div>
     <div class="team-grid">
 
       <!-- 癒玥 -->
@@ -547,9 +1012,11 @@
           <span class="service-tag">團體芳療入門教學</span>
         </div>
         <div class="card-links">
-          <a class="btn-social" href="https://line.me/R/ti/p/@564spama" target="_blank">LINE</a>
+          <span class="btn-social" style="cursor:pointer;" onclick="document.getElementById('yuyu-qr-modal').classList.add('active')">LINE</span>
           <a class="btn-social" href="https://yuyuebodymind.netlify.app/" target="_blank">官網</a>
+          <a class="btn-social" href="https://www.facebook.com/share/1BHeLK3sxC/?mibextid=wwXIfr" target="_blank">Facebook</a>
         </div>
+        <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('yuyu-qr-modal').classList.add('active')">預約諮詢</span>
       </div>
 
       <!-- Molly -->
@@ -570,8 +1037,9 @@
         <div class="card-links">
           <a class="btn-social" href="https://www.facebook.com/profile.php?id=61586989805894" target="_blank">Facebook</a>
           <a class="btn-social" href="https://www.instagram.com/molly0318/" target="_blank">Instagram</a>
-          <a class="btn-social" href="https://line.me/R/ti/p/@864ihpsq" target="_blank">LINE</a>
+          <span class="btn-social" style="cursor:pointer;" onclick="document.getElementById('molly-qr-modal').classList.add('active')">LINE</span>
         </div>
+        <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('molly-qr-modal').classList.add('active')">預約諮詢</span>
       </div>
 
       <!-- Olive -->
@@ -591,6 +1059,7 @@
           <a class="btn-social" href="https://www.facebook.com/olive.ease.within" target="_blank">Facebook</a>
           <span class="btn-social" style="cursor:pointer;" onclick="document.getElementById('olive-qr-modal').classList.add('active')">LINE</span>
         </div>
+        <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('olive-qr-modal').classList.add('active')">預約諮詢</span>
       </div>
 
       <!-- Liz -->
@@ -611,6 +1080,26 @@
           <a class="btn-social" href="https://www.instagram.com/islewithin/" target="_blank">Instagram</a>
           <a class="btn-social" href="https://www.facebook.com/robintenpassion/" target="_blank">Facebook</a>
         </div>
+        <a class="btn-book" href="https://www.instagram.com/islewithin/" target="_blank">預約諮詢</a>
+      </div>
+
+      <!-- 芷盈 Irene -->
+      <div class="instructor-card">
+        <img class="card-photo" src="instructors/photos/irene-profile.jpg" alt="芷盈 Irene">
+        <div class="card-name">芷盈 Irene</div>
+        <div class="card-brand">Irene 的 I 人芳聊室</div>
+        <p class="card-bio">
+          用氣味讀懂人心的生命藍圖引導師，擅長以「精油側寫諮詢」與「靈魂藍圖解讀」協助人們對焦內在的動力與渴望。創立氣味療心品牌〈Irene 的 I 人芳聊室〉，支持超過 100 位個案拆解情緒地雷、跨越生命關卡。
+        </p>
+        <div class="card-services">
+          <span class="service-tag">精油側寫諮詢</span>
+          <span class="service-tag">靈魂藍圖解讀</span>
+        </div>
+        <div class="card-links">
+          <a class="btn-social" href="https://www.instagram.com/heartalk_with_irene" target="_blank">Instagram</a>
+          <a class="btn-social" href="https://www.facebook.com/aiyunhsu/" target="_blank">Facebook</a>
+        </div>
+        <a class="btn-book" href="https://www.instagram.com/heartalk_with_irene" target="_blank">預約諮詢</a>
       </div>
 
       <!-- 王復生 -->
@@ -629,11 +1118,237 @@
           <a class="btn-social" href="https://www.instagram.com/fusheng_hand_touch/" target="_blank">Instagram</a>
           <span class="btn-social" style="cursor:pointer;" onclick="document.getElementById('fusheng-qr-modal').classList.add('active')">LINE</span>
         </div>
+        <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('fusheng-qr-modal').classList.add('active')">預約服務</span>
       </div>
 
     </div>
   </div>
 </section>
+
+<!-- COURSE -->
+<section id="course">
+  <div class="section-inner">
+    <p class="section-label">Training Program</p>
+    <h2 class="section-title">精油側寫師培訓課程</h2>
+
+    <!-- 兩階段 -->
+    <div class="stages-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+
+      <div class="stage-card highlight">
+        <div class="stage-num">第一階段</div>
+        <div class="stage-title">精油側寫新手入門</div>
+        <p class="stage-desc">
+          從零開始建立精油側寫的基礎認識。學習盲抽流程、初步解析方法，以及如何運用精油陪伴自己與身邊的人，是進入培訓課程前的重要前置。
+        </p>
+        <a class="btn-apply" href="https://forms.gle/R1HQP13HuRynKSke6" target="_blank">立即報名</a>
+      </div>
+
+      <div class="stage-card highlight">
+        <div class="stage-num">第二階段</div>
+        <div class="stage-title">精油側寫師講師培訓</div>
+        <p class="stage-desc">
+          深入四大解析構面，完成廿一天個案陪伴實習與成果發表，培養具備接案實力的專業精油側寫師。詳細課程內容如下。
+        </p>
+        <a class="btn-apply" href="https://forms.gle/UmTXs65JSPckp4tm8" target="_blank">立即報名</a>
+      </div>
+
+    </div>
+
+    <!-- 第一階段詳細說明 -->
+    <div style="margin-bottom:2rem; padding:1.2rem 1.8rem; border-left:3px solid var(--gold); background:var(--gold-dim); border-radius:0 6px 6px 0;">
+      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;">第一階段詳細說明</div>
+      <div style="font-size:0.95rem;color:var(--text);font-weight:500;">精油側寫新手入門</div>
+    </div>
+
+    <div class="course-block">
+      <p class="course-text">
+        本課程為精油側寫師的初階專業奠基班。我們將繁複的芳療理論高度系統化，聚焦於核心能力培養：教授如何指導尋求者（個案）進行盲抽，並運用植物部位特質、基本精油化學與生理症狀的內在關聯，推理出個案身心失衡的因果關係，而非流於表面症狀的對症下藥。
+      </p>
+      <p class="course-text">
+        精油側寫不該只是「好聞」或「憑直覺算命」，它是一門有跡可循的身體心理學。
+      </p>
+
+      <div class="experience-grid" style="margin-top:1.5rem;">
+        <div class="exp-card">
+          <div class="exp-icon">🌿</div>
+          <div class="exp-title">探索植物七大部位</div>
+          <p class="exp-desc">聚焦於根、種籽、葉、樹幹、樹脂、花、果七大部位。學習芳香植物不同萃取部位所具備的生理與心理特質，建立精油與身心對應的基本邏輯。</p>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">✨</div>
+          <div class="exp-title">體驗簡易版精油抓周</div>
+          <p class="exp-desc">相較於坊間純粹憑直覺的精油抓周，精油側寫更重視「推理與覺察」。學員將透過簡易的盲抽體驗，解讀自己當下的身心訊號。</p>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">🌙</div>
+          <div class="exp-title">7 天身心微覺察</div>
+          <p class="exp-desc">提供輕量化的 7 天陪伴引導。在這一週內，協助你觀察使用精油後的日常變化，在微小的覺察中，找回身心轉化與平衡的契機。</p>
+        </div>
+      </div>
+
+      <div class="course-block" style="margin-top:2rem; margin-bottom:0;">
+        <h3 class="course-block-title">
+          <span class="flower-icon">🌸</span>適合對象
+        </h3>
+        <ol class="course-ol">
+          <li><span class="num">01</span><span><strong style="color:var(--text);">芳療從業者：</strong>想突破傳統「對症配方」的瓶頸，為個案提供更深層的身心諮詢。</span></li>
+          <li><span class="num">02</span><span><strong style="color:var(--text);">心理或助人工作者：</strong>期待引入非語言的植物媒介，快速繞過個案的防衛機制。</span></li>
+          <li><span class="num">03</span><span><strong style="color:var(--text);">精油愛好者／素人：</strong>想建立系統化的精油邏輯，成為親友與自己最專業的精油側寫師。</span></li>
+        </ol>
+      </div>
+
+      <p class="course-text" style="margin-top:2rem; font-style:italic; color:var(--gold); opacity:0.9;">
+        這堂課將是你成為專業側寫師的第一張溫和入場券。
+      </p>
+    </div>
+
+    <!-- 第二階段詳細說明 -->
+    <div style="margin-bottom:2rem; padding:1.2rem 1.8rem; border-left:3px solid var(--gold); background:var(--gold-dim); border-radius:0 6px 6px 0;">
+      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;">第二階段詳細說明</div>
+      <div style="font-size:0.95rem;color:var(--text);font-weight:500;">精油側寫師講師培訓課程</div>
+    </div>
+
+    <p class="course-intro">
+      精油側寫的前身是「精油抓周」，又稱「香氣抓周」。個案在精油側寫師的指導下依序盲抽三支單方精油，由側寫師說明其生理與心理特性；在廿一天的使用過程中，透過每週一次、共三次的晤談，引領尋求者覺察自身身心狀態的變化，創造內在失衡自然轉化平衡的契機。相較坊間偏向直覺解析的「精油抓周」，精油側寫運用萃取部位、精油化學、心身醫學與中醫五行哲學等構面，客觀推理尋求者身心失衡的過程，並給予陪伴與支持。
+    </p>
+
+    <!-- 何謂精油側寫 -->
+    <div class="course-block">
+      <h3 class="course-block-title">
+        <span class="flower-icon">🌸</span>何謂精油側寫
+      </h3>
+      <p class="course-text">
+        「精油側寫」是一門結合植物學、精油化學與身心動力學、東西方哲學的整合性應用學門。相較於流於直覺式、神祕學的「精油抓周」，精油側寫不進行宿命論的論斷——它透過個案盲抽精油，繞過意識防衛，由精油側寫師運用
+        <strong>「1. 萃取部位、2. 身心一體、3. 中醫哲理、4. 精油化學」</strong>
+        四大核心構面進行客觀推理，精準還原個案身心失衡的軌跡。
+      </p>
+      <p class="course-text">
+        學員將養成不進行主觀論斷，而是透過科學與哲學架構，客觀剖析尋求者身心失衡軌跡的專業能力，並在後續廿一天的日常陪伴中，透過每週一次的專業晤談，引導尋求者觀察自身變化，啟動內在自然轉化的自癒契機。
+      </p>
+    </div>
+
+    <!-- 課程目標 -->
+    <div class="course-block">
+      <h3 class="course-block-title">
+        <span class="flower-icon">🌸</span>課程目標
+      </h3>
+      <p class="course-text">本培訓課程旨在培養具備嚴謹邏輯與陪伴能力的專業精油側寫師。</p>
+      <ol class="course-ol">
+        <li><span class="num">01</span><span>系統性學習邏輯性分析，不再單憑直覺、亂槍打鳥。</span></li>
+        <li><span class="num">02</span><span>透過實際體驗與演練，整合所學，快速上手。</span></li>
+        <li><span class="num">03</span><span>協助自我認識，實現自我療癒。</span></li>
+      </ol>
+    </div>
+
+    <!-- 課程特色 -->
+    <div class="course-block">
+      <h3 class="course-block-title">
+        <span class="flower-icon">🌸</span>課程特色
+      </h3>
+      <ol class="course-ol">
+        <li><span class="num">01</span><span><strong>階段性學習：</strong>從基礎芳療到居家應用實務，最後進入四十八支單方精油的生理與心理層面運用，循序漸進、步步扎實。</span></li>
+        <li><span class="num">02</span><span>大量的實務操作，脫離紙上談兵。</span></li>
+        <li><span class="num">03</span><span>廿一天精油捉周個案體驗，一對一晤談，手把手教學，老師全程陪伴。</span></li>
+        <li><span class="num">04</span><span>執行共學制度，師生間教學相長，學習路上不孤單。</span></li>
+        <li><span class="num">05</span><span>不只習得芳療專業，亦包含進修身心動作教育的相關課程。</span></li>
+      </ol>
+    </div>
+
+    <!-- 四大解析構面 -->
+    <div class="course-block">
+      <h3 class="course-block-title">
+        <span class="flower-icon">🌸</span>系統化課程架構：四大解析構面
+      </h3>
+      <p class="course-text">
+        真正的精油諮詢，需要跨領域的知識整合。芳療不該只是「好聞」或「憑直覺算命」，它是一門有跡可循的身體心理學。本課程提供一套邏輯嚴謹、層次分明的四大解析構面，從植物部位看人格特質，從身心一體抓出情緒根源，用中醫哲理調和整體能量，以精油化學提供科學佐證。
+      </p>
+      <div class="dimensions-grid">
+        <div class="dim-card">
+          <div class="dim-num">構面 01</div>
+          <div class="dim-title">萃取部位<br><small style="font-weight:300;font-size:0.8rem;color:var(--muted);">植物學背景</small></div>
+          <p class="dim-desc">理解精油來自根、莖、葉、花、果實或樹脂等不同部位，如何對應人類不同的心理防衛機制、人格特質與生命能量階段。</p>
+        </div>
+        <div class="dim-card">
+          <div class="dim-num">構面 02</div>
+          <div class="dim-title">身心一體<br><small style="font-weight:300;font-size:0.8rem;color:var(--muted);">心身醫學觀點</small></div>
+          <p class="dim-desc">打破頭痛醫頭的限制。從尋求者的生理症狀，逆向推導背後隱藏的心理情緒壓抑，看見身體透過症狀傳遞的真實訊號。</p>
+        </div>
+        <div class="dim-card">
+          <div class="dim-num">構面 03</div>
+          <div class="dim-title">中醫哲理<br><small style="font-weight:300;font-size:0.8rem;color:var(--muted);">東方整體觀</small></div>
+          <p class="dim-desc">融入中醫陰陽五行、氣血津液等哲學架構，評估尋求者體質與能量的虛實寒熱，從宏觀視角解讀身心失衡的演變過程。</p>
+        </div>
+        <div class="dim-card">
+          <div class="dim-num">構面 04</div>
+          <div class="dim-title">精油化學<br><small style="font-weight:300;font-size:0.8rem;color:var(--muted);">現代科學實證</small></div>
+          <p class="dim-desc">從單萜烯、倍半萜烯、醇、酯、醛、酮等化學分子出發，理解其藥理特性如何實質影響大腦神經傳導與生理運作，賦予精油側寫科學實證支持。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 四大核心體驗 -->
+    <div class="course-block">
+      <h3 class="course-block-title">
+        <span class="flower-icon">🌸</span>課程四大核心體驗
+      </h3>
+      <p class="course-text">本課程拒絕紙上談兵，堅持完整的實務演練，讓學員在學成後具備立即接案的實戰能力。</p>
+      <div class="experience-grid">
+        <div class="exp-card">
+          <div class="exp-icon">✨</div>
+          <div class="exp-title">精油抓周</div>
+          <p class="exp-desc">學習如何指導尋求者盲抽，精準捕捉當下的身心訊號。</p>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">✨</div>
+          <div class="exp-title">四大構面立體推理</div>
+          <p class="exp-desc">擺脫對症下藥的套公式盲點，學會像偵探般找出失衡因果。</p>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">✨</div>
+          <div class="exp-title">廿一天黃金陪伴引導</div>
+          <p class="exp-desc">學員將與老師一對一學習如何進行每週一次、每次約 30 分鐘的電話晤談（共計 3 次），掌握傾聽、追蹤與引導尋求者自我覺察的臨床核心技巧。</p>
+        </div>
+        <div class="exp-card">
+          <div class="exp-icon">✨</div>
+          <div class="exp-title">實體全學員成果發表會</div>
+          <p class="exp-desc">拒絕線上結業的虛無感。課程最後全體學員親自發表個案側寫成果，由老師親自點評指導，累積最真實的接案底氣，完成從理論到實戰的最後一哩路。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-block">
+      <h3 class="course-block-title">
+        <span class="flower-icon">🌸</span>適合對象
+      </h3>
+      <ol class="course-ol">
+        <li><span class="num">01</span><span><strong style="color:var(--text);">芳療從業者：</strong>想突破傳統「對症配方」的瓶頸，為個案提供更深層的身心諮詢。</span></li>
+        <li><span class="num">02</span><span><strong style="color:var(--text);">心理或助人工作者：</strong>期待引入非語言的植物媒介，快速繞過個案的防衛機制。</span></li>
+        <li><span class="num">03</span><span><strong style="color:var(--text);">精油愛好者／素人：</strong>想建立系統化的精油邏輯，成為親友與自己最專業的精油側寫師。</span></li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<!-- LINE QR MODAL: 玥泫 -->
+<div class="qr-modal" id="yuyu-qr-modal" onclick="this.classList.remove('active')">
+  <div class="qr-box" onclick="event.stopPropagation()">
+    <p>掃描加入玥泫的 LINE 官方帳號</p>
+    <img src="instructors/photos/yuyu-line-qr.png" alt="癒玥 LINE QR">
+    <a href="https://line.me/R/ti/p/@564spama" target="_blank" style="display:inline-block;margin-top:1rem;font-size:0.78rem;color:#c8a464;text-decoration:none;letter-spacing:0.08em;border:1px solid rgba(200,164,100,0.4);padding:0.3rem 0.9rem;border-radius:20px;">點此直接加入</a>
+    <div class="qr-close" onclick="document.getElementById('yuyu-qr-modal').classList.remove('active')">關閉 ✕</div>
+  </div>
+</div>
+
+<!-- LINE QR MODAL: Molly -->
+<div class="qr-modal" id="molly-qr-modal" onclick="this.classList.remove('active')">
+  <div class="qr-box" onclick="event.stopPropagation()">
+    <p>掃描加入 Molly 的 LINE 官方帳號</p>
+    <img src="instructors/photos/molly-line-qr.jpg" alt="Molly LINE QR">
+    <a href="https://line.me/R/ti/p/@864ihpsq" target="_blank" style="display:inline-block;margin-top:1rem;font-size:0.78rem;color:#c8a464;text-decoration:none;letter-spacing:0.08em;border:1px solid rgba(200,164,100,0.4);padding:0.3rem 0.9rem;border-radius:20px;">點此直接加入</a>
+    <div class="qr-close" onclick="document.getElementById('molly-qr-modal').classList.remove('active')">關閉 ✕</div>
+  </div>
+</div>
 
 <!-- LINE QR MODAL: Olive -->
 <div class="qr-modal" id="olive-qr-modal" onclick="this.classList.remove('active')">
@@ -655,7 +1370,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">海賊嫚說芳療｜精油側寫師</div>
+  <div class="footer-brand">海賊嫚說芳療｜精油側寫</div>
   <p>
     <a href="https://www.facebook.com/PattySayAroma/" target="_blank">Facebook</a>
     　·
