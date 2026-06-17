@@ -704,6 +704,39 @@
       display: none;
     }
 
+    .btn-hero-cta {
+      display: inline-block;
+      padding: 0.85rem 2.4rem;
+      background: var(--gold);
+      color: #13160f;
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      margin-bottom: 2.5rem;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-hero-cta:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn-hero-outline {
+      display: inline-block;
+      padding: 0.85rem 2.4rem;
+      background: transparent;
+      color: var(--gold);
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      border-radius: 4px;
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: 2.5rem;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-hero-outline:hover { background: var(--gold); color: #13160f; transform: translateY(-2px); }
+
     .btn-apply {
       display: inline-block;
       padding: 0.6rem 1.4rem;
@@ -949,6 +982,10 @@
   <p class="hero-eyebrow">Essential Oil Profiling</p>
   <h1>海賊嫚<span>說</span>芳療</h1>
   <p class="hero-sub">透過你與精油之間的直覺連結，讀出當下最真實的身心狀態。</p>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+    <button class="btn-hero-cta" onclick="showCourseView('course-view-select');document.getElementById('course-modal').classList.add('active');">立即報名課程</button>
+    <a class="btn-hero-outline" href="#lecture-entry">立即報名講座</a>
+  </div>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     <span>往下探索</span>
@@ -1085,7 +1122,7 @@
     <h2 class="section-title">體驗精油側寫</h2>
 
     <div class="team-entry-grid">
-      <div class="entry-card">
+      <div class="entry-card" id="lecture-entry">
         <div class="entry-title">參加精油側寫講座</div>
         <p class="entry-desc">還不確定精油側寫適不適合你？先來參加一場體驗講座，親身感受香氣如何說出你當下的身心狀態，帶走屬於你的第一份側寫印象。</p>
         <span class="btn-apply" style="background:transparent;color:var(--muted);border:1px solid var(--border);cursor:default;opacity:0.7;">擇期開放</span>
