@@ -548,6 +548,104 @@
     }
     .qr-close:hover { color: var(--gold); }
 
+    /* ── COURSE MODAL ── */
+    .course-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 998;
+      background: rgba(0,0,0,0.75);
+      align-items: flex-start;
+      justify-content: center;
+      overflow-y: auto;
+      padding: 3rem 1rem 4rem;
+    }
+    .course-modal.active { display: flex; }
+    .course-modal-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem 3.5rem;
+      max-width: 820px;
+      width: 100%;
+      position: relative;
+    }
+    .course-modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      margin: -1.5rem -1.5rem 1rem 1rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      background: var(--bg2);
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+    .course-modal-close:hover { color: var(--gold); border-color: var(--gold); }
+    .course-view { display: none; }
+    .course-view.active { display: block; }
+    .course-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .course-back:hover { color: var(--gold); border-color: var(--gold); }
+    .course-select-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .course-select-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem 1.8rem;
+      cursor: pointer;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .course-select-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .course-select-num {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .course-select-title {
+      font-size: 1.15rem;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+    .course-select-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
+    }
+    .course-select-cta {
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+    @media (max-width: 640px) {
+      .course-modal-box { padding: 2rem 1.5rem; }
+    }
+
     /* ── COURSE STAGES ── */
     .stages-grid {
       display: grid;
@@ -842,7 +940,7 @@
   <a href="#founder">關於海賊嫚</a>
   <a href="#what">精油側寫</a>
   <a href="#team">體驗側寫</a>
-  <a href="#course">培訓課程</a>
+  <a href="#" onclick="showCourseView('course-view-select');document.getElementById('course-modal').classList.add('active');return false;">培訓課程</a>
 </nav>
 
 <!-- HERO -->
@@ -870,7 +968,7 @@
         <p class="founder-title">單方精油側寫研發者｜海賊嫚說芳療</p>
         <div class="divider"></div>
         <p class="founder-bio">
-          從事芳療教學逾 23 年，擅長單方精油側寫、芳香療法認證課程與芳療居家臨床照護。她相信預防勝於治療是老套卻務實的建議，而精油側寫恰恰就是符合此建議的策略——陪伴尋求解惑者覺察需要，在現代醫療之外找到身心支持的入口。工具組合橫跨精油捉週、小排列與托特塔羅。
+          從事芳療教學逾 23 年，擅長單方精油側寫、芳香療法認證課程與芳療居家臨床照護。她相信預防勝於治療是老套卻務實的建議，而精油側寫恰恰就是符合此建議的策略——陪伴尋求解惑者覺察需要，在現代醫療之外找到身心支持的入口。工具組合橫跨精油側寫、家族排列與托特塔羅。
         </p>
         <blockquote class="founder-quote">
           「芳療不是直覺，更不是算命。我用二十三年，建立一套有跡可循的推理系統——從香氣的反應出發，陪你看見身心失衡真正的軌跡。」
@@ -894,7 +992,7 @@
           <div class="cred-section-title">現任職務</div>
           <ul class="cred-list">
             <li>馥蘭朵系列飯店芳療顧問</li>
-            <li>國立臺東大學身心發展與運動休閒產業學系技術講師</li>
+            <li>國立臺東大學身心整合與運動休閒產業學系技術講師</li>
             <li>臺灣身心教育學會芳香療法認證課程講師</li>
             <li>臺灣身心教育學會精油側寫師認證課程講師</li>
             <li>FB 社團「海賊嫚芳療團」團長</li>
@@ -1006,7 +1104,7 @@
         <div class="card-name">玥泫</div>
         <div class="card-brand">癒玥 Her Flow</div>
         <p class="card-bio">
-          接觸身體工作逾十五年，深耕精油側寫三年。畢業於國立台東大學身心整合學系，曾任馥蘭朵 Dasha SPA 芳療師，持有美國 NAHA 芳療師證照。大腦超載者的身心落地樹洞，現於桃園提供一對一精油側寫服務。
+          接觸身體工作逾十五年，深耕精油側寫三年。畢業於國立台東大學身心整合與運動休閒產業學系，曾任馥蘭朵烏來Dasha SPA 芳療師，持有美國 NAHA 芳療師證照。大腦超載者的身心落地樹洞，現於桃園提供一對一精油側寫服務。
         </p>
         <div class="card-services">
           <span class="service-tag">精油側寫</span>
@@ -1071,7 +1169,7 @@
         <div class="card-name">孟寰 Liz</div>
         <div class="card-brand">緩嶼</div>
         <p class="card-bio">
-          舞蹈動作治療師，同時也是芳療師。運用英國受訓的心理動力觀點，結合精油人格側寫與 21 天整合陪伴，協助人們在語言之外整合深層的情緒與內在感受。一座藏在心裡的小宇宙，當心隨意轉，療癒從內在開始。
+          舞蹈動作治療師，同時也是芳療師。運用英國受訓的心理動力觀點，結合精油側寫與 21 天整合陪伴，協助人們在語言之外整合深層的情緒與內在感受。一座藏在心裡的小宇宙，當心隨意轉，療癒從內在開始。
         </p>
         <div class="card-services">
           <span class="service-tag">精油側寫</span>
@@ -1128,49 +1226,43 @@
   </div>
 </section>
 
-<!-- COURSE -->
-<section id="course">
-  <div class="section-inner">
+<!-- COURSE MODAL -->
+<div class="course-modal" id="course-modal" onclick="this.classList.remove('active')">
+<div class="course-modal-box" onclick="event.stopPropagation()">
+  <div class="course-modal-close" onclick="document.getElementById('course-modal').classList.remove('active')">關閉 ✕</div>
+
+  <!-- VIEW 0：選擇頁 -->
+  <div id="course-view-select" class="course-view active">
     <p class="section-label">Training Program</p>
     <h2 class="section-title">精油側寫師培訓課程</h2>
-
-    <!-- 兩階段 -->
-    <div class="stages-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-
-      <div class="stage-card highlight">
-        <div class="stage-num">第一階段</div>
-        <div class="stage-title">精油側寫新手入門</div>
-        <p class="stage-desc">
-          從零開始建立精油側寫的基礎認識。學習盲抽流程、初步解析方法，以及如何運用精油陪伴自己與身邊的人，是進入培訓課程前的重要前置。
-        </p>
-        <a class="btn-apply" href="https://forms.gle/R1HQP13HuRynKSke6" target="_blank">立即報名</a>
+    <div class="course-select-grid">
+      <div class="course-select-card" onclick="showCourseView('course-view-1')">
+        <div class="course-select-num">第一階段</div>
+        <div class="course-select-title">新手入門</div>
+        <p class="course-select-desc">從零開始建立精油側寫的基礎認識。學習盲抽流程、初步解析方法，以及如何運用精油陪伴自己與身邊的人，是進入培訓課程前的重要前置。</p>
+        <div class="course-select-cta">了解更多 →</div>
       </div>
-
-      <div class="stage-card highlight">
-        <div class="stage-num">第二階段</div>
-        <div class="stage-title">精油側寫師講師培訓</div>
-        <p class="stage-desc">
-          深入四大解析構面，完成廿一天個案陪伴實習與成果發表，培養具備接案實力的專業精油側寫師。詳細課程內容如下。
-        </p>
-        <a class="btn-apply" href="https://forms.gle/UmTXs65JSPckp4tm8" target="_blank">立即報名</a>
+      <div class="course-select-card" onclick="showCourseView('course-view-2')">
+        <div class="course-select-num">第二階段</div>
+        <div class="course-select-title">精油側寫師專業培訓</div>
+        <p class="course-select-desc">深入四大解析構面，完成廿一天個案陪伴實習與成果發表，培養具備接案實力的專業精油側寫師。</p>
+        <div class="course-select-cta">了解更多 →</div>
       </div>
-
     </div>
+  </div>
 
-    <!-- 第一階段詳細說明 -->
+  <!-- VIEW 1：新手入門 -->
+  <div id="course-view-1" class="course-view">
+    <div class="course-back" onclick="showCourseView('course-view-select')">← 返回課程列表</div>
     <div style="margin-bottom:2rem; padding:1.2rem 1.8rem; border-left:3px solid var(--gold); background:var(--gold-dim); border-radius:0 6px 6px 0;">
-      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;">第一階段詳細說明</div>
-      <div style="font-size:0.95rem;color:var(--text);font-weight:500;">精油側寫新手入門</div>
+      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;">第一階段</div>
+      <div style="font-size:1.1rem;color:var(--text);font-weight:500;">精油側寫新手入門</div>
     </div>
-
     <div class="course-block">
       <p class="course-text">
         本課程為精油側寫師的初階專業奠基班。我們將繁複的芳療理論高度系統化，聚焦於核心能力培養：教授如何指導尋求者（個案）進行盲抽，並運用植物部位特質、基本精油化學與生理症狀的內在關聯，推理出個案身心失衡的因果關係，而非流於表面症狀的對症下藥。
       </p>
-      <p class="course-text">
-        精油側寫不該只是「好聞」或「憑直覺算命」，它是一門有跡可循的身體心理學。
-      </p>
-
+      <p class="course-text">精油側寫不該只是「好聞」或「憑直覺算命」，它是一門有跡可循的身體心理學。</p>
       <div class="experience-grid" style="margin-top:1.5rem;">
         <div class="exp-card">
           <div class="exp-icon">🌿</div>
@@ -1188,53 +1280,42 @@
           <p class="exp-desc">提供輕量化的 7 天陪伴引導。在這一週內，協助你觀察使用精油後的日常變化，在微小的覺察中，找回身心轉化與平衡的契機。</p>
         </div>
       </div>
-
       <div class="course-block" style="margin-top:2rem; margin-bottom:0;">
-        <h3 class="course-block-title">
-          <span class="flower-icon">🌸</span>適合對象
-        </h3>
+        <h3 class="course-block-title"><span class="flower-icon">🌸</span>適合對象</h3>
         <ol class="course-ol">
           <li><span class="num">01</span><span><strong style="color:var(--text);">芳療從業者：</strong>想突破傳統「對症配方」的瓶頸，為個案提供更深層的身心諮詢。</span></li>
           <li><span class="num">02</span><span><strong style="color:var(--text);">心理或助人工作者：</strong>期待引入非語言的植物媒介，快速繞過個案的防衛機制。</span></li>
           <li><span class="num">03</span><span><strong style="color:var(--text);">精油愛好者／素人：</strong>想建立系統化的精油邏輯，成為親友與自己最專業的精油側寫師。</span></li>
         </ol>
       </div>
-
-      <p class="course-text" style="margin-top:2rem; font-style:italic; color:var(--gold); opacity:0.9;">
-        這堂課將是你成為專業側寫師的第一張溫和入場券。
-      </p>
+      <p class="course-text" style="margin-top:2rem; font-style:italic; color:var(--gold); opacity:0.9;">這堂課將是你成為專業側寫師的第一張溫和入場券。</p>
+      <div style="margin-top:2rem; text-align:center;">
+        <a class="btn-apply" href="https://forms.gle/R1HQP13HuRynKSke6" target="_blank">立即報名</a>
+      </div>
     </div>
+  </div>
 
-    <!-- 第二階段詳細說明 -->
+  <!-- VIEW 2：精油側寫師專業培訓 -->
+  <div id="course-view-2" class="course-view">
+    <div class="course-back" onclick="showCourseView('course-view-select')">← 返回課程列表</div>
     <div style="margin-bottom:2rem; padding:1.2rem 1.8rem; border-left:3px solid var(--gold); background:var(--gold-dim); border-radius:0 6px 6px 0;">
-      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;">第二階段詳細說明</div>
-      <div style="font-size:0.95rem;color:var(--text);font-weight:500;">精油側寫師講師培訓課程</div>
+      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;">第二階段</div>
+      <div style="font-size:1.1rem;color:var(--text);font-weight:500;">精油側寫師專業培訓</div>
     </div>
-
     <p class="course-intro">
       精油側寫的前身是「精油抓周」，又稱「香氣抓周」。個案在精油側寫師的指導下依序盲抽三支單方精油，由側寫師說明其生理與心理特性；在廿一天的使用過程中，透過每週一次、共三次的晤談，引領尋求者覺察自身身心狀態的變化，創造內在失衡自然轉化平衡的契機。相較坊間偏向直覺解析的「精油抓周」，精油側寫運用萃取部位、精油化學、心身醫學與中醫五行哲學等構面，客觀推理尋求者身心失衡的過程，並給予陪伴與支持。
     </p>
-
-    <!-- 何謂精油側寫 -->
     <div class="course-block">
-      <h3 class="course-block-title">
-        <span class="flower-icon">🌸</span>何謂精油側寫
-      </h3>
+      <h3 class="course-block-title"><span class="flower-icon">🌸</span>何謂精油側寫</h3>
       <p class="course-text">
         「精油側寫」是一門結合植物學、精油化學與身心動力學、東西方哲學的整合性應用學門。相較於流於直覺式、神祕學的「精油抓周」，精油側寫不進行宿命論的論斷——它透過個案盲抽精油，繞過意識防衛，由精油側寫師運用
         <strong>「1. 萃取部位、2. 身心一體、3. 中醫哲理、4. 精油化學」</strong>
         四大核心構面進行客觀推理，精準還原個案身心失衡的軌跡。
       </p>
-      <p class="course-text">
-        學員將養成不進行主觀論斷，而是透過科學與哲學架構，客觀剖析尋求者身心失衡軌跡的專業能力，並在後續廿一天的日常陪伴中，透過每週一次的專業晤談，引導尋求者觀察自身變化，啟動內在自然轉化的自癒契機。
-      </p>
+      <p class="course-text">學員將養成不進行主觀論斷，而是透過科學與哲學架構，客觀剖析尋求者身心失衡軌跡的專業能力，並在後續廿一天的日常陪伴中，透過每週一次的專業晤談，引導尋求者觀察自身變化，啟動內在自然轉化的自癒契機。</p>
     </div>
-
-    <!-- 課程目標 -->
     <div class="course-block">
-      <h3 class="course-block-title">
-        <span class="flower-icon">🌸</span>課程目標
-      </h3>
+      <h3 class="course-block-title"><span class="flower-icon">🌸</span>課程目標</h3>
       <p class="course-text">本培訓課程旨在培養具備嚴謹邏輯與陪伴能力的專業精油側寫師。</p>
       <ol class="course-ol">
         <li><span class="num">01</span><span>系統性學習邏輯性分析，不再單憑直覺、亂槍打鳥。</span></li>
@@ -1242,29 +1323,19 @@
         <li><span class="num">03</span><span>協助自我認識，實現自我療癒。</span></li>
       </ol>
     </div>
-
-    <!-- 課程特色 -->
     <div class="course-block">
-      <h3 class="course-block-title">
-        <span class="flower-icon">🌸</span>課程特色
-      </h3>
+      <h3 class="course-block-title"><span class="flower-icon">🌸</span>課程特色</h3>
       <ol class="course-ol">
         <li><span class="num">01</span><span><strong>階段性學習：</strong>從基礎芳療到居家應用實務，最後進入四十八支單方精油的生理與心理層面運用，循序漸進、步步扎實。</span></li>
         <li><span class="num">02</span><span>大量的實務操作，脫離紙上談兵。</span></li>
-        <li><span class="num">03</span><span>廿一天精油捉周個案體驗，一對一晤談，手把手教學，老師全程陪伴。</span></li>
+        <li><span class="num">03</span><span>廿一天精油側寫個案體驗，一對一晤談，手把手教學，老師全程陪伴。</span></li>
         <li><span class="num">04</span><span>執行共學制度，師生間教學相長，學習路上不孤單。</span></li>
         <li><span class="num">05</span><span>不只習得芳療專業，亦包含進修身心動作教育的相關課程。</span></li>
       </ol>
     </div>
-
-    <!-- 四大解析構面 -->
     <div class="course-block">
-      <h3 class="course-block-title">
-        <span class="flower-icon">🌸</span>系統化課程架構：四大解析構面
-      </h3>
-      <p class="course-text">
-        真正的精油諮詢，需要跨領域的知識整合。芳療不該只是「好聞」或「憑直覺算命」，它是一門有跡可循的身體心理學。本課程提供一套邏輯嚴謹、層次分明的四大解析構面，從植物部位看人格特質，從身心一體抓出情緒根源，用中醫哲理調和整體能量，以精油化學提供科學佐證。
-      </p>
+      <h3 class="course-block-title"><span class="flower-icon">🌸</span>系統化課程架構：四大解析構面</h3>
+      <p class="course-text">真正的精油諮詢，需要跨領域的知識整合。芳療不該只是「好聞」或「憑直覺算命」，它是一門有跡可循的身體心理學。本課程提供一套邏輯嚴謹、層次分明的四大解析構面，從植物部位看人格特質，從身心一體抓出情緒根源，用中醫哲理調和整體能量，以精油化學提供科學佐證。</p>
       <div class="dimensions-grid">
         <div class="dim-card">
           <div class="dim-num">構面 01</div>
@@ -1288,12 +1359,8 @@
         </div>
       </div>
     </div>
-
-    <!-- 四大核心體驗 -->
     <div class="course-block">
-      <h3 class="course-block-title">
-        <span class="flower-icon">🌸</span>課程四大核心體驗
-      </h3>
+      <h3 class="course-block-title"><span class="flower-icon">🌸</span>課程四大核心體驗</h3>
       <p class="course-text">本課程拒絕紙上談兵，堅持完整的實務演練，讓學員在學成後具備立即接案的實戰能力。</p>
       <div class="experience-grid">
         <div class="exp-card">
@@ -1318,20 +1385,29 @@
         </div>
       </div>
     </div>
-
     <div class="course-block">
-      <h3 class="course-block-title">
-        <span class="flower-icon">🌸</span>適合對象
-      </h3>
+      <h3 class="course-block-title"><span class="flower-icon">🌸</span>適合對象</h3>
       <ol class="course-ol">
         <li><span class="num">01</span><span><strong style="color:var(--text);">芳療從業者：</strong>想突破傳統「對症配方」的瓶頸，為個案提供更深層的身心諮詢。</span></li>
         <li><span class="num">02</span><span><strong style="color:var(--text);">心理或助人工作者：</strong>期待引入非語言的植物媒介，快速繞過個案的防衛機制。</span></li>
         <li><span class="num">03</span><span><strong style="color:var(--text);">精油愛好者／素人：</strong>想建立系統化的精油邏輯，成為親友與自己最專業的精油側寫師。</span></li>
       </ol>
     </div>
-
+    <div style="margin-top:2rem; text-align:center;">
+      <a class="btn-apply" href="https://forms.gle/UmTXs65JSPckp4tm8" target="_blank">立即報名</a>
+    </div>
   </div>
-</section>
+
+</div>
+</div>
+
+<script>
+function showCourseView(id) {
+  document.querySelectorAll('.course-view').forEach(function(v){ v.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  document.querySelector('.course-modal-box').scrollTop = 0;
+}
+</script>
 
 <!-- LINE QR MODAL: 玥泫 -->
 <div class="qr-modal" id="yuyu-qr-modal" onclick="this.classList.remove('active')">
