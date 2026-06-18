@@ -310,6 +310,63 @@
       line-height: 1.9;
     }
 
+    /* ── TESTIMONIALS ── */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2.5rem;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      position: relative;
+    }
+    .testimonial-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 2;
+      margin-top: 1.2rem;
+    }
+    .testimonial-meta {
+      margin-top: 1.4rem;
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .testimonial-avatar {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+    .testimonial-brand {
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .testimonial-avatar-placeholder {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
     /* ── TEAM ENTRY ── */
     .team-entry-grid {
       display: grid;
@@ -973,6 +1030,7 @@
 <nav>
   <a href="#founder">關於海賊嫚</a>
   <a href="#what">精油側寫</a>
+  <a href="#testimonials">個案回饋</a>
   <a href="#team">體驗側寫</a>
   <a href="#" onclick="showCourseView('course-view-select');document.getElementById('course-modal').classList.add('active');return false;">培訓課程</a>
 </nav>
@@ -1115,6 +1173,96 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <p class="section-label">Client Feedback</p>
+    <h2 class="section-title">精油側寫個案回饋</h2>
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card">
+        <div class="testimonial-brand">晗息｜漸醒自我</div>
+        <p class="testimonial-text">
+          覺得自己在使用精油側寫油的過程中，明顯的改變是會開始打嗝，打嗝後身體會比較舒服，因為近半年有嚴重耳鳴的情況，對於身體的感知跟連結感有變差，就比較少活動身體。不知不覺心理上的穩定感有增加，不然之前都一直關注外面週遭的情況，會忽視自己的需求。用油後會開始願意主動的去活動身體，隨著關注的焦點轉向自己，感覺自己的角色壓力有減輕，身體的飢餓感也比較明顯，比較能坦誠的吃飯。最後一週對於身體感受及需求更加明顯，食慾及口慾上升，有趣的是有一個參加舞蹈比賽的機會，重拾信心及勇氣回去跳舞，接觸了亞歷山大技法，感受到了自身選擇的重要，知道現在的情況是對自己好的，就不會莫名的焦慮。覺得這 21 天是個很棒的體驗，重新找回自己的感覺。
+        </p>
+        <div class="testimonial-meta">
+<span>孟含個案</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><a class="btn-book" href="https://www.instagram.com/invain7911?igsh=OXowcDgxbzN1d3pu" target="_blank">預約體驗</a></div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-brand">遊鳥飛魚</div>
+        <p class="testimonial-text">
+          我覺得兩次抓的對我來說都蠻準確，有些部分顯示出來的是我自己有察覺到的狀態，但也有部分是抓周後列出精油顯示的結果，我才發現：對欸！這個也有！簡單來說我覺得對自我覺察明顯有幫助。<br><br>
+          兩次抽油的結果不太一樣，也因為是在同一年半年內，剛好也是我自己狀態變化的時間，覺得能從前後兩次比較明顯看出自己狀態的改變。<br><br>
+          雖然沒有辦法很確定精油的幫助有多少，但我覺得在「做出跟以前不一樣的選擇」這部分，應該有精油的功勞～以前可能會更猶豫退縮。<br><br>
+          個人的結論大概是：狀態有所改變之後，還想要更進一步或是覺得自己卡住的時候，我會想要再次進行精油側寫來幫助自己。
+        </p>
+        <div class="testimonial-meta">
+<span>欣妤個案</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('xinyu-qr-modal').classList.add('active')">預約體驗</span></div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-brand">鑰．本質 Key Essence</div>
+        <p class="testimonial-text">
+          21 天療程結束後，心境與生活在不知不覺中產生了許多轉變，真實體會到老師所說的「精油蝴蝶效應」。<br><br>
+          原本只是在人生方向上有些迷惘，想透過人類圖理解自己的原廠設定；沒想到在精油側寫的過程中，長期壓抑的疲憊與無助感竟然被「看見」了。「被看見、但不被定義」，對我而言是非常重要的療癒起點。<br><br>
+          使用精油初期身體出現明顯調整反應，老師的醫護背景與清楚說明讓人非常安心。她沒有慌亂或推卸，而是耐心解釋、教我如何觀察，並把「是否繼續使用」的選擇權完整交還給我。<br><br>
+          透過嗅覺繞過過度理性的防衛（真的很適合理性腦），身體在穩定節奏中自然啟動整合能力，連夢境中也開始進行心理重整。短短三週內，看見了原本需要更長時間累積的轉變發生，非常令人驚豔。<br><br>
+          這段合作像是在人生低谷停靠的「補給與校準驛站」——卸下不再適合的舊裝備，溫柔而實際地升級。謝謝老師超出期待的付出，以及這段界線清楚、彼此信任的同行經驗。
+        </p>
+        <div class="testimonial-meta">
+<span>Molly 個案｜21 天精油療程</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('molly-qr-modal').classList.add('active')">預約體驗</span></div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-brand">Irene 的 I 人芳聊室</div>
+        <p class="testimonial-text">
+          「Irene 有優秀的聆聽和提問能力，能幫助並鼓勵個案看見更深一層次的情緒狀態，在過程中親眼見到自己身心的轉換變化……將心中埋藏的渴望在現實生活中創造具體的成果。」— 30＋ 國小教師<br><br>
+          「謝謝你帶我一步一步認識內心的恐懼，原來抓周 21 天只是初步的練習而已，之後遇到問題比較不害怕了，知道問題來源，更明白如何面對和解決了。」— 35＋ 科技業 PM
+        </p>
+        <div class="testimonial-meta">
+<span>芷盈 Irene 個案</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><a class="btn-book" href="https://www.instagram.com/heartalk_with_irene" target="_blank">預約體驗</a></div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-brand">緩嶼芳療 IsleWithin</div>
+        <p class="testimonial-text">
+          上次精油側寫結束之後，我發現那些平時被忽略的情緒和想法，其實一直都在。要學著先傾聽自己，接著勇敢表達，因為如果我不說，永遠沒有人會替我說。謝謝你帶我進入精油側寫的體驗！<br><br>
+          靠著三支精油就能夠很精準的提到我最近的身心狀況，真的很神奇，而且有些我自己也沒發現。喜歡精油芳療的真的都可以找她預約試試看，還想許願推出好睡助眠款。
+        </p>
+        <div class="testimonial-meta">
+<span>孟寰個案</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('liz-qr-modal').classList.add('active')">預約體驗</span></div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-brand">癒玥‧身心芳療<br>Yuyue Bodymind</div>
+        <p class="testimonial-text">
+          我喜歡這個旅程，並且由玥來引導我使用抓周精油真正的享受在其中，原來植物的能量香味，可以讓我們的腦波感受到舒服之外，心靈上的引導我們必須自我覺醒，也就是讓自己去面對內心更深處的自己。<br><br>
+          以往我遇到不合理、不明白的事一概只用離開來解決問題，殊不知更多的累積變成更多的議題再次從生活中出現，變成必須再面對一次，那麼我只能用離開來解決嗎？最後最後的一個關鍵其實是《接受》。<br><br>
+          《接受一切的發生》當下的傻、決策、不甘，其實都是真的，那麼那就是《真實的自我存在》。當我存在當下的情緒以及無能為力，其實就是我自己——我要接受真正的自己，也藉著接受我自己，我也更知道《愛自己的需要》。<br><br>
+          我《真正的需要》是什麼？不是只有〈想要〉，更多貼近我身體狀況、精神狀況的需要滿足了、完成愛自己的議題後，那麼順位的想要才有辦法襯托出〈我自己〉來。〈愛自己〉的課題不再只是物質生活，心靈滿足不再是順位，更多的豐富是由自己準備好就可以出發。
+        </p>
+        <div class="testimonial-meta">
+<span>玥泫個案｜精油 21 天旅程</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('yuyu-qr-modal').classList.add('active')">預約體驗</span></div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+</section>
+
 <!-- TEAM -->
 <section id="team">
   <div class="section-inner">
@@ -1139,10 +1287,10 @@
       <!-- 癒玥 -->
       <div class="instructor-card">
         <img class="card-photo" src="instructors/photos/yuyu-profile.jpg" alt="癒玥">
-        <div class="card-name">玥泫</div>
-        <div class="card-brand">癒玥 Her Flow</div>
+        <div class="card-name">玥泫 Ayla</div>
+        <div class="card-brand">癒玥‧身心芳療 Yuyue Bodymind</div>
         <p class="card-bio">
-          接觸身體工作逾十五年，深耕精油側寫三年。畢業於國立台東大學身心整合與運動休閒產業學系，曾任馥蘭朵烏來Dasha SPA 芳療師，持有美國 NAHA 芳療師證照。大腦超載者的身心落地樹洞，現於桃園提供一對一精油側寫服務。
+          具多年身體工作與精油側寫經驗，累計服務逾 5000 小時個案。畢業於台東身心整合與運動休閒產業學系，持有美國 NAHA 證照，曾任馥蘭朵烏來芳療師與醫療長照、幼兒芳療講師。<br><br>現於桃園提供一對一服務。擅長將精油側寫融合多元手技，精準支持大腦超載的疲憊靈魂，在溫柔觸碰中找回內在的清晰與放鬆。
         </p>
         <div class="card-services">
           <span class="service-tag">精油側寫</span>
@@ -1152,7 +1300,7 @@
         </div>
         <div class="card-links">
           <span class="btn-social" style="cursor:pointer;" onclick="document.getElementById('yuyu-qr-modal').classList.add('active')">LINE</span>
-          <a class="btn-social" href="https://yuyuebodymind.netlify.app/" target="_blank">官網</a>
+          <a class="btn-social" href="https://yuyue-aroma.netlify.app/" target="_blank">官網</a>
           <a class="btn-social" href="https://www.facebook.com/share/1BHeLK3sxC/?mibextid=wwXIfr" target="_blank">Facebook</a>
         </div>
         <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('yuyu-qr-modal').classList.add('active')">預約諮詢</span>
@@ -1185,9 +1333,9 @@
       <div class="instructor-card">
         <img class="card-photo" src="instructors/photos/olive-profile.jpg" alt="Olive">
         <div class="card-name">Olive</div>
-        <div class="card-brand">Ease Within｜隨意療</div>
+        <div class="card-brand">隨意療｜Ease Within</div>
         <p class="card-bio">
-          隨意療，是一個溫柔陪伴人回到內在的療癒空間。她相信療癒並非來自被給予，而是在心鬆動、流動之時，自然發生的狀態。專注於芳香療癒、薩滿療癒與植物精油側寫，在新竹靜靜守著這一方餘裕。
+          隨意療，是一個溫柔陪伴人回到內在的療癒空間。她相信療癒是在心鬆動、流動之時，自然發生的狀態。當心隨意轉，療癒，便從內在開始。<br><br>專注於芳香療癒、植物精油側寫與薩滿療癒，在竹東的小鎮裡，靜靜守著一方餘裕。
         </p>
         <div class="card-services">
           <span class="service-tag">芳香療癒</span>
@@ -1205,9 +1353,9 @@
       <div class="instructor-card">
         <img class="card-photo" src="instructors/photos/liz-profile.jpg" alt="孟寰 Liz">
         <div class="card-name">孟寰 Liz</div>
-        <div class="card-brand">緩嶼</div>
+        <div class="card-brand">緩嶼芳療 IsleWithin</div>
         <p class="card-bio">
-          舞蹈動作治療師，同時也是芳療師。運用英國受訓的心理動力觀點，結合精油側寫與 21 天整合陪伴，協助人們在語言之外整合深層的情緒與內在感受。一座藏在心裡的小宇宙，當心隨意轉，療癒從內在開始。
+          舞蹈動作治療師，同時也是芳療師。運用英國受訓的心理動力觀點，結合精油側寫與 21 天整合陪伴，協助人們在語言之外整合深層的情緒與內在感受。期待一同探索內心安住的島嶼，自在前行。
         </p>
         <div class="card-services">
           <span class="service-tag">精油側寫</span>
@@ -1216,10 +1364,12 @@
           <span class="service-tag">舞蹈治療團體</span>
         </div>
         <div class="card-links">
+          <a class="btn-social" href="https://robintenpassion.com/" target="_blank">官網</a>
           <a class="btn-social" href="https://www.instagram.com/islewithin/" target="_blank">Instagram</a>
           <a class="btn-social" href="https://www.facebook.com/robintenpassion/" target="_blank">Facebook</a>
+          <span class="btn-social" style="cursor:pointer;" onclick="document.getElementById('liz-qr-modal').classList.add('active')">LINE</span>
         </div>
-        <a class="btn-book" href="https://www.instagram.com/islewithin/" target="_blank">預約諮詢</a>
+        <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('liz-qr-modal').classList.add('active')">預約諮詢</span>
       </div>
 
       <!-- 芷盈 Irene -->
@@ -1239,6 +1389,43 @@
           <a class="btn-social" href="https://www.facebook.com/aiyunhsu/" target="_blank">Facebook</a>
         </div>
         <a class="btn-book" href="https://www.instagram.com/heartalk_with_irene" target="_blank">預約諮詢</a>
+      </div>
+
+      <!-- 欣妤 -->
+      <div class="instructor-card">
+        <img class="card-photo" src="instructors/photos/xinyu-profile.jpg" alt="欣妤">
+        <div class="card-name">欣妤</div>
+        <div class="card-brand">遊鳥飛魚</div>
+        <p class="card-bio">
+          「世界上最遙遠的距離，是飛鳥與魚的距離。」泰戈爾筆下的天各一方，正如人們常將「身體」與「心靈」視為光譜的兩端。然而在宇宙裡，飛鳥與魚同享共同的生態圈。<br><br>身為執業十多年的物理治療師，臨床上的經驗讓我察覺，許多生理的病痛與執拗，往往交織著內心的失衡。支持一個人不能只聚焦於具象的生理結構，所以我跨足精油側寫，期待用香氣給予人們不同的支持，陪伴他們走一趟直面心靈的旅程。
+        </p>
+        <div class="card-services">
+          <span class="service-tag">精油側寫</span>
+          <span class="service-tag">顱薦骨技巧</span>
+        </div>
+        <div class="card-links">
+          <span class="btn-social" style="cursor:pointer;" onclick="document.getElementById('xinyu-qr-modal').classList.add('active')">LINE</span>
+        </div>
+        <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('xinyu-qr-modal').classList.add('active')">預約諮詢</span>
+      </div>
+
+      <!-- 孟含 -->
+      <div class="instructor-card">
+        <img class="card-photo" src="instructors/photos/menghan-profile.jpg" alt="孟含">
+        <div class="card-name">孟含</div>
+        <div class="card-brand">晗息｜漸醒自我</div>
+        <p class="card-bio">
+          畢業於國立臺東大學身心整合與運動休閒產業學系，累積超過十年的手技實務經驗。相信身體承載著每個人的生命故事，透過身心手技、芳香療法與自我探索工具，陪伴人們重新聆聽身體的聲音，找回內在流動與平衡，讓身體回到自在呼吸的狀態。
+        </p>
+        <div class="card-services">
+          <span class="service-tag">身心手技</span>
+          <span class="service-tag">精油側寫</span>
+          <span class="service-tag">人類圖解讀</span>
+        </div>
+        <div class="card-links">
+          <a class="btn-social" href="https://www.instagram.com/invain7911?igsh=OXowcDgxbzN1d3pu" target="_blank">Instagram</a>
+        </div>
+        <a class="btn-book" href="https://www.instagram.com/invain7911?igsh=OXowcDgxbzN1d3pu" target="_blank">預約諮詢</a>
       </div>
 
       <!-- 王復生 -->
@@ -1473,6 +1660,33 @@ function showCourseView(id) {
     <p>掃描加入 Olive 的 LINE 官方帳號</p>
     <img src="instructors/photos/olive-line-qr.jpg" alt="Olive LINE QR Code">
     <div class="qr-close" onclick="document.getElementById('olive-qr-modal').classList.remove('active')">關閉 ✕</div>
+  </div>
+</div>
+
+<!-- IG QR MODAL: 孟含 -->
+<div class="qr-modal" id="menghan-ig-modal" onclick="this.classList.remove('active')">
+  <div class="qr-box" onclick="event.stopPropagation()">
+    <p>掃描追蹤孟含的 Instagram</p>
+    <img src="instructors/photos/menghan-ig-qr.jpg" alt="孟含 Instagram QR Code">
+    <div class="qr-close" onclick="document.getElementById('menghan-ig-modal').classList.remove('active')">關閉 ✕</div>
+  </div>
+</div>
+
+<!-- LINE QR MODAL: 欣妤 -->
+<div class="qr-modal" id="xinyu-qr-modal" onclick="this.classList.remove('active')">
+  <div class="qr-box" onclick="event.stopPropagation()">
+    <p>掃描加入欣妤的 LINE</p>
+    <img src="instructors/photos/xinyu-line-qr.png" alt="欣妤 LINE QR Code">
+    <div class="qr-close" onclick="document.getElementById('xinyu-qr-modal').classList.remove('active')">關閉 ✕</div>
+  </div>
+</div>
+
+<!-- LINE QR MODAL: 孟寰 Liz -->
+<div class="qr-modal" id="liz-qr-modal" onclick="this.classList.remove('active')">
+  <div class="qr-box" onclick="event.stopPropagation()">
+    <p>掃描加入孟寰 Liz 的 LINE</p>
+    <img src="instructors/photos/liz-line-qr.jpg" alt="孟寰 Liz LINE QR Code">
+    <div class="qr-close" onclick="document.getElementById('liz-qr-modal').classList.remove('active')">關閉 ✕</div>
   </div>
 </div>
 
