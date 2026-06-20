@@ -423,6 +423,21 @@
       padding-bottom: 0.75rem;
       border-bottom: 1px solid var(--border);
     }
+    .profile-header-row {
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) minmax(280px, 1.2fr);
+      gap: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .profile-header-row .team-subtitle {
+      margin-bottom: 0;
+      text-align: left;
+    }
+    @media (max-width: 760px) {
+      .profile-header-row {
+        grid-template-columns: 1fr;
+      }
+    }
 
     @media (max-width: 680px) {
       .team-entry-grid { grid-template-columns: 1fr; }
@@ -1208,7 +1223,10 @@
       </div>
     </div>
 
-    <div class="team-subtitle" id="team">選擇你的精油側寫師</div>
+    <div class="profile-header-row" id="team">
+      <div class="team-subtitle">團隊介紹</div>
+      <div class="team-subtitle">個案回饋分享</div>
+    </div>
 
     <!-- 癒玥 -->
     <div class="profile-pair">
