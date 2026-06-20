@@ -450,22 +450,39 @@
       color: #13160f;
     }
 
-    /* ── TEAM ── */
-    #team {
+    /* ── TEAM + TESTIMONIALS (merged) ── */
+    #testimonials {
       position: relative;
       background-image: url('hero-bg.png');
       background-size: cover;
       background-position: center bottom;
       background-attachment: scroll;
     }
-    #team::before {
+    #testimonials::before {
       content: '';
       position: absolute;
       inset: 0;
       background: rgba(20, 24, 16, 0.92);
       z-index: 0;
     }
-    #team .section-inner { position: relative; z-index: 1; }
+    #testimonials .section-inner { position: relative; z-index: 1; }
+
+    .profile-pair {
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) minmax(280px, 1.2fr);
+      gap: 1.8rem;
+      align-items: stretch;
+      margin-bottom: 2.2rem;
+    }
+    .profile-pair .instructor-card,
+    .profile-pair .testimonial-card {
+      margin: 0;
+    }
+    @media (max-width: 760px) {
+      .profile-pair {
+        grid-template-columns: 1fr;
+      }
+    }
 
     .team-grid {
       display: grid;
@@ -1173,123 +1190,10 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- TEAM + TESTIMONIALS (merged：每位側寫師的介紹與個案回饋並排) -->
 <section id="testimonials">
   <div class="section-inner">
-    <p class="section-label">Client Feedback</p>
-    <h2 class="section-title">精油側寫個案回饋</h2>
-    <div class="testimonial-grid">
-
-      <div class="testimonial-card">
-        <div class="testimonial-brand">晗息｜漸醒練習</div>
-        <p class="testimonial-text">
-          覺得自己在使用精油側寫油的過程中，明顯的改變是會開始打嗝，打嗝後身體會比較舒服，因為近半年有嚴重耳鳴的情況，對於身體的感知跟連結感有變差，就比較少活動身體。不知不覺心理上的穩定感有增加，不然之前都一直關注外面週遭的情況，會忽視自己的需求。用油後會開始願意主動的去活動身體，隨著關注的焦點轉向自己，感覺自己的角色壓力有減輕，身體的飢餓感也比較明顯，比較能坦誠的吃飯。最後一週對於身體感受及需求更加明顯，食慾及口慾上升，有趣的是有一個參加舞蹈比賽的機會，重拾信心及勇氣回去跳舞，接觸了亞歷山大技法，感受到了自身選擇的重要，知道現在的情況是對自己好的，就不會莫名的焦慮。覺得這 21 天是個很棒的體驗，重新找回自己的感覺。
-        </p>
-        <div class="testimonial-meta">
-<span>孟含個案</span>
-        </div>
-        <div style="text-align:center; margin-top:1.2rem;"><a class="btn-book" href="https://www.instagram.com/invain7911?igsh=OXowcDgxbzN1d3pu" target="_blank">預約體驗</a></div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-brand">遊鳥飛魚</div>
-        <p class="testimonial-text">
-          我覺得兩次抓的對我來說都蠻準確，有些部分顯示出來的是我自己有察覺到的狀態，但也有部分是抓周後列出精油顯示的結果，我才發現：對欸！這個也有！簡單來說我覺得對自我覺察明顯有幫助。<br><br>
-          兩次抽油的結果不太一樣，也因為是在同一年半年內，剛好也是我自己狀態變化的時間，覺得能從前後兩次比較明顯看出自己狀態的改變。<br><br>
-          雖然沒有辦法很確定精油的幫助有多少，但我覺得在「做出跟以前不一樣的選擇」這部分，應該有精油的功勞～以前可能會更猶豫退縮。<br><br>
-          個人的結論大概是：狀態有所改變之後，還想要更進一步或是覺得自己卡住的時候，我會想要再次進行精油側寫來幫助自己。
-        </p>
-        <div class="testimonial-meta">
-<span>欣妤個案</span>
-        </div>
-        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('xinyu-qr-modal').classList.add('active')">預約體驗</span></div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-brand">鑰．本質 Key Essence</div>
-        <p class="testimonial-text">
-          21 天療程結束後，心境與生活在不知不覺中產生了許多轉變，真實體會到老師所說的「精油蝴蝶效應」。<br><br>
-          原本只是在人生方向上有些迷惘，想透過人類圖理解自己的原廠設定；沒想到在精油側寫的過程中，長期壓抑的疲憊與無助感竟然被「看見」了。「被看見、但不被定義」，對我而言是非常重要的療癒起點。<br><br>
-          使用精油初期身體出現明顯調整反應，老師的醫護背景與清楚說明讓人非常安心。她沒有慌亂或推卸，而是耐心解釋、教我如何觀察，並把「是否繼續使用」的選擇權完整交還給我。<br><br>
-          透過嗅覺繞過過度理性的防衛（真的很適合理性腦），身體在穩定節奏中自然啟動整合能力，連夢境中也開始進行心理重整。短短三週內，看見了原本需要更長時間累積的轉變發生，非常令人驚豔。<br><br>
-          這段合作像是在人生低谷停靠的「補給與校準驛站」——卸下不再適合的舊裝備，溫柔而實際地升級。謝謝老師超出期待的付出，以及這段界線清楚、彼此信任的同行經驗。
-        </p>
-        <div class="testimonial-meta">
-<span>Molly 個案｜21 天精油療程</span>
-        </div>
-        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('molly-qr-modal').classList.add('active')">預約體驗</span></div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-brand">Irene 的 I 人芳聊室</div>
-        <p class="testimonial-text">
-          「Irene 有優秀的聆聽和提問能力，能幫助並鼓勵個案看見更深一層次的情緒狀態，在過程中親眼見到自己身心的轉換變化……將心中埋藏的渴望在現實生活中創造具體的成果。」— 30＋ 國小教師<br><br>
-          「謝謝你帶我一步一步認識內心的恐懼，原來抓周 21 天只是初步的練習而已，之後遇到問題比較不害怕了，知道問題來源，更明白如何面對和解決了。」— 35＋ 科技業 PM
-        </p>
-        <div class="testimonial-meta">
-<span>芷盈 Irene 個案</span>
-        </div>
-        <div style="text-align:center; margin-top:1.2rem;"><a class="btn-book" href="https://www.instagram.com/heartalk_with_irene" target="_blank">預約體驗</a></div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-brand">緩嶼芳療 IsleWithin</div>
-        <p class="testimonial-text">
-          上次精油側寫結束之後，我發現那些平時被忽略的情緒和想法，其實一直都在。要學著先傾聽自己，接著勇敢表達，因為如果我不說，永遠沒有人會替我說。謝謝你帶我進入精油側寫的體驗！<br><br>
-          靠著三支精油就能夠很精準的提到我最近的身心狀況，真的很神奇，而且有些我自己也沒發現。喜歡精油芳療的真的都可以找她預約試試看，還想許願推出好睡助眠款。
-        </p>
-        <div class="testimonial-meta">
-<span>孟寰個案</span>
-        </div>
-        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('liz-qr-modal').classList.add('active')">預約體驗</span></div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-brand">癒玥‧身心芳療<br>Yuyue Bodymind</div>
-        <p class="testimonial-text">
-          我喜歡這個旅程，並且由玥來引導我使用抓周精油真正的享受在其中，原來植物的能量香味，可以讓我們的腦波感受到舒服之外，心靈上的引導我們必須自我覺醒，也就是讓自己去面對內心更深處的自己。<br><br>
-          以往我遇到不合理、不明白的事一概只用離開來解決問題，殊不知更多的累積變成更多的議題再次從生活中出現，變成必須再面對一次，那麼我只能用離開來解決嗎？最後最後的一個關鍵其實是《接受》。<br><br>
-          《接受一切的發生》當下的傻、決策、不甘，其實都是真的，那麼那就是《真實的自我存在》。當我存在當下的情緒以及無能為力，其實就是我自己——我要接受真正的自己，也藉著接受我自己，我也更知道《愛自己的需要》。<br><br>
-          我《真正的需要》是什麼？不是只有〈想要〉，更多貼近我身體狀況、精神狀況的需要滿足了、完成愛自己的議題後，那麼順位的想要才有辦法襯托出〈我自己〉來。〈愛自己〉的課題不再只是物質生活，心靈滿足不再是順位，更多的豐富是由自己準備好就可以出發。
-        </p>
-        <div class="testimonial-meta">
-<span>玥泫個案｜精油 21 天旅程</span>
-        </div>
-        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('yuyu-qr-modal').classList.add('active')">預約體驗</span></div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-brand">隨意療｜Ease Within</div>
-        <p class="testimonial-text">
-          精油的能量幫助了我，幾次使用下來，原本緊繃焦慮的心情逐漸沉澱了下來，漸漸的感受到久違的平靜與放鬆。過程中，生活中累積的壓力，好似逐漸釋放，發現入睡變得簡單，安穩深沉。21天的側寫旅程結束後，覺得精神變得飽滿，變得更正向了！
-        </p>
-        <div class="testimonial-meta">
-<span>J.H. 個案｜21 天精油療程</span>
-        </div>
-        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('olive-qr-modal').classList.add('active')">預約體驗</span></div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-brand">復生慢手</div>
-        <p class="testimonial-text">
-          復生不是一般的按摩師，他有點像身體和主人的接線生，喚醒引導人們對自己身體的關照覺察，還有愛。在他的觸碰之下，身體好像自動能鬆開化開，回歸原廠運行的狀態，過程是輕柔滑順的，沒有任何的強迫和暴力。他不喜歡我用「橋樑」這個詞說他，因為他認為自己在做的事只是陪伴。但我覺得這個陪伴裡面其實蘊含著身體智慧教導，當他分享自己在安寧病房照顧一位爺爺，而那位爺爺在他的陪伴下安詳離開。我覺得爺爺真的很幸福，遇上復生，可以好好走，好好展開另一個新生。<br><br>
-          很推薦復生慢手身體療程～復生帶著純粹乾淨的心意，溫柔觸碰、全然聆聽，等待並接納身體的所有。在無為而無不為中，誕生了無法量化的時間與空間，深入潛意識串起不同時空中的靈魂碎片，身體療癒與靈魂整合就在這份全然臨在中自主發生。從五六層夢境中緩緩甦醒，意識回到身體所在之處時，不免懷疑這是否也是一場夢境。逐漸回復覺知，感覺到從頭到腳的鬆通，像是在跳雙人舞，同時釋放許多儲存在身體裡的限制和不允許，也接納了內在深處對於親密連結的不安和渴望。之後的幾天特別能感受到內在空間的延展，身體訊息變得明晰，需要的伸展、移動、觸碰，一切所需都在自己之內，我要做的是存在當下、觀照內在，信任身體的智慧、允許身體自在地引導和帶領～謝謝復生
-        </p>
-        <div class="testimonial-meta">
-<span>復生慢手個案</span>
-        </div>
-        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('fusheng-qr-modal').classList.add('active')">預約體驗</span></div>
-      </div>
-
-    </div>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team">
-  <div class="section-inner">
-    <p class="section-label">Experience</p>
+    <p class="section-label">Experience × Client Feedback</p>
     <h2 class="section-title">體驗精油側寫</h2>
 
     <div class="team-entry-grid">
@@ -1300,14 +1204,14 @@
       </div>
       <div class="entry-card active">
         <div class="entry-title">直接預約側寫師</div>
-        <p class="entry-desc">已準備好開始？從下方選擇一位與你氣味相投的側寫師，直接預約一對一精油側寫諮詢。</p>
+        <p class="entry-desc">已準備好開始？從下方選擇一位與你氣味相投的側寫師，直接預約一對一精油側寫諮詢——旁邊附上他們過去個案的真實回饋。</p>
       </div>
     </div>
 
-    <div class="team-subtitle">選擇你的精油側寫師</div>
-    <div class="team-grid">
+    <div class="team-subtitle" id="team">選擇你的精油側寫師</div>
 
-      <!-- 癒玥 -->
+    <!-- 癒玥 -->
+    <div class="profile-pair">
       <div class="instructor-card">
         <img class="card-photo" src="instructors/photos/yuyu-profile.jpg" alt="癒玥">
         <div class="card-name">玥泫 Ayla</div>
@@ -1328,8 +1232,23 @@
         </div>
         <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('yuyu-qr-modal').classList.add('active')">預約諮詢</span>
       </div>
+      <div class="testimonial-card">
+        <div class="testimonial-brand">癒玥‧身心芳療<br>Yuyue Bodymind</div>
+        <p class="testimonial-text">
+          我喜歡這個旅程，並且由玥來引導我使用抓周精油真正的享受在其中，原來植物的能量香味，可以讓我們的腦波感受到舒服之外，心靈上的引導我們必須自我覺醒，也就是讓自己去面對內心更深處的自己。<br><br>
+          以往我遇到不合理、不明白的事一概只用離開來解決問題，殊不知更多的累積變成更多的議題再次從生活中出現，變成必須再面對一次，那麼我只能用離開來解決嗎？最後最後的一個關鍵其實是《接受》。<br><br>
+          《接受一切的發生》當下的傻、決策、不甘，其實都是真的，那麼那就是《真實的自我存在》。當我存在當下的情緒以及無能為力，其實就是我自己——我要接受真正的自己，也藉著接受我自己，我也更知道《愛自己的需要》。<br><br>
+          我《真正的需要》是什麼？不是只有〈想要〉，更多貼近我身體狀況、精神狀況的需要滿足了、完成愛自己的議題後，那麼順位的想要才有辦法襯托出〈我自己〉來。〈愛自己〉的課題不再只是物質生活，心靈滿足不再是順位，更多的豐富是由自己準備好就可以出發。
+        </p>
+        <div class="testimonial-meta">
+<span>玥泫個案｜精油 21 天旅程</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('yuyu-qr-modal').classList.add('active')">預約體驗</span></div>
+      </div>
+    </div>
 
-      <!-- Molly -->
+    <!-- Molly -->
+    <div class="profile-pair">
       <div class="instructor-card">
         <img class="card-photo" src="instructors/photos/molly-profile.png" alt="Molly">
         <div class="card-name">Molly 小馨子</div>
@@ -1351,8 +1270,24 @@
         </div>
         <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('molly-qr-modal').classList.add('active')">預約諮詢</span>
       </div>
+      <div class="testimonial-card">
+        <div class="testimonial-brand">鑰．本質 Key Essence</div>
+        <p class="testimonial-text">
+          21 天療程結束後，心境與生活在不知不覺中產生了許多轉變，真實體會到老師所說的「精油蝴蝶效應」。<br><br>
+          原本只是在人生方向上有些迷惘，想透過人類圖理解自己的原廠設定；沒想到在精油側寫的過程中，長期壓抑的疲憊與無助感竟然被「看見」了。「被看見、但不被定義」，對我而言是非常重要的療癒起點。<br><br>
+          使用精油初期身體出現明顯調整反應，老師的醫護背景與清楚說明讓人非常安心。她沒有慌亂或推卸，而是耐心解釋、教我如何觀察，並把「是否繼續使用」的選擇權完整交還給我。<br><br>
+          透過嗅覺繞過過度理性的防衛（真的很適合理性腦），身體在穩定節奏中自然啟動整合能力，連夢境中也開始進行心理重整。短短三週內，看見了原本需要更長時間累積的轉變發生，非常令人驚豔。<br><br>
+          這段合作像是在人生低谷停靠的「補給與校準驛站」——卸下不再適合的舊裝備，溫柔而實際地升級。謝謝老師超出期待的付出，以及這段界線清楚、彼此信任的同行經驗。
+        </p>
+        <div class="testimonial-meta">
+<span>Molly 個案｜21 天精油療程</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('molly-qr-modal').classList.add('active')">預約體驗</span></div>
+      </div>
+    </div>
 
-      <!-- Olive -->
+    <!-- Olive -->
+    <div class="profile-pair">
       <div class="instructor-card">
         <img class="card-photo" src="instructors/photos/olive-profile.jpg" alt="Olive">
         <div class="card-name">Olive</div>
@@ -1371,8 +1306,20 @@
         </div>
         <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('olive-qr-modal').classList.add('active')">預約諮詢</span>
       </div>
+      <div class="testimonial-card">
+        <div class="testimonial-brand">隨意療｜Ease Within</div>
+        <p class="testimonial-text">
+          精油的能量幫助了我，幾次使用下來，原本緊繃焦慮的心情逐漸沉澱了下來，漸漸的感受到久違的平靜與放鬆。過程中，生活中累積的壓力，好似逐漸釋放，發現入睡變得簡單，安穩深沉。21天的側寫旅程結束後，覺得精神變得飽滿，變得更正向了！
+        </p>
+        <div class="testimonial-meta">
+<span>J.H. 個案｜21 天精油療程</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('olive-qr-modal').classList.add('active')">預約體驗</span></div>
+      </div>
+    </div>
 
-      <!-- Liz -->
+    <!-- Liz -->
+    <div class="profile-pair">
       <div class="instructor-card">
         <img class="card-photo" src="instructors/photos/liz-profile.jpg" alt="孟寰 Liz">
         <div class="card-name">孟寰 Liz</div>
@@ -1394,8 +1341,21 @@
         </div>
         <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('liz-qr-modal').classList.add('active')">預約諮詢</span>
       </div>
+      <div class="testimonial-card">
+        <div class="testimonial-brand">緩嶼芳療 IsleWithin</div>
+        <p class="testimonial-text">
+          上次精油側寫結束之後，我發現那些平時被忽略的情緒和想法，其實一直都在。要學著先傾聽自己，接著勇敢表達，因為如果我不說，永遠沒有人會替我說。謝謝你帶我進入精油側寫的體驗！<br><br>
+          靠著三支精油就能夠很精準的提到我最近的身心狀況，真的很神奇，而且有些我自己也沒發現。喜歡精油芳療的真的都可以找她預約試試看，還想許願推出好睡助眠款。
+        </p>
+        <div class="testimonial-meta">
+<span>孟寰個案</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('liz-qr-modal').classList.add('active')">預約體驗</span></div>
+      </div>
+    </div>
 
-      <!-- 芷盈 Irene -->
+    <!-- 芷盈 Irene -->
+    <div class="profile-pair">
       <div class="instructor-card">
         <img class="card-photo" src="instructors/photos/irene-profile.jpg" alt="芷盈 Irene">
         <div class="card-name">芷盈 Irene</div>
@@ -1413,8 +1373,21 @@
         </div>
         <a class="btn-book" href="https://www.instagram.com/heartalk_with_irene" target="_blank">預約諮詢</a>
       </div>
+      <div class="testimonial-card">
+        <div class="testimonial-brand">Irene 的 I 人芳聊室</div>
+        <p class="testimonial-text">
+          「Irene 有優秀的聆聽和提問能力，能幫助並鼓勵個案看見更深一層次的情緒狀態，在過程中親眼見到自己身心的轉換變化……將心中埋藏的渴望在現實生活中創造具體的成果。」— 30＋ 國小教師<br><br>
+          「謝謝你帶我一步一步認識內心的恐懼，原來抓周 21 天只是初步的練習而已，之後遇到問題比較不害怕了，知道問題來源，更明白如何面對和解決了。」— 35＋ 科技業 PM
+        </p>
+        <div class="testimonial-meta">
+<span>芷盈 Irene 個案</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><a class="btn-book" href="https://www.instagram.com/heartalk_with_irene" target="_blank">預約體驗</a></div>
+      </div>
+    </div>
 
-      <!-- 欣妤 -->
+    <!-- 欣妤 -->
+    <div class="profile-pair">
       <div class="instructor-card">
         <img class="card-photo" src="instructors/photos/xinyu-profile.jpg" alt="欣妤">
         <div class="card-name">欣妤</div>
@@ -1431,8 +1404,23 @@
         </div>
         <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('xinyu-qr-modal').classList.add('active')">預約諮詢</span>
       </div>
+      <div class="testimonial-card">
+        <div class="testimonial-brand">遊鳥飛魚</div>
+        <p class="testimonial-text">
+          我覺得兩次抓的對我來說都蠻準確，有些部分顯示出來的是我自己有察覺到的狀態，但也有部分是抓周後列出精油顯示的結果，我才發現：對欸！這個也有！簡單來說我覺得對自我覺察明顯有幫助。<br><br>
+          兩次抽油的結果不太一樣，也因為是在同一年半年內，剛好也是我自己狀態變化的時間，覺得能從前後兩次比較明顯看出自己狀態的改變。<br><br>
+          雖然沒有辦法很確定精油的幫助有多少，但我覺得在「做出跟以前不一樣的選擇」這部分，應該有精油的功勞～以前可能會更猶豫退縮。<br><br>
+          個人的結論大概是：狀態有所改變之後，還想要更進一步或是覺得自己卡住的時候，我會想要再次進行精油側寫來幫助自己。
+        </p>
+        <div class="testimonial-meta">
+<span>欣妤個案</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('xinyu-qr-modal').classList.add('active')">預約體驗</span></div>
+      </div>
+    </div>
 
-      <!-- 孟含 -->
+    <!-- 孟含 -->
+    <div class="profile-pair">
       <div class="instructor-card">
         <img class="card-photo" src="instructors/photos/menghan-profile.jpg" alt="孟含">
         <div class="card-name">孟含</div>
@@ -1450,8 +1438,20 @@
         </div>
         <a class="btn-book" href="https://www.instagram.com/invain7911?igsh=OXowcDgxbzN1d3pu" target="_blank">預約諮詢</a>
       </div>
+      <div class="testimonial-card">
+        <div class="testimonial-brand">晗息｜漸醒練習</div>
+        <p class="testimonial-text">
+          覺得自己在使用精油側寫油的過程中，明顯的改變是會開始打嗝，打嗝後身體會比較舒服，因為近半年有嚴重耳鳴的情況，對於身體的感知跟連結感有變差，就比較少活動身體。不知不覺心理上的穩定感有增加，不然之前都一直關注外面週遭的情況，會忽視自己的需求。用油後會開始願意主動的去活動身體，隨著關注的焦點轉向自己，感覺自己的角色壓力有減輕，身體的飢餓感也比較明顯，比較能坦誠的吃飯。最後一週對於身體感受及需求更加明顯，食慾及口慾上升，有趣的是有一個參加舞蹈比賽的機會，重拾信心及勇氣回去跳舞，接觸了亞歷山大技法，感受到了自身選擇的重要，知道現在的情況是對自己好的，就不會莫名的焦慮。覺得這 21 天是個很棒的體驗，重新找回自己的感覺。
+        </p>
+        <div class="testimonial-meta">
+<span>孟含個案</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><a class="btn-book" href="https://www.instagram.com/invain7911?igsh=OXowcDgxbzN1d3pu" target="_blank">預約體驗</a></div>
+      </div>
+    </div>
 
-      <!-- 王復生 -->
+    <!-- 王復生 -->
+    <div class="profile-pair">
       <div class="instructor-card">
         <img class="card-photo" src="instructors/photos/fusheng-profile.jpg" alt="王復生">
         <div class="card-name">王復生</div>
@@ -1469,8 +1469,19 @@
         </div>
         <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('fusheng-qr-modal').classList.add('active')">預約服務</span>
       </div>
-
+      <div class="testimonial-card">
+        <div class="testimonial-brand">復生慢手</div>
+        <p class="testimonial-text">
+          復生不是一般的按摩師，他有點像身體和主人的接線生，喚醒引導人們對自己身體的關照覺察，還有愛。在他的觸碰之下，身體好像自動能鬆開化開，回歸原廠運行的狀態，過程是輕柔滑順的，沒有任何的強迫和暴力。他不喜歡我用「橋樑」這個詞說他，因為他認為自己在做的事只是陪伴。但我覺得這個陪伴裡面其實蘊含著身體智慧教導，當他分享自己在安寧病房照顧一位爺爺，而那位爺爺在他的陪伴下安詳離開。我覺得爺爺真的很幸福，遇上復生，可以好好走，好好展開另一個新生。<br><br>
+          很推薦復生慢手身體療程～復生帶著純粹乾淨的心意，溫柔觸碰、全然聆聽，等待並接納身體的所有。在無為而無不為中，誕生了無法量化的時間與空間，深入潛意識串起不同時空中的靈魂碎片，身體療癒與靈魂整合就在這份全然臨在中自主發生。從五六層夢境中緩緩甦醒，意識回到身體所在之處時，不免懷疑這是否也是一場夢境。逐漸回復覺知，感覺到從頭到腳的鬆通，像是在跳雙人舞，同時釋放許多儲存在身體裡的限制和不允許，也接納了內在深處對於親密連結的不安和渴望。之後的幾天特別能感受到內在空間的延展，身體訊息變得明晰，需要的伸展、移動、觸碰，一切所需都在自己之內，我要做的是存在當下、觀照內在，信任身體的智慧、允許身體自在地引導和帶領～謝謝復生
+        </p>
+        <div class="testimonial-meta">
+<span>復生慢手個案</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('fusheng-qr-modal').classList.add('active')">預約體驗</span></div>
+      </div>
     </div>
+
   </div>
 </section>
 
