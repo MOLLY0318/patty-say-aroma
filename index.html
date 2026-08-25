@@ -79,6 +79,37 @@
       z-index: 0;
     }
     #hero > * { position: relative; z-index: 1; }
+    .announcement-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.3rem;
+      margin-bottom: 1.8rem;
+      background: var(--gold-dim);
+      border: 1px solid rgba(200, 164, 100, 0.4);
+      border-radius: 999px;
+      color: var(--gold);
+      font-size: 0.82rem;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .announcement-badge:hover {
+      background: rgba(200, 164, 100, 0.28);
+      transform: translateY(-1px);
+    }
+    .announcement-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex: none;
+      animation: announce-pulse 2s ease-in-out infinite;
+    }
+    @keyframes announce-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
     .hero-eyebrow {
       font-size: 0.8rem;
       letter-spacing: 0.25em;
@@ -736,6 +767,178 @@
       .course-modal-box { padding: 2rem 1.5rem; }
     }
 
+    /* ── CALENDAR ── */
+    .cal-month-heading {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin: 2.4rem 0 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cal-month-heading:first-child { margin-top: 0; }
+    .cal-item {
+      display: flex;
+      gap: 1.4rem;
+      align-items: flex-start;
+      padding: 1.1rem 0.4rem;
+      border-bottom: 1px solid rgba(200, 164, 100, 0.12);
+    }
+    .cal-item:last-child { border-bottom: none; }
+    .cal-date {
+      flex: none;
+      width: 68px;
+      text-align: center;
+    }
+    .cal-date .day {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.5rem;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .cal-date .weekday {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-top: 0.2rem;
+    }
+    .cal-date.tbd .day { font-size: 0.95rem; color: var(--muted); }
+    .cal-body { flex: 1; }
+    .cal-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      border: 1px solid rgba(200, 164, 100, 0.4);
+      border-radius: 20px;
+      padding: 0.15rem 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+    .cal-tag-internal {
+      color: var(--muted);
+      border-color: var(--border);
+    }
+    .cal-title {
+      font-size: 0.98rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .cal-time {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .cal-note {
+      margin-top: 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.8;
+      border-left: 2px solid var(--gold);
+      padding-left: 1rem;
+    }
+
+    /* ── EVENTS ── */
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .event-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .event-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .event-card-cover {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, rgba(200,164,100,0.22), rgba(200,164,100,0.06));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      overflow: hidden;
+    }
+    .event-card-cover img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .event-card-body { padding: 1.6rem 1.7rem 1.8rem; }
+    .event-card-date {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .event-card-title {
+      font-size: 1.1rem;
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+    }
+    .event-card-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .event-card-cta { font-size: 0.78rem; color: var(--gold); letter-spacing: 0.1em; }
+    .event-detail-cover {
+      width: 100%;
+      max-height: 640px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(200,164,100,0.22), rgba(200,164,100,0.06));
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .event-detail-cover:empty,
+    .event-detail-cover:not(:has(img)) { aspect-ratio: 21/9; }
+    .event-detail-cover img { width: 100%; max-height: 640px; object-fit: contain; display: block; }
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.6rem;
+      padding-bottom: 1.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .event-meta b { color: var(--text); font-weight: 500; }
+    .event-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    .event-gallery img, .event-gallery video {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+    .event-gallery-empty {
+      font-size: 0.85rem;
+      color: var(--muted);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      line-height: 1.8;
+    }
+    .event-view { display: none; }
+    .event-view.active { display: block; }
+
     /* ── COURSE STAGES ── */
     .stages-grid {
       display: grid;
@@ -1065,10 +1268,16 @@
   <a href="#testimonials">個案回饋</a>
   <a href="#team">體驗側寫</a>
   <a href="#" onclick="showCourseView('course-view-select');document.getElementById('course-modal').classList.add('active');return false;">培訓課程</a>
+  <a href="#" onclick="document.getElementById('calendar-modal').classList.add('active');return false;">課程行事曆</a>
+  <a href="#" onclick="showEventView('event-view-select');document.getElementById('events-modal').classList.add('active');return false;">活動專區</a>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
+  <div class="announcement-badge" onclick="showCourseView('course-view-select');document.getElementById('course-modal').classList.add('active');">
+    <span class="dot"></span>
+    <span>新課程上線囉！精油側寫培訓班、芳療管家開放報名 →</span>
+  </div>
   <p class="hero-eyebrow">Essential Oil Profiling</p>
   <h1>海賊嫚<span>說</span>芳療</h1>
   <p class="hero-sub">透過你與精油之間的直覺連結，讀出當下最真實的身心狀態。</p>
@@ -1542,6 +1751,9 @@
       <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;">第一階段</div>
       <div style="font-size:1.1rem;color:var(--text);font-weight:500;">精油側寫新手入門</div>
     </div>
+    <div style="margin-bottom:2rem; text-align:center;">
+      <a class="btn-apply" href="https://forms.gle/R1HQP13HuRynKSke6" target="_blank">立即報名</a>
+    </div>
     <div class="course-block">
       <p class="course-text">
         本課程為精油側寫師的初階專業奠基班。我們將繁複的芳療理論高度系統化，聚焦於核心能力培養：教授如何指導尋求者（個案）進行盲抽，並運用植物部位特質、基本精油化學與生理症狀的內在關聯，推理出個案身心失衡的因果關係，而非流於表面症狀的對症下藥。
@@ -1573,9 +1785,6 @@
         </ol>
       </div>
       <p class="course-text" style="margin-top:2rem; font-style:italic; color:var(--gold); opacity:0.9;">這堂課將是你成為專業側寫師的第一張溫和入場券。</p>
-      <div style="margin-top:2rem; text-align:center;">
-        <a class="btn-apply" href="https://forms.gle/R1HQP13HuRynKSke6" target="_blank">立即報名</a>
-      </div>
     </div>
   </div>
 
@@ -1585,6 +1794,9 @@
     <div style="margin-bottom:2rem; padding:1.2rem 1.8rem; border-left:3px solid var(--gold); background:var(--gold-dim); border-radius:0 6px 6px 0;">
       <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;">第二階段</div>
       <div style="font-size:1.1rem;color:var(--text);font-weight:500;">精油側寫師專業培訓</div>
+    </div>
+    <div style="margin-bottom:2rem; text-align:center;">
+      <a class="btn-apply" href="https://forms.gle/hSaxGPQXY18WvPSB6" target="_blank">立即報名</a>
     </div>
     <p class="course-intro">
       精油側寫的前身是「精油抓周」，又稱「香氣抓周」。個案在精油側寫師的指導下依序盲抽三支單方精油，由側寫師說明其生理與心理特性；在廿一天的使用過程中，透過每週一次、共三次的晤談，引領尋求者覺察自身身心狀態的變化，創造內在失衡自然轉化平衡的契機。相較坊間偏向直覺解析的「精油抓周」，精油側寫運用萃取部位、精油化學、心身醫學與中醫五行哲學等構面，客觀推理尋求者身心失衡的過程，並給予陪伴與支持。
@@ -1677,9 +1889,6 @@
         <li><span class="num">03</span><span><strong style="color:var(--text);">精油愛好者／素人：</strong>想建立系統化的精油邏輯，成為親友與自己最專業的精油側寫師。</span></li>
       </ol>
     </div>
-    <div style="margin-top:2rem; text-align:center;">
-      <a class="btn-apply" href="https://forms.gle/hSaxGPQXY18WvPSB6" target="_blank">立即報名</a>
-    </div>
   </div>
 
   <!-- VIEW 3：芳療管家 -->
@@ -1688,6 +1897,10 @@
     <div style="margin-bottom:2rem; padding:1.2rem 1.8rem; border-left:3px solid var(--gold); background:var(--gold-dim); border-radius:0 6px 6px 0;">
       <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;">週六線上課</div>
       <div style="font-size:1.1rem;color:var(--text);font-weight:500;">芳療管家</div>
+    </div>
+    <div style="margin-bottom:2rem; text-align:center;">
+      <!-- TODO：Molly 提供 Google 表單連結後，把下面 href="#" 換成表單網址 -->
+      <a class="btn-apply" href="#" target="_blank">留下資料，等價錢出來通知</a>
     </div>
     <p class="course-intro">
       「芳療管家」是一系列主題式的週六線上課程，共計八堂、每堂三小時，帶你從日常最常遇到的身心狀況出發，學習如何運用精油與芳香照護，成為家人與自己身心健康的第一線照顧者。
@@ -1699,10 +1912,10 @@
     <div class="course-block">
       <h3 class="course-block-title"><span class="flower-icon">🌸</span>課程時程</h3>
       <ol class="course-ol">
-        <li><span class="num">01</span><span><strong style="color:var(--text);">2027/01/09（六）</strong>　睡眠專題</span></li>
-        <li><span class="num">02</span><span><strong style="color:var(--text);">2027/01/16（六）</strong>　免疫過敏專題（一）</span></li>
-        <li><span class="num">03</span><span><strong style="color:var(--text);">2027/01/23（六）</strong>　免疫過敏專題（二）</span></li>
-        <li><span class="num">04</span><span><strong style="color:var(--text);">2027/01/30（六）</strong>　皮膚照護保養</span></li>
+        <li><span class="num">01</span><span><strong style="color:var(--text);">2027/01/16（六）</strong>　睡眠專題</span></li>
+        <li><span class="num">02</span><span><strong style="color:var(--text);">2027/01/23（六）</strong>　免疫過敏專題（一）</span></li>
+        <li><span class="num">03</span><span><strong style="color:var(--text);">2027/01/30（六）</strong>　免疫過敏專題（二）</span></li>
+        <li><span class="num">04</span><span><strong style="color:var(--text);">日期待公布（預計 3 月份開課）</strong>　皮膚照護保養</span></li>
         <li><span class="num">05</span><span><strong style="color:var(--text);">日期待公布</strong>　婦科專題（一）</span></li>
         <li><span class="num">06</span><span><strong style="color:var(--text);">日期待公布</strong>　婦科專題（二）</span></li>
         <li><span class="num">07</span><span><strong style="color:var(--text);">日期待公布</strong>　消化專題</span></li>
@@ -1714,11 +1927,218 @@
 </div>
 </div>
 
+<!-- CALENDAR MODAL -->
+<div class="course-modal" id="calendar-modal" onclick="this.classList.remove('active')">
+<div class="course-modal-box" onclick="event.stopPropagation()">
+  <div class="course-modal-close" onclick="document.getElementById('calendar-modal').classList.remove('active')">關閉 ✕</div>
+
+  <p class="section-label">Course Calendar</p>
+  <h2 class="section-title">課程行事曆</h2>
+  <p class="course-intro">海賊嫚說芳療所有課程與活動的上課日期，一次幫你整理在這裡。</p>
+
+  <div class="cal-month-heading">2026 年 8 月</div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">26</div><div class="weekday">三</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">公益活動</span>
+      <div class="cal-title">海賊嫚說芳療 公益手療活動</div>
+      <div class="cal-time">13:00–17:00　·　心路基金會 新竹市兒童發展中心</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">29</div><div class="weekday">六</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">精油側寫師線上共學</span> <span class="cal-tag cal-tag-internal">內部訓練</span>
+      <div class="cal-title">線上共學（每月一次，時間每月更新）</div>
+      <div class="cal-time">09:00–11:00</div>
+    </div>
+  </div>
+
+  <div class="cal-month-heading">2026 年 11 月</div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">18</div><div class="weekday">三</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">第二階段・週三班・第 1 堂</span>
+      <div class="cal-title">精油側寫師專業培訓</div>
+      <div class="cal-time">09:30–16:30（午休一小時）</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">21</div><div class="weekday">六</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">第二階段・週六班・第 1 堂</span>
+      <div class="cal-title">精油側寫師專業培訓</div>
+      <div class="cal-time">09:30–16:30（午休一小時）</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">25</div><div class="weekday">三</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">第二階段・週三班・第 2 堂</span>
+      <div class="cal-title">精油側寫師專業培訓</div>
+      <div class="cal-time">09:30–16:30（午休一小時）</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">28</div><div class="weekday">六</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">第二階段・週六班・第 2 堂</span>
+      <div class="cal-title">精油側寫師專業培訓</div>
+      <div class="cal-time">09:30–16:30（午休一小時）</div>
+    </div>
+  </div>
+
+  <div class="cal-month-heading">2026 年 12 月</div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">2</div><div class="weekday">三</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">第二階段・週三班・第 3 堂</span>
+      <div class="cal-title">精油側寫師專業培訓</div>
+      <div class="cal-time">09:30–16:30（午休一小時）</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">5</div><div class="weekday">六</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">第二階段・週六班・第 3 堂</span>
+      <div class="cal-title">精油側寫師專業培訓</div>
+      <div class="cal-time">09:30–16:30（午休一小時）</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">9</div><div class="weekday">三</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">第二階段・週三班・第 4 堂</span>
+      <div class="cal-title">精油側寫師專業培訓</div>
+      <div class="cal-time">09:30–16:30（午休一小時）</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">12</div><div class="weekday">六</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">第二階段・週六班・第 4 堂</span>
+      <div class="cal-title">精油側寫師專業培訓</div>
+      <div class="cal-time">09:30–16:30（午休一小時）</div>
+    </div>
+  </div>
+
+  <div class="cal-month-heading">2027 年 1 月</div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">6</div><div class="weekday">三</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">第二階段・週三班・成果發表</span>
+      <div class="cal-title">精油側寫師專業培訓</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">9</div><div class="weekday">六</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">第二階段・週六班・成果發表</span>
+      <div class="cal-title">精油側寫師專業培訓</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">16</div><div class="weekday">六</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">芳療管家</span>
+      <div class="cal-title">第 1 堂：睡眠專題</div>
+      <div class="cal-time">09:30–12:30</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">23</div><div class="weekday">六</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">芳療管家</span>
+      <div class="cal-title">第 2 堂：免疫過敏專題（一）</div>
+      <div class="cal-time">09:30–12:30</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date"><div class="day">30</div><div class="weekday">六</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">芳療管家</span>
+      <div class="cal-title">第 3 堂：免疫過敏專題（二）</div>
+      <div class="cal-time">09:30–12:30</div>
+    </div>
+  </div>
+
+  <div class="cal-month-heading">日期待公布</div>
+  <div class="cal-item">
+    <div class="cal-date tbd"><div class="day">預計<br>3 月</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">芳療管家</span>
+      <div class="cal-title">第 4 堂：皮膚照護保養</div>
+      <div class="cal-time">09:30–12:30</div>
+    </div>
+  </div>
+  <div class="cal-item">
+    <div class="cal-date tbd"><div class="day">待<br>公布</div></div>
+    <div class="cal-body">
+      <span class="cal-tag">芳療管家</span>
+      <div class="cal-title">第 5－8 堂：婦科專題（一）（二）、消化專題、臨終照護專題</div>
+      <div class="cal-time">共 12 小時、四堂課</div>
+    </div>
+  </div>
+
+  <p class="cal-note">＊「第一階段・新手入門」無固定開課日期，開課時將另行公布於本行事曆。<br>＊「精油側寫師線上共學」每月開放一次，時間每月更新，請以本頁最新資訊為準。</p>
+
+</div>
+</div>
+
+<!-- EVENTS MODAL -->
+<div class="course-modal" id="events-modal" onclick="this.classList.remove('active')">
+<div class="course-modal-box" onclick="event.stopPropagation()">
+  <div class="course-modal-close" onclick="document.getElementById('events-modal').classList.remove('active')">關閉 ✕</div>
+
+  <!-- VIEW 0：活動列表 -->
+  <div id="event-view-select" class="event-view active">
+    <p class="section-label">Events</p>
+    <h2 class="section-title">活動專區</h2>
+    <p class="course-intro">課程現場、共學實況、活動照片與影片，都收藏在這裡。</p>
+    <div class="event-grid">
+      <div class="event-card" onclick="showEventView('event-view-1')">
+        <div class="event-card-cover"><img src="events/poster-charity-massage-0826.jpg" alt="海賊嫚說芳療 公益手療活動海報"></div>
+        <div class="event-card-body">
+          <div class="event-card-date">2026.08.26</div>
+          <div class="event-card-title">海賊嫚說芳療 公益手療活動</div>
+          <p class="event-card-desc">集結六位身心療癒工作者，為心路基金會新竹市兒童發展中心的老師們，帶來一場公益手療服務。</p>
+          <div class="event-card-cta">查看活動 →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 1：海賊嫚說芳療 公益手療活動 -->
+  <div id="event-view-1" class="event-view">
+    <div class="course-back" onclick="showEventView('event-view-select')">← 返回活動專區</div>
+    <div class="event-detail-cover"><img src="events/poster-charity-massage-0826.jpg" alt="海賊嫚說芳療 公益手療活動海報"></div>
+    <h2 class="section-title" style="text-align:left; margin-bottom:0.8rem;">海賊嫚說芳療 公益手療活動</h2>
+    <div class="event-meta">
+      <span>📅 <b>2026.08.26（三）</b></span>
+      <span>🕐 <b>13:00–17:00</b></span>
+      <span>📍 <b>心路基金會 新竹市兒童發展中心</b></span>
+    </div>
+    <p class="course-text">由海賊嫚發起，集結六位身心療癒工作者，將為機構老師們帶來滋養身心的公益手療服務。這一次，換你們被溫柔以對——在這段專屬於你的時間裡，允許自己什麼都不做，讓心好好休息，享受這場由內而外的療癒陪伴。</p>
+    <div style="margin-top:2rem;">
+      <h3 class="course-block-title"><span class="flower-icon">🌸</span>活動花絮</h3>
+      <div class="event-gallery-empty">活動照片與影片整理中，之後會陸續放上來 🌿</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
 <script>
 function showCourseView(id) {
   document.querySelectorAll('.course-view').forEach(function(v){ v.classList.remove('active'); });
   document.getElementById(id).classList.add('active');
   document.querySelector('.course-modal-box').scrollTop = 0;
+}
+function showEventView(id) {
+  document.querySelectorAll('.event-view').forEach(function(v){ v.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  var box = document.querySelector('#events-modal .course-modal-box');
+  if (box) box.scrollTop = 0;
 }
 </script>
 
