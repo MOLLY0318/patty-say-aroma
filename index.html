@@ -1710,6 +1710,40 @@
       </div>
     </div>
 
+    <!-- 詩涵 Gina -->
+    <div class="profile-pair">
+      <div class="instructor-card">
+        <img class="card-photo" src="instructors/photos/gina-profile.jpg" alt="詩涵 Gina">
+        <div class="card-name">詩涵 Gina</div>
+        <div class="card-brand">靜暖療癒室 G．Warm Space</div>
+        <p class="card-bio">
+          畢業於國立臺東大學身心整合與運動休閒產業學系，持續在身心手技、芳療與身心動作之間探索與實踐。相信每個人都是獨一無二的，也會在每一天產生不同的變化，沒有絕對，也沒有對錯。希望透過客製化的手法、芳療與動作，陪你覺察身心狀態、允許情緒流動，慢慢接納此刻的自己。
+        </p>
+        <div class="card-services">
+          <span class="service-tag">精油側寫</span>
+          <span class="service-tag">身心手技</span>
+          <span class="service-tag">芳香療法</span>
+          <span class="service-tag">身心動作</span>
+        </div>
+        <div class="card-links">
+          <a class="btn-social" href="https://www.instagram.com/g.warm.space/" target="_blank">Instagram</a>
+          <span class="btn-social" style="cursor:pointer;" onclick="document.getElementById('gina-qr-modal').classList.add('active')">LINE</span>
+        </div>
+        <span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('gina-qr-modal').classList.add('active')">預約服務</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-brand">靜暖療癒室 G．Warm Space</div>
+        <p class="testimonial-text">
+          每天起床都覺得很累，沒有睡醒的感覺，對生活也逐漸失去熱忱，明明已經一隻腳踏進身心學的領域，卻還是很容易感到孤單。開始使用後，每天睡醒都很有精神，即使沒有特別安排，整天也都很活力充沛；以前起床總要花一些時間才能和腰部工作，現在醒來神清氣爽，晚上也能很快入睡。生活周遭似乎沒有太大改變，甚至可能更糟，但我感覺自己變得比較有信心，也更有力量，不再那麼容易感到孤單。<br><br>
+          之後偶爾還是會很想睡覺，但會感覺生活是充滿期待的；身體也提醒了我要記得和他互動。我覺得這支抓周油很好地接住了我，在我真的很糟糕的時候幫助我，而且時間真的剛剛好，讓我從那個沒有方向、毫無目標的階段，安全下莊。
+        </p>
+        <div class="testimonial-meta">
+<span>詩涵 Gina 個案</span>
+        </div>
+        <div style="text-align:center; margin-top:1.2rem;"><span class="btn-book" style="cursor:pointer;" onclick="document.getElementById('gina-qr-modal').classList.add('active')">預約體驗</span></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2105,6 +2139,15 @@
           <div class="event-card-cta">查看活動 →</div>
         </div>
       </div>
+      <div class="event-card" onclick="showEventView('event-view-2')">
+        <div class="event-card-cover"><img src="events/beginner-class-highlights-thumb.jpg" alt="新手精油側寫班上課花絮"></div>
+        <div class="event-card-body">
+          <div class="event-card-date">2026.06.23</div>
+          <div class="event-card-title">精油側寫新手入門班｜上課花絮</div>
+          <p class="event-card-desc">第一階段新手入門班的上課實況，帶你感受現場的學習氛圍。</p>
+          <div class="event-card-cta">查看花絮 →</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2122,6 +2165,26 @@
     <div style="margin-top:2rem;">
       <h3 class="course-block-title"><span class="flower-icon">🌸</span>活動花絮</h3>
       <div class="event-gallery-empty">活動照片與影片整理中，之後會陸續放上來 🌿</div>
+    </div>
+  </div>
+
+  <!-- VIEW 2：精油側寫新手入門班｜上課花絮 -->
+  <div id="event-view-2" class="event-view">
+    <div class="course-back" onclick="showEventView('event-view-select')">← 返回活動專區</div>
+    <div class="event-detail-cover"><img src="events/beginner-class-highlights-thumb.jpg" alt="新手精油側寫班上課花絮"></div>
+    <h2 class="section-title" style="text-align:left; margin-bottom:0.8rem;">精油側寫新手入門班｜上課花絮</h2>
+    <div class="event-meta">
+      <span>📅 <b>2026.06.23</b></span>
+      <span>🌿 <b>第一階段・新手入門</b></span>
+    </div>
+    <p class="course-text">從零開始建立精油側寫的基礎認識——這是新手入門班的現場上課實況，帶你感受課堂裡的學習氛圍與互動節奏。</p>
+    <div style="margin-top:2rem;">
+      <h3 class="course-block-title"><span class="flower-icon">🌸</span>活動花絮</h3>
+      <div class="event-gallery">
+        <video controls preload="metadata" poster="events/beginner-class-highlights-thumb.jpg" style="width:100%; grid-column: 1 / -1; border-radius:6px; aspect-ratio:16/9; object-fit:cover; background:#000;">
+          <source src="events/beginner-class-highlights.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
   </div>
 
@@ -2204,6 +2267,15 @@ function showEventView(id) {
     <p>掃描加入王復生的 LINE</p>
     <img src="instructors/photos/fusheng-line-qr.png" alt="復生慢手 LINE QR Code">
     <div class="qr-close" onclick="document.getElementById('fusheng-qr-modal').classList.remove('active')">關閉 ✕</div>
+  </div>
+</div>
+
+<!-- LINE QR MODAL: 詩涵 Gina -->
+<div class="qr-modal" id="gina-qr-modal" onclick="this.classList.remove('active')">
+  <div class="qr-box" onclick="event.stopPropagation()">
+    <p>掃描加入詩涵 Gina 的 LINE</p>
+    <img src="instructors/photos/gina-line-qr.jpg" alt="靜暖療癒室 LINE QR Code">
+    <div class="qr-close" onclick="document.getElementById('gina-qr-modal').classList.remove('active')">關閉 ✕</div>
   </div>
 </div>
 
