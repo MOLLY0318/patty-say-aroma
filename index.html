@@ -1335,8 +1335,20 @@
     .event-card-cover, .event-detail-cover {
       background: var(--gold-dim);
     }
-    .flower-icon { font-size: 0; }
-    .flower-icon::before { content: '◉'; font-size: 1rem; color: var(--amber); }
+    .flower-icon { font-size: 1rem; color: var(--gold); }
+    .exp-icon { color: var(--gold); font-size: 1.1rem; letter-spacing: 0.12em; }
+    .qr-direct-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.45rem 0.9rem;
+      color: var(--ink);
+      border: 1px solid var(--amber);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+    .qr-direct-link:hover { background: var(--gold-dim); }
     footer {
       --muted: #D2CDC3;
       --gold: #C8A97E;
@@ -1897,23 +1909,23 @@
       <p class="course-text">精油側寫不該只是「好聞」或「憑直覺算命」，它是一門有跡可循的身體心理學。</p>
       <div class="experience-grid" style="margin-top:1.5rem;">
         <div class="exp-card">
-          <div class="exp-icon">🌿</div>
+          <div class="exp-icon" aria-hidden="true">01</div>
           <div class="exp-title">探索植物七大部位</div>
           <p class="exp-desc">聚焦於根、種籽、葉、樹幹、樹脂、花、果七大部位。學習芳香植物不同萃取部位所具備的生理與心理特質，建立精油與身心對應的基本邏輯。</p>
         </div>
         <div class="exp-card">
-          <div class="exp-icon">✨</div>
+          <div class="exp-icon" aria-hidden="true">02</div>
           <div class="exp-title">體驗簡易版精油抓周</div>
           <p class="exp-desc">相較於坊間純粹憑直覺的精油抓周，精油側寫更重視「推理與覺察」。學員將透過簡易的盲抽體驗，解讀自己當下的身心訊號。</p>
         </div>
         <div class="exp-card">
-          <div class="exp-icon">🌙</div>
+          <div class="exp-icon" aria-hidden="true">03</div>
           <div class="exp-title">7 天身心微覺察</div>
           <p class="exp-desc">提供輕量化的 7 天陪伴引導。在這一週內，協助你觀察使用精油後的日常變化，在微小的覺察中，找回身心轉化與平衡的契機。</p>
         </div>
       </div>
       <div class="course-block" style="margin-top:2rem; margin-bottom:0;">
-        <h3 class="course-block-title"><span class="flower-icon">🌸</span>適合對象</h3>
+        <h3 class="course-block-title"><span class="flower-icon" aria-hidden="true">◎</span>適合對象</h3>
         <ol class="course-ol">
           <li><span class="num">01</span><span><strong style="color:var(--text);">芳療從業者：</strong>想突破傳統「對症配方」的瓶頸，為個案提供更深層的身心諮詢。</span></li>
           <li><span class="num">02</span><span><strong style="color:var(--text);">心理或助人工作者：</strong>期待引入非語言的植物媒介，快速繞過個案的防衛機制。</span></li>
@@ -1938,7 +1950,7 @@
       精油側寫的前身是「精油抓周」，又稱「香氣抓周」。個案在精油側寫師的指導下依序盲抽三支單方精油，由側寫師說明其生理與心理特性；在廿一天的使用過程中，透過每週一次、共三次的晤談，引領尋求者覺察自身身心狀態的變化，創造內在失衡自然轉化平衡的契機。相較坊間偏向直覺解析的「精油抓周」，精油側寫運用萃取部位、精油化學、心身醫學與中醫五行哲學等構面，客觀推理尋求者身心失衡的過程，並給予陪伴與支持。
     </p>
     <div class="course-block">
-      <h3 class="course-block-title"><span class="flower-icon">🌸</span>何謂精油側寫</h3>
+      <h3 class="course-block-title"><span class="flower-icon" aria-hidden="true">◎</span>何謂精油側寫</h3>
       <p class="course-text">
         「精油側寫」是一門結合植物學、精油化學與身心動力學、東西方哲學的整合性應用學門。相較於流於直覺式、神祕學的「精油抓周」，精油側寫不進行宿命論的論斷——它透過個案盲抽精油，繞過意識防衛，由精油側寫師運用
         <strong>「1. 萃取部位、2. 身心一體、3. 中醫哲理、4. 精油化學」</strong>
@@ -1947,7 +1959,7 @@
       <p class="course-text">學員將養成不進行主觀論斷，而是透過科學與哲學架構，客觀剖析尋求者身心失衡軌跡的專業能力，並在後續廿一天的日常陪伴中，透過每週一次的專業晤談，引導尋求者觀察自身變化，啟動內在自然轉化的自癒契機。</p>
     </div>
     <div class="course-block">
-      <h3 class="course-block-title"><span class="flower-icon">🌸</span>課程目標</h3>
+      <h3 class="course-block-title"><span class="flower-icon" aria-hidden="true">◎</span>課程目標</h3>
       <p class="course-text">本培訓課程旨在培養具備嚴謹邏輯與陪伴能力的專業精油側寫師。</p>
       <ol class="course-ol">
         <li><span class="num">01</span><span>系統性學習邏輯性分析，不再單憑直覺、亂槍打鳥。</span></li>
@@ -1956,7 +1968,7 @@
       </ol>
     </div>
     <div class="course-block">
-      <h3 class="course-block-title"><span class="flower-icon">🌸</span>課程特色</h3>
+      <h3 class="course-block-title"><span class="flower-icon" aria-hidden="true">◎</span>課程特色</h3>
       <ol class="course-ol">
         <li><span class="num">01</span><span><strong>階段性學習：</strong>從基礎芳療到居家應用實務，最後進入四十八支單方精油的生理與心理層面運用，循序漸進、步步扎實。</span></li>
         <li><span class="num">02</span><span>大量的實務操作，脫離紙上談兵。</span></li>
@@ -1966,7 +1978,7 @@
       </ol>
     </div>
     <div class="course-block">
-      <h3 class="course-block-title"><span class="flower-icon">🌸</span>系統化課程架構：四大解析構面</h3>
+      <h3 class="course-block-title"><span class="flower-icon" aria-hidden="true">◎</span>系統化課程架構：四大解析構面</h3>
       <p class="course-text">真正的精油諮詢，需要跨領域的知識整合。芳療不該只是「好聞」或「憑直覺算命」，它是一門有跡可循的身體心理學。本課程提供一套邏輯嚴謹、層次分明的四大解析構面，從植物部位看人格特質，從身心一體抓出情緒根源，用中醫哲理調和整體能量，以精油化學提供科學佐證。</p>
       <div class="dimensions-grid">
         <div class="dim-card">
@@ -1992,33 +2004,33 @@
       </div>
     </div>
     <div class="course-block">
-      <h3 class="course-block-title"><span class="flower-icon">🌸</span>課程四大核心體驗</h3>
+      <h3 class="course-block-title"><span class="flower-icon" aria-hidden="true">◎</span>課程四大核心體驗</h3>
       <p class="course-text">本課程拒絕紙上談兵，堅持完整的實務演練，讓學員在學成後具備立即接案的實戰能力。</p>
       <div class="experience-grid">
         <div class="exp-card">
-          <div class="exp-icon">✨</div>
+          <div class="exp-icon" aria-hidden="true">01</div>
           <div class="exp-title">精油抓周</div>
           <p class="exp-desc">學習如何指導尋求者盲抽，精準捕捉當下的身心訊號。</p>
         </div>
         <div class="exp-card">
-          <div class="exp-icon">✨</div>
+          <div class="exp-icon" aria-hidden="true">02</div>
           <div class="exp-title">四大構面立體推理</div>
           <p class="exp-desc">擺脫對症下藥的套公式盲點，學會像偵探般找出失衡因果。</p>
         </div>
         <div class="exp-card">
-          <div class="exp-icon">✨</div>
+          <div class="exp-icon" aria-hidden="true">03</div>
           <div class="exp-title">廿一天黃金陪伴引導</div>
           <p class="exp-desc">學員將與老師一對一學習如何進行每週一次、每次約 30 分鐘的電話晤談（共計 3 次），掌握傾聽、追蹤與引導尋求者自我覺察的臨床核心技巧。</p>
         </div>
         <div class="exp-card">
-          <div class="exp-icon">✨</div>
+          <div class="exp-icon" aria-hidden="true">04</div>
           <div class="exp-title">實體全學員成果發表會</div>
           <p class="exp-desc">拒絕線上結業的虛無感。課程最後全體學員親自發表個案側寫成果，由老師親自點評指導，累積最真實的接案底氣，完成從理論到實戰的最後一哩路。</p>
         </div>
       </div>
     </div>
     <div class="course-block">
-      <h3 class="course-block-title"><span class="flower-icon">🌸</span>適合對象</h3>
+      <h3 class="course-block-title"><span class="flower-icon" aria-hidden="true">◎</span>適合對象</h3>
       <ol class="course-ol">
         <li><span class="num">01</span><span><strong style="color:var(--text);">芳療從業者：</strong>想突破傳統「對症配方」的瓶頸，為個案提供更深層的身心諮詢。</span></li>
         <li><span class="num">02</span><span><strong style="color:var(--text);">心理或助人工作者：</strong>期待引入非語言的植物媒介，快速繞過個案的防衛機制。</span></li>
@@ -2042,11 +2054,11 @@
       「芳療管家」是一系列主題式的週六線上課程，共計八堂、每堂三小時，帶你從日常最常遇到的身心狀況出發，學習如何運用精油與芳香照護，成為家人與自己身心健康的第一線照顧者。
     </p>
     <div class="course-block">
-      <h3 class="course-block-title"><span class="flower-icon">🌸</span>課程資訊</h3>
+      <h3 class="course-block-title"><span class="flower-icon" aria-hidden="true">◎</span>課程資訊</h3>
       <p class="course-text">週六線上課，每次三小時，共計八堂　·　時間 09:30–12:30</p>
     </div>
     <div class="course-block">
-      <h3 class="course-block-title"><span class="flower-icon">🌸</span>課程時程</h3>
+      <h3 class="course-block-title"><span class="flower-icon" aria-hidden="true">◎</span>課程時程</h3>
       <ol class="course-ol">
         <li><span class="num">01</span><span><strong style="color:var(--text);">2027/01/16（六）</strong>　睡眠專題</span></li>
         <li><span class="num">02</span><span><strong style="color:var(--text);">2027/01/23（六）</strong>　免疫過敏專題（一）</span></li>
@@ -2257,8 +2269,8 @@
     </div>
     <p class="course-text">由海賊嫚發起，集結六位身心療癒工作者，將為機構老師們帶來滋養身心的公益手療服務。這一次，換你們被溫柔以對——在這段專屬於你的時間裡，允許自己什麼都不做，讓心好好休息，享受這場由內而外的療癒陪伴。</p>
     <div style="margin-top:2rem;">
-      <h3 class="course-block-title"><span class="flower-icon">🌸</span>活動花絮</h3>
-      <div class="event-gallery-empty">活動照片與影片整理中，之後會陸續放上來 🌿</div>
+      <h3 class="course-block-title"><span class="flower-icon" aria-hidden="true">◎</span>活動花絮</h3>
+      <div class="event-gallery-empty">活動照片與影片整理中，之後會陸續放上來</div>
     </div>
   </div>
 
@@ -2269,11 +2281,11 @@
     <h2 class="section-title" style="text-align:left; margin-bottom:0.8rem;">精油側寫新手入門班｜上課花絮</h2>
     <div class="event-meta">
       <span>📅 <b>2026.06.23</b></span>
-      <span>🌿 <b>第一階段・新手入門</b></span>
+      <span><b>第一階段・新手入門</b></span>
     </div>
     <p class="course-text">從零開始建立精油側寫的基礎認識——這是新手入門班的現場上課實況，帶你感受課堂裡的學習氛圍與互動節奏。</p>
     <div style="margin-top:2rem;">
-      <h3 class="course-block-title"><span class="flower-icon">🌸</span>活動花絮</h3>
+      <h3 class="course-block-title"><span class="flower-icon" aria-hidden="true">◎</span>活動花絮</h3>
       <div class="event-gallery">
         <video controls preload="metadata" poster="events/beginner-class-highlights-thumb.jpg" style="width:100%; grid-column: 1 / -1; border-radius:6px; aspect-ratio:16/9; object-fit:cover; background:#000;">
           <source src="events/beginner-class-highlights.mp4" type="video/mp4">
@@ -2304,7 +2316,7 @@ function showEventView(id) {
   <div class="qr-box" onclick="event.stopPropagation()">
     <p>掃描加入玥泫的 LINE 官方帳號</p>
     <img src="instructors/photos/yuyu-line-qr.png" alt="癒玥 LINE QR">
-    <a href="https://line.me/R/ti/p/@564spama" target="_blank" style="display:inline-block;margin-top:1rem;font-size:0.78rem;color:#c8a464;text-decoration:none;letter-spacing:0.08em;border:1px solid rgba(200,164,100,0.4);padding:0.3rem 0.9rem;border-radius:20px;">點此直接加入</a>
+    <a href="https://line.me/R/ti/p/@564spama" target="_blank" class="qr-direct-link">點此直接加入</a>
     <div class="qr-close" onclick="document.getElementById('yuyu-qr-modal').classList.remove('active')">關閉 ✕</div>
   </div>
 </div>
@@ -2314,7 +2326,7 @@ function showEventView(id) {
   <div class="qr-box" onclick="event.stopPropagation()">
     <p>掃描加入 Molly 的 LINE 官方帳號</p>
     <img src="instructors/photos/molly-line-qr.jpg" alt="Molly LINE QR">
-    <a href="https://line.me/R/ti/p/@864ihpsq" target="_blank" style="display:inline-block;margin-top:1rem;font-size:0.78rem;color:#c8a464;text-decoration:none;letter-spacing:0.08em;border:1px solid rgba(200,164,100,0.4);padding:0.3rem 0.9rem;border-radius:20px;">點此直接加入</a>
+    <a href="https://line.me/R/ti/p/@864ihpsq" target="_blank" class="qr-direct-link">點此直接加入</a>
     <div class="qr-close" onclick="document.getElementById('molly-qr-modal').classList.remove('active')">關閉 ✕</div>
   </div>
 </div>
