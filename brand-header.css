@@ -1,0 +1,19 @@
+/* Local first-step inner-page banner; does not alter other pages or logos. */
+.branded-page main { padding-top: 90px; }
+.branded-page nav .nav-home { display: flex; align-items: center; flex-shrink: 0; padding: 0; }
+.nav-brand-logo { display: block; width: 200px; height: 68px; object-fit: contain; }
+.inner-brand-banner { position: relative; isolation: isolate; overflow: hidden; background: #141A29; color: #F5F0E6; min-height: 210px; display: flex; align-items: center; padding: 30px max(6vw, 24px); border-bottom: 1px solid rgba(200,169,126,.5); }
+.banner-content { width: min(1160px,100%); margin: 0 auto; position: relative; z-index: 1; }
+.banner-eyebrow { color: #C8A97E; letter-spacing: .22em; font-size: 12px; margin: 0 0 10px; }
+.inner-brand-banner h1 { font-family: 'Noto Serif TC',serif; font-size: clamp(30px,3.5vw,44px); font-weight: 600; line-height: 1.4; margin: 0 0 16px; color: #F5F0E6; }
+.banner-description { color: #D2CDC3; font-size: 16px; line-height: 1.9; max-width: 570px; margin: 0; }
+/* Decorative excerpt of the official logo's upper rings and scent strokes.
+   The source logo stays intact; its lettering is outside this background viewport. */
+.banner-ripples { position: absolute; width: 650px; height: 190px; right: 0; top: 10px; opacity: .24; pointer-events: none; background-image: url('logo-year-rings-white-gold-v2.png'); background-size: 900px 450px; background-repeat: no-repeat; background-position: right top; mask-image: linear-gradient(to bottom, #000 0%, #000 85%, transparent 100%); }
+.banner-ripples i { display: none; }
+.branded-page.inner-page main > section:first-of-type { padding-top: 64px; }
+@media(max-width:1100px) { .branded-page main { padding-top: 138px; } .nav-brand-logo { width: 180px; height: 68px; } }
+@media(max-width:680px) { .inner-brand-banner { min-height: 190px; padding: 24px; } .banner-description { max-width: 300px; font-size: 15px; } .banner-ripples { right: -240px; top: 0; opacity: .12; } .branded-page.inner-page main > section:first-of-type { padding-top: 40px; } }
+
+.branded-page.home-page #hero { padding-top: 4rem; }
+@media(max-width:1100px) { .branded-page.home-page #hero { padding-top: 3rem; } }
