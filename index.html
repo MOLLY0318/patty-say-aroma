@@ -1465,6 +1465,19 @@
     .course-card-actions .btn-apply { margin: 0; }
     .course-notice { padding: 1rem 1.2rem; background: var(--bg2); border-left: 2px solid var(--amber); color: var(--ink); font-size: 0.95rem; line-height: 1.8; }
     @media(max-width:900px) { .course-overview-grid { grid-template-columns: 1fr; } }
+    #faq { background: var(--bg2); }
+    .faq-intro { max-width: 680px; color: var(--muted); margin-bottom: 2rem; line-height: 1.9; }
+    .faq-list { max-width: 780px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item summary { min-height: 52px; padding: 1.1rem 0; cursor: pointer; color: var(--ink); font-size: 1rem; font-weight: 500; }
+    .faq-item summary:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+    .faq-item p { color: var(--muted); font-size: 1rem; line-height: 1.9; margin: 0 0 1.3rem; }
+    .faq-item a { color: var(--red); text-underline-offset: 4px; }
+    .faq-actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .faq-actions a { display: inline-flex; align-items: center; min-height: 44px; padding: 0.7rem 1rem; border: 1px solid var(--amber); border-radius: 4px; color: var(--ink); text-decoration: none; }
+    .faq-note { margin-top: 1.5rem; color: var(--muted); font-size: 0.9rem; }
+    footer .footer-help { display: inline-block; padding: 0.5rem; margin-bottom: 0.7rem; color: var(--paper); text-underline-offset: 4px; }
+    @media (min-width:1001px) { .nav-links { gap: 1rem; } }
   </style>
 </head>
 <body>
@@ -1479,6 +1492,7 @@
   <a href="#testimonials">個案回饋</a>
   <a href="#team">體驗側寫</a>
   <a href="#courses">課程總覽</a>
+  <a href="#faq">常見問題</a>
   <a href="#" onclick="document.getElementById('calendar-modal').classList.add('active');return false;">課程行事曆</a>
   <a href="#" onclick="showEventView('event-view-select');document.getElementById('events-modal').classList.add('active');return false;">活動專區</a>
   </div>
@@ -2035,6 +2049,26 @@
   </div>
 </section>
 
+<section id="faq">
+  <div class="section-inner">
+    <p class="section-label">Before You Begin</p>
+    <h2 class="section-title">開始之前，你可能想知道</h2>
+    <p class="faq-intro">想先體驗，或準備開始學習？把預約方式、課程入口與目前開放的資訊整理在這裡，讓你依自己的步調選擇。</p>
+    <div class="faq-list">
+      <details class="faq-item"><summary>第一次來，應該先體驗還是報名課程？</summary><p>如果你想先認識精油側寫，可以從<a href="#team">團隊介紹</a>了解不同側寫師，再聯絡你想預約的夥伴。若你希望學習側寫方法或日常芳療照顧，可以先看<a href="#courses">課程總覽</a>，比較新手入門、專業培訓與芳療管家。</p></details>
+      <details class="faq-item"><summary>如何預約一對一側寫？</summary><p>從團隊介紹中選擇側寫師，使用該講師卡片上的預約或社群入口聯絡。請先向講師確認服務內容、可預約時間、地點或線上方式及費用；各講師的服務安排不一定相同。</p></details>
+      <details class="faq-item"><summary>海賊嫚說芳療有官方 LINE 嗎？</summary><p>目前沒有官方 LINE。品牌資訊請以本官網與<a href="https://www.facebook.com/PattySayAroma/" target="_blank" rel="noopener">官方 Facebook</a>為入口；講師卡片中的 LINE 是個別講師的聯絡方式，不是海賊嫚說芳療的官方帳號。</p></details>
+      <details class="faq-item"><summary>現在可以報名體驗講座嗎？</summary><p>體驗講座目前為「擇期開放」，尚未提供報名入口。開放資訊請查看<a href="#lecture-entry">體驗講座區</a>與官方公告；若想先體驗，可直接聯絡團隊中的側寫師。</p></details>
+      <details class="faq-item"><summary>如何報名新手入門或專業培訓？</summary><p><a href="#courses">課程總覽</a>提供兩門課各自的報名表入口。請先閱讀當期日期、費用與課程說明，再填寫對應表單；課程行事曆可協助你核對班別與上課時間。若資訊未列明，請先向主辦方詢問。</p></details>
+      <details class="faq-item"><summary>芳療管家的價格與通知登記開放了嗎？</summary><p>價格待公布，通知登記尚未開放，目前沒有可填寫的通知表單。表單準備完成後，會在芳療管家課程區提供入口；現階段請查看課程資訊與官方公告。</p></details>
+      <details class="faq-item"><summary>線上共學可以對外報名嗎？</summary><p>行事曆中的「精油側寫師線上共學」是內部訓練，不是一般對外招生課程。參與資格及安排請向團隊確認；每月時間以更新後的行事曆為準。</p></details>
+      <details class="faq-item"><summary>費用、付款、取消或改期要向誰確認？</summary><p>課程請以當期報名表或主辦方提供的說明為準；個別服務請向你預約的講師確認。若資料未列明，請在報名或付款前先詢問，不要將其他品牌或其他講師的規則視為本次安排。</p></details>
+    </div>
+    <div class="faq-actions"><a href="#team">尋找側寫夥伴</a><a href="#courses">查看課程總覽</a><a href="https://www.facebook.com/PattySayAroma/" target="_blank" rel="noopener">聯絡官方 Facebook</a></div>
+    <p class="faq-note">本網站的精油側寫服務為身心覺察之參考，不具醫療診斷功能。</p>
+  </div>
+</section>
+
 <!-- COURSE MODAL -->
 <div class="course-modal" id="course-modal" onclick="this.classList.remove('active')">
 <div class="course-modal-box" onclick="event.stopPropagation()">
@@ -2562,6 +2596,7 @@ function showEventView(id) {
 <footer>
   <img class="footer-emblem" src="logo-year-rings-white-gold-v2.png" alt="海賊嫚說芳療：白字與琥珀金年輪生香品牌標誌" loading="lazy">
   <div class="footer-brand">海賊嫚說芳療｜精油側寫</div>
+  <a class="footer-help" href="#faq">常見問題與預約說明</a>
   <p>
     <a href="https://www.facebook.com/PattySayAroma/" target="_blank">Facebook</a>
     　·
