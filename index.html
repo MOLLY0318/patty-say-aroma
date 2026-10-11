@@ -1454,6 +1454,17 @@
     .instructor-card .btn-book { display: block; text-align: center; }
     .instructor-card .reading-details { text-align: left; }
     .testimonial-card .testimonial-text, .instructor-card .card-bio { font-size: 1rem; line-height: 1.9; }
+    .course-overview-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.2rem; margin: 2rem 0; }
+    .course-overview-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; }
+    .course-overview-card h3 { font-family: 'Noto Serif TC',serif; font-size: 1.2rem; color: var(--ink); margin: 0.6rem 0 1rem; }
+    .course-overview-card dl { margin: 0 0 1.5rem; font-size: 0.95rem; }
+    .course-overview-card dt { color: var(--gold); font-weight: 600; margin-top: 0.9rem; }
+    .course-overview-card dd { margin: 0.2rem 0 0; color: var(--muted); line-height: 1.8; }
+    .course-card-actions { margin-top: auto; display: flex; flex-direction: column; gap: 0.7rem; }
+    .course-card-actions button { min-height: 44px; padding: 0.6rem; font: inherit; color: var(--ink); background: transparent; border: 1px solid var(--amber); border-radius: 4px; cursor: pointer; }
+    .course-card-actions .btn-apply { margin: 0; }
+    .course-notice { padding: 1rem 1.2rem; background: var(--bg2); border-left: 2px solid var(--amber); color: var(--ink); font-size: 0.95rem; line-height: 1.8; }
+    @media(max-width:900px) { .course-overview-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -1467,7 +1478,7 @@
   <a href="#what">精油側寫</a>
   <a href="#testimonials">個案回饋</a>
   <a href="#team">體驗側寫</a>
-  <a href="#" onclick="showCourseView('course-view-select');document.getElementById('course-modal').classList.add('active');return false;">培訓課程</a>
+  <a href="#courses">課程總覽</a>
   <a href="#" onclick="document.getElementById('calendar-modal').classList.add('active');return false;">課程行事曆</a>
   <a href="#" onclick="showEventView('event-view-select');document.getElementById('events-modal').classList.add('active');return false;">活動專區</a>
   </div>
@@ -1497,7 +1508,7 @@
   <p class="hero-sub">用氣味理解人，從精油的反應出發，陪你看見此刻的身心狀態。</p>
   <div class="hero-actions">
     <a class="btn-hero-cta" href="#team">我想體驗側寫</a>
-    <button type="button" class="btn-hero-outline" onclick="showCourseView('course-view-select');document.getElementById('course-modal').classList.add('active');">我想學習課程</button>
+    <a class="btn-hero-outline" href="#courses">我想學習課程</a>
   </div>
   <a class="hero-lecture-link" href="#lecture-entry">查看體驗講座（擇期開放）</a>
   <div class="hero-scroll">
@@ -1997,6 +2008,33 @@
   </div>
 </section>
 
+<section id="courses">
+  <div class="section-inner">
+    <p class="section-label">Learning Paths</p>
+    <h2 class="section-title">找到適合你的學習起點</h2>
+    <p class="course-intro">從認識精油側寫、進入專業培訓，到生活中的芳療照顧，依照你的學習目標選擇。</p>
+    <div class="course-overview-grid">
+      <article class="course-overview-card">
+        <span class="section-label">第一階段</span><h3>精油側寫新手入門</h3>
+        <dl><dt>適合誰</dt><dd>精油愛好者，以及想建立側寫基礎的芳療與助人工作者。</dd><dt>學習重點</dt><dd>植物七大部位、盲抽體驗、7 天身心微覺察。</dd><dt>日期與上課資訊</dt><dd>無固定開課日期；請查看報名表的當期安排。</dd><dt>報名狀態</dt><dd>報名表已提供。</dd></dl>
+        <div class="course-card-actions"><a class="btn-apply" href="https://forms.gle/R1HQP13HuRynKSke6" target="_blank" rel="noopener">查看當期資訊與報名</a><button type="button" onclick="showCourseView('course-view-1');document.getElementById('course-modal').classList.add('active');">閱讀完整課綱</button></div>
+      </article>
+      <article class="course-overview-card">
+        <span class="section-label">第二階段</span><h3>精油側寫師專業培訓</h3>
+        <dl><dt>適合誰</dt><dd>希望深入學習側寫推理與個案陪伴的學員。</dd><dt>學習重點</dt><dd>四大解析構面、21 天個案體驗與成果發表。</dd><dt>班別與時間</dt><dd>週三班／週六班，09:30–16:30，午休一小時；完整日期見行事曆。</dd><dt>報名狀態</dt><dd>報名表已提供。</dd></dl>
+        <div class="course-card-actions"><a class="btn-apply" href="https://forms.gle/hSaxGPQXY18WvPSB6" target="_blank" rel="noopener">查看當期資訊與報名</a><button type="button" onclick="showCourseView('course-view-2');document.getElementById('course-modal').classList.add('active');">閱讀完整課綱</button></div>
+      </article>
+      <article class="course-overview-card">
+        <span class="section-label">週六線上課</span><h3>芳療管家</h3>
+        <dl><dt>適合誰</dt><dd>希望將芳療運用於自己與家人日常照顧的人。</dd><dt>學習重點</dt><dd>睡眠、免疫過敏、皮膚、婦科、消化與臨終照護。</dd><dt>方式與時數</dt><dd>週六線上，09:30–12:30；八堂，每堂三小時，共 24 小時。</dd><dt>報名狀態</dt><dd>價格待公布，通知登記尚未開放。</dd></dl>
+        <div class="course-card-actions"><button type="button" onclick="showCourseView('course-view-3');document.getElementById('course-modal').classList.add('active');">查看專題與課程安排</button></div>
+      </article>
+    </div>
+    <div class="course-notice">報名前請查看當期課程日期、費用與說明。未公布的資訊不代表已開放報名。</div>
+    <button type="button" class="btn-apply" onclick="document.getElementById('calendar-modal').classList.add('active');">查看完整課程行事曆</button>
+  </div>
+</section>
+
 <!-- COURSE MODAL -->
 <div class="course-modal" id="course-modal" onclick="this.classList.remove('active')">
 <div class="course-modal-box" onclick="event.stopPropagation()">
@@ -2183,8 +2221,7 @@
       <div style="font-size:1.1rem;color:var(--text);font-weight:500;">芳療管家</div>
     </div>
     <div style="margin-bottom:2rem; text-align:center;">
-      <!-- TODO：Molly 提供 Google 表單連結後，把下面 href="#" 換成表單網址 -->
-      <a class="btn-apply" href="#" target="_blank">留下資料，等價錢出來通知</a>
+      <p class="course-notice">價格待公布，通知登記尚未開放。表單準備完成後，將於此處提供登記入口。</p>
     </div>
     <p class="course-intro">
       「芳療管家」是一系列主題式的週六線上課程，共計八堂、每堂三小時，帶你從日常最常遇到的身心狀況出發，學習如何運用精油與芳香照護，成為家人與自己身心健康的第一線照顧者。
