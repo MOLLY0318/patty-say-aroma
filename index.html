@@ -1437,6 +1437,23 @@
       #hero .announcement-badge { text-align: center; font-size: 0.82rem; }
       #hero .hero-sub { font-size: 1rem; }
     }
+    /* 第二階段：完整資料保留，以摘要和展開區降低閱讀負擔。 */
+    .founder-highlights { margin: 1.5rem 0; padding: 1.2rem 1.4rem; background: var(--bg2); border-left: 2px solid var(--amber); }
+    .founder-highlights p { margin-bottom: 0.6rem; color: var(--ink); font-size: 0.95rem; }
+    .founder-highlights p:last-child { margin-bottom: 0; }
+    .reading-details { margin: 1rem 0; border-top: 1px solid var(--border); }
+    .reading-details summary { color: var(--red); font-size: 0.95rem; font-weight: 500; cursor: pointer; min-height: 44px; padding: 0.7rem 0; }
+    .reading-details summary:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    .reading-details[open] summary { margin-bottom: 0.6rem; }
+    .card-preview { color: var(--muted); font-size: 1rem; line-height: 1.9; margin: 1rem 0; }
+    .instructor-card .card-photo { width: 112px; height: 112px; object-fit: cover; }
+    .card-name { margin-top: 1rem; }
+    .card-brand { min-height: 2.5rem; line-height: 1.7; }
+    .profile-pair { align-items: start; }
+    .instructor-card .card-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+    .instructor-card .btn-book { display: block; text-align: center; }
+    .instructor-card .reading-details { text-align: left; }
+    .testimonial-card .testimonial-text, .instructor-card .card-bio { font-size: 1rem; line-height: 1.9; }
   </style>
 </head>
 <body>
@@ -1509,6 +1526,13 @@
           「芳療不是直覺，更不是算命。我用二十三年，建立一套有跡可循的推理系統——從香氣的反應出發，陪你看見身心失衡真正的軌跡。」
         </blockquote>
 
+        <div class="founder-highlights" aria-label="核心資歷">
+          <p>芳療教學逾 23 年｜單方精油側寫研發者</p>
+          <p>美國 NAHA 高階芳療師證照</p>
+          <p>國立臺東大學身心整合與運動休閒產業學系技術講師</p>
+        </div>
+        <details class="reading-details founder-credentials">
+          <summary>查看完整資歷與服務經歷</summary>
         <!-- 訓練認證 -->
         <div class="cred-section">
           <div class="cred-section-title">訓練認證</div>
@@ -1575,6 +1599,7 @@
           </div>
         </div>
 
+        </details>
         <div class="founder-links" style="margin-top:2rem;">
           <a class="btn-social" href="https://www.facebook.com/PattySayAroma/" target="_blank">Facebook</a>
           <a class="btn-social" href="https://www.instagram.com/peimanzhang/" target="_blank">Instagram</a>
@@ -2508,5 +2533,28 @@ function showEventView(id) {
   <p class="footer-disclaimer">本網站所提供之精油側寫服務，不具醫療診斷功能，僅作為身心覺察之參考工具。</p>
 </footer>
 
+<script>
+  // 預覽取自原文；原始段落完整保留在原生 details，無腳本時仍顯示全文。
+  document.querySelectorAll('.card-bio, .testimonial-text').forEach(function (paragraph) {
+    const isFeedback = paragraph.classList.contains('testimonial-text');
+    const text = paragraph.innerText.replace(/\s+/g, ' ').trim();
+    const limit = isFeedback ? 160 : 110;
+    if (text.length <= limit) return;
+    const preview = document.createElement('p');
+    preview.className = 'card-preview';
+    preview.textContent = text.slice(0, limit) + '…';
+    const details = document.createElement('details');
+    details.className = 'reading-details';
+    const summary = document.createElement('summary');
+    const label = isFeedback ? '閱讀完整回饋' : '查看完整介紹';
+    summary.textContent = label;
+    paragraph.before(preview, details);
+    details.append(summary, paragraph);
+    details.addEventListener('toggle', function () {
+      preview.hidden = details.open;
+      summary.textContent = details.open ? '收合' + (isFeedback ? '回饋' : '介紹') : label;
+    });
+  });
+</script>
 </body>
 </html>
