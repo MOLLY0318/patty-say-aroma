@@ -13,14 +13,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #1a1e15;
-      --bg2:      #1f2419;
-      --card:     #252c1e;
-      --gold:     #c8a464;
-      --gold-dim: rgba(200, 164, 100, 0.18);
-      --text:     #f5ede0;
-      --muted:    #ddd3c8;
-      --border:   rgba(200, 164, 100, 0.2);
+      --bg:       #F5F0E6;
+      --bg2:      #EDE5D8;
+      --card:     #FFFCF7;
+      --gold:     #80603B;
+      --amber:    #C8A97E;
+      --ink:      #141A29;
+      --red:      #B5372B;
+      --gold-dim: rgba(200, 169, 126, 0.15);
+      --text:     #141A29;
+      --muted:    #4A4D55;
+      --border:   #D3C9B8;
     }
 
     html { scroll-behavior: smooth; }
@@ -1256,6 +1259,105 @@
       .founder-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .founder-photo { aspect-ratio: 1/1; max-width: 260px; margin: 0 auto; }
       section { padding: 4rem 1.5rem; }
+    }
+    /* 海賊嫚視覺色彩設定：羊皮紙砂 45 / 墨藍 25 / 琥珀 15 / 赤紅 15。
+       保留內容、品牌圖片與既有互動；淺底琥珀文字使用加深色以維持對比。 */
+    body { font-weight: 400; }
+    nav {
+      background: rgba(245,240,230,0.96);
+      border-bottom-color: var(--amber);
+    }
+    nav a { color: var(--ink); }
+    nav a:hover { color: var(--red); }
+    #hero {
+      --text: #F5F0E6;
+      --muted: #D2CDC3;
+      --gold: #C8A97E;
+      color: var(--text);
+      background-image: none;
+      background-color: var(--ink);
+      overflow: hidden;
+    }
+    #hero::before {
+      inset: 10% -20% 0 30%;
+      background: repeating-radial-gradient(circle at 70% 45%, transparent 0 92px,
+        rgba(200,169,126,0.17) 93px 94px, transparent 95px 155px);
+      pointer-events: none;
+    }
+    #hero h1 { text-shadow: none; }
+    #hero h1 span { color: var(--amber); }
+    .announcement-badge {
+      background: rgba(181,55,43,0.18);
+      color: #F5F0E6;
+      border-color: var(--red);
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .announcement-badge:hover { background: var(--red); }
+    .announcement-badge .dot { background: var(--red); animation: none; }
+    #founder, #testimonials { background-image: none; }
+    #founder { background-color: var(--bg); }
+    #testimonials { background-color: var(--bg2); }
+    #founder::before, #testimonials::before { background: none; }
+    .section-label, .stage-num, .dim-num, .cal-month-heading {
+      color: var(--red);
+    }
+    .section-title { color: var(--ink); }
+    .divider { background: var(--amber); opacity: 1; }
+    .instructor-card, .testimonial-card, .stage-card, .dim-card,
+    .exp-card, .course-select-card, .event-card, .pillar-card {
+      border-color: var(--border);
+      box-shadow: 0 4px 18px rgba(20,26,41,0.04);
+    }
+    .stage-card.highlight { background: var(--card); border-color: var(--amber); }
+    .qr-box { background: var(--bg); color: var(--ink); }
+    .btn-hero-cta, .btn-apply, .btn-book {
+      background: var(--red);
+      border: 1px solid var(--red);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+    .btn-hero-cta:hover, .btn-apply:hover, .btn-book:hover {
+      background: #942C23;
+      border-color: #942C23;
+      color: #FFFFFF;
+      opacity: 1;
+    }
+    .btn-hero-outline { color: var(--amber); border-color: var(--amber); }
+    .btn-hero-outline:hover { background: var(--amber); color: var(--ink); }
+    .btn-social { border-color: var(--amber); color: var(--ink); }
+    .btn-social:hover { background: var(--gold-dim); color: var(--ink); }
+    .course-modal, .qr-modal { background: rgba(20,26,41,0.78); }
+    .course-modal-inner { background: var(--bg); }
+    .course-modal-close { background: var(--bg); color: var(--ink); }
+    .cal-tag { color: var(--red); border-color: rgba(181,55,43,0.35); }
+    .cal-tag-internal { color: var(--muted); border-color: var(--border); }
+    .event-card-cover, .event-detail-cover {
+      background: var(--gold-dim);
+    }
+    .flower-icon { font-size: 0; }
+    .flower-icon::before { content: '◉'; font-size: 1rem; color: var(--amber); }
+    footer {
+      --muted: #D2CDC3;
+      --gold: #C8A97E;
+      color: #F5F0E6;
+      background: var(--ink);
+      border-top-color: var(--amber);
+    }
+    .footer-disclaimer { color: #D2CDC3; }
+    a:focus-visible, button:focus-visible, [onclick]:focus-visible {
+      outline: 3px solid var(--red);
+      outline-offset: 4px;
+    }
+    @media (max-width: 680px) {
+      nav { flex-wrap: wrap; gap: 0.5rem 1rem; padding: 0.75rem 1rem; }
+      .hero-sub { white-space: normal; }
+      #hero { padding-top: 8rem; }
+      .announcement-badge { max-width: 100%; text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
