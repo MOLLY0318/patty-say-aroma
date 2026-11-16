@@ -23,6 +23,16 @@ function currentIndex() {
   const i = SESSIONS.findIndex(s => s.sat >= t);
   return i < 0 ? SESSIONS.length - 1 : i;
 }
+// 截止：上課前一天晚上 8 點（台灣時間）；請假跟週六同一個截止時間
+function deadlineOf(s, day) {
+  const iso = day === '週三' ? s.wed : s.sat;
+  return new Date(iso + 'T20:00:00+08:00').getTime() - 24 * 3600 * 1000;
+}
+function deadlineText(s, day) {
+  const d = new Date(deadlineOf(s, day) + 8 * 3600 * 1000);
+  const w = '日一二三四五六'[d.getUTCDay()];
+  return `${d.getUTCMonth() + 1}/${d.getUTCDate()}（${w}）晚上 8 點`;
+}
 function esc(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
@@ -40,22 +50,33 @@ async function api(body) {
 
 // ---- 本機測試模式：模擬後台，資料存在這台瀏覽器 ----
 function mockApi(r) {
+  const get = (k, d) => JSON.parse(localStorage.getItem(k) || d);
   const STUDENTS = ['測試學員A', '測試學員B', '測試學員C'];
-  const rows = JSON.parse(localStorage.getItem('mock_rows') || '[]');
+  const rows = get('mock_rows', '[]');
+  const pins = get('mock_pins', '{}');
+  const handouts = n => [{ id: 'h1-' + n, session: '第1堂', title: '構面與單方精油', size: 1 }];
   const latest = () => {
     const m = {};
     rows.forEach(x => { (m[x.name] = m[x.name] || {})[x.session] = { day: x.day, mode: x.mode, note: x.note, time: x.time }; });
     return m;
   };
   if (r.action === 'stats') return r.key === 'test' ? { ok: true, students: STUDENTS, latest: latest() } : { ok: false, error: 'key' };
-  if (r.pw !== 'test') return { ok: false, error: 'pw' };
-  if (r.action === 'login') return { ok: true, students: STUDENTS };
-  if (r.action === 'mine') return { ok: true, latest: latest()[r.name] || {}, handouts: [] };
+  if (r.action === 'roster') return { ok: true, students: STUDENTS.map(n => ({ name: n, claimed: !!pins[n] })) };
+  if (!STUDENTS.includes(r.name)) return { ok: false, error: 'name' };
+  if (!/^\d{4}$/.test(r.pin || '')) return { ok: false, error: 'pinformat' };
+  if (r.action === 'claim') {
+    if (pins[r.name]) return { ok: false, error: 'claimed' };
+    pins[r.name] = r.pin; localStorage.setItem('mock_pins', JSON.stringify(pins)); return { ok: true };
+  }
+  if (!pins[r.name]) return { ok: false, error: 'unclaimed' };
+  if (pins[r.name] !== r.pin) return { ok: false, error: 'pin' };
+  if (r.action === 'login' || r.action === 'mine') return { ok: true, latest: latest()[r.name] || {}, handouts: handouts(r.name) };
   if (r.action === 'submit') {
     const d = new Date();
     rows.push({ ...r, mode: r.day === '請假' ? '' : r.mode, time: `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}` });
     localStorage.setItem('mock_rows', JSON.stringify(rows));
-    return { ok: true, latest: latest()[r.name] || {} };
+    return { ok: true, latest: latest()[r.name] || {}, handouts: handouts(r.name) };
   }
+  if (r.action === 'download') return { ok: true, filename: 'test.txt', mime: 'text/plain', data: btoa('test') };
   return { ok: false, error: 'action' };
 }
