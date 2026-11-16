@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>出席統計｜海賊嫚說芳療</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <img src="../logo-year-rings-white-gold-v2.png" alt="海賊嫚說芳療">
+    <p class="eyebrow">ATTENDANCE</p>
+    <h1>2026 精油側寫培訓｜出席統計</h1>
+    <p class="sub">老師與小幫手專用。學員回覆後，重新整理就會更新。</p>
+  </div>
+</header>
+<main>
+  <section class="card hidden" id="nokey">
+    <h2>請用老師專用連結開啟</h2>
+    <p class="muted">這個頁面需要專用連結才能看到，請向小幫手索取。</p>
+  </section>
+
+  <section class="card hidden" id="board">
+    <div class="row">
+      <div class="tabs" role="tablist" id="tabs" style="margin:0"></div>
+      <button class="btn ghost" type="button" id="refresh">重新整理</button>
+    </div>
+    <p class="big-total" id="total"></p>
+    <div class="grid2" id="days"></div>
+  </section>
+
+  <section class="card hidden missing" id="missing-card">
+    <h2>還沒回覆</h2>
+    <p class="names-line" id="missing"></p>
+  </section>
+
+  <section class="card hidden" id="leave-card">
+    <h2>請假（看回放）</h2>
+    <p class="names-line" id="leave"></p>
+  </section>
+
+  <section class="card hidden" id="notes-card">
+    <h2>學員備註</h2>
+    <ul class="notes" id="notes"></ul>
+  </section>
+
+  <section class="card hidden" id="overview-card">
+    <h2>全期總覽</h2>
+    <p class="muted">三＝週三、六＝週六；實＝實體、線＝線上；－＝還沒填。</p>
+    <div class="table-wrap"><table class="overview" id="overview"></table></div>
+  </section>
+
+  <div class="alert hidden" id="err"></div>
+</main>
+
+<script src="common.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const key = new URLSearchParams(location.search).get('k') || '';
+const state = { idx: currentIndex(), students: [], latest: {} };
+function show(id, on = true) { $(id).classList.toggle('hidden', !on); }
+
+async function load() {
+  show('err', false); $('refresh').disabled = true;
+  try {
+    const r = await api({ action: 'stats', key });
+    if (!r.ok) { if (r.error === 'key') { show('nokey'); show('board', false); return; } throw new Error(r.error); }
+    state.students = r.students; state.latest = r.latest || {};
+    ['board', 'overview-card'].forEach(id => show(id));
+    render();
+  } catch (e) {
+    $('err').textContent = '讀取失敗，請稍後按「重新整理」。'; show('err');
+  } finally { $('refresh').disabled = false; }
+}
+
+function render() {
+  const cur = currentIndex();
+  $('tabs').innerHTML = SESSIONS.map((s, i) =>
+    `<button type="button" class="tab" role="tab" data-i="${i}" aria-selected="${i === state.idx}">${s.key}${i === cur ? '（本週）' : ''}</button>`).join('');
+  const s = SESSIONS[state.idx];
+  const groups = { '週三': { '實體': [], '線上': [] }, '週六': { '實體': [], '線上': [] } };
+  const leave = [], missing = [], notes = [];
+  state.students.forEach(n => {
+    const m = (state.latest[n] || {})[s.key];
+    if (!m) { missing.push(n); return; }
+    if (m.day === '請假') leave.push(n);
+    else if (groups[m.day] && groups[m.day][m.mode]) groups[m.day][m.mode].push(n);
+    if (m.note) notes.push(`<li><b>${esc(n)}</b>：${esc(m.note)}</li>`);
+  });
+  const replied = state.students.length - missing.length;
+  $('total').textContent = `${s.key}｜已回覆 ${replied} / ${state.students.length} 人`;
+  $('days').innerHTML = [['週三', s.wed], ['週六', s.sat]].map(([d, iso]) => {
+    const g = groups[d];
+    const stat = mode => {
+      const list = g[mode]; const offered = s.modes.includes(mode);
+      if (!offered && list.length === 0) return '';
+      return `<div class="stat"><span>${mode}</span><span class="n ${list.length ? '' : 'zero'}">${list.length}</span></div>` +
+        `<p class="names-line">${list.length ? list.map(esc).join('、') : '—'}</p>`;
+    };
+    return `<div class="daybox"><h3>${d} ${md(iso)}</h3>${stat('實體')}${stat('線上')}</div>`;
+  }).join('');
+  $('missing').textContent = missing.join('、'); show('missing-card', missing.length > 0);
+  $('leave').textContent = leave.join('、'); show('leave-card', leave.length > 0);
+  $('notes').innerHTML = notes.join(''); show('notes-card', notes.length > 0);
+
+  const short = m => m ? (m.day === '請假' ? '請假' : `${m.day.slice(1)}${m.mode.slice(0, 1)}`) : '－';
+  $('overview').innerHTML = `<tr><th>學員</th>${SESSIONS.map(x => `<th>${x.key.replace('成果發表會', '發表會')}</th>`).join('')}</tr>` +
+    state.students.map(n => `<tr><td>${esc(n)}</td>${SESSIONS.map(x => {
+      const m = (state.latest[n] || {})[x.key];
+      return `<td class="${!m ? 'empty' : m.day === '請假' ? 'leave' : ''}">${short(m)}</td>`;
+    }).join('')}</tr>`).join('');
+}
+
+$('tabs').addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (!b) return; state.idx = +b.dataset.i; render(); });
+$('refresh').addEventListener('click', load);
+if (!key) show('nokey'); else load();
+</script>
+</body>
+</html>

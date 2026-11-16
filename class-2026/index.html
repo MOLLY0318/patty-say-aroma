@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>學員專區｜海賊嫚說芳療</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <img src="../logo-year-rings-white-gold-v2.png" alt="海賊嫚說芳療">
+    <p class="eyebrow">STUDENT AREA</p>
+    <h1>2026 精油側寫培訓｜學員專區</h1>
+    <p class="sub">每週回覆上課方式、下載講義，都在這裡。</p>
+  </div>
+</header>
+<main>
+  <!-- 1. 班級密碼 -->
+  <section class="card" id="step-pw">
+    <h2>請輸入班級密碼</h2>
+    <p class="muted">密碼在班級 LINE 群組的記事本裡。</p>
+    <form id="pw-form">
+      <input type="password" id="pw" autocomplete="current-password" aria-label="班級密碼" placeholder="班級密碼">
+      <button class="btn" type="submit" id="pw-btn">進入</button>
+    </form>
+    <div class="alert hidden" id="pw-err"></div>
+  </section>
+
+  <!-- 2. 選名字 -->
+  <section class="card hidden" id="step-name">
+    <h2>你是哪一位？</h2>
+    <p class="muted">點自己的名字，下次打開會記住。</p>
+    <div class="choices names" id="names"></div>
+  </section>
+
+  <!-- 3. 出席調查 -->
+  <section class="card hidden" id="step-form">
+    <div class="row">
+      <h2 id="hello">你好</h2>
+      <button class="btn ghost" type="button" id="switch-name">不是我，換人</button>
+    </div>
+    <p class="muted">選堂次，告訴老師這堂你會怎麼上課。可以先幫之後的堂次填，臨時有變再回來改，以最後一次為準。</p>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="session-head"></div>
+
+    <h3>① 這堂上哪一天？</h3>
+    <div class="choices" id="days"></div>
+
+    <div id="mode-wrap">
+      <h3>② 用什麼方式上課？</h3>
+      <div class="choices" id="modes"></div>
+      <p class="hint" id="mode-note"></p>
+    </div>
+
+    <h3>想跟老師說的話（可不填）</h3>
+    <textarea id="note" maxlength="200" placeholder="例如：會晚 20 分鐘到"></textarea>
+
+    <button class="btn" type="button" id="submit">送出</button>
+    <div class="alert hidden" id="form-err"></div>
+    <div class="ok hidden" id="form-ok"></div>
+  </section>
+
+  <!-- 4. 上課資訊 -->
+  <section class="card hidden" id="step-info">
+    <h2>上課資訊</h2>
+    <ul class="info">
+      <li>時間：09:30–16:30（午休一小時）</li>
+      <li>教室：臺北市中山區新生北路1段110號8樓之3（Google Map 可搜尋「保信乾洗商店」）</li>
+      <li>線上：Google Meet，與實體課程同步</li>
+      <li>週三班：11/18、11/25、12/2、12/9，成果發表會 2027/1/6</li>
+      <li>週六班：11/21、11/28、12/5、12/12，成果發表會 2027/1/9</li>
+    </ul>
+  </section>
+
+  <!-- 5. 講義 -->
+  <section class="card hidden" id="step-dl">
+    <h2>講義下載</h2>
+    <p class="muted">每份講義都印有你的名字，僅供個人學習使用，請不要轉傳。</p>
+    <ul class="dl" id="dl-list"></ul>
+    <p class="muted hidden" id="dl-empty">講義還沒上傳，上課前會放上來。</p>
+    <div class="alert hidden" id="dl-err"></div>
+  </section>
+</main>
+
+<script src="common.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} },
+};
+const state = { pw: '', name: '', students: [], latest: {}, idx: currentIndex(), day: '', mode: '' };
+
+function show(id, on = true) { $(id).classList.toggle('hidden', !on); }
+function errText(code) {
+  return ({ pw: '密碼不對，請再確認一次。', name: '名單裡找不到這個名字，請聯絡小幫手。', file: '找不到這份講義，請聯絡小幫手。' })[code]
+    || '系統忙碌中，請稍後再試，或聯絡小幫手。（' + code + '）';
+}
+
+async function login(pw) {
+  $('pw-btn').disabled = true; show('pw-err', false);
+  try {
+    const r = await api({ action: 'login', pw });
+    if (!r.ok) { $('pw-err').textContent = errText(r.error); show('pw-err'); store.del('cls_pw'); return; }
+    state.pw = pw; state.students = r.students; store.set('cls_pw', pw);
+    show('step-pw', false);
+    const saved = store.get('cls_name');
+    if (saved && r.students.includes(saved)) pickName(saved); else renderNames();
+  } catch (e) {
+    $('pw-err').textContent = '連不上系統，請確認網路後再試一次。'; show('pw-err');
+  } finally { $('pw-btn').disabled = false; }
+}
+
+function renderNames() {
+  ['step-form', 'step-info', 'step-dl'].forEach(id => show(id, false));
+  $('names').innerHTML = state.students.map(n => `<button type="button" class="choice" data-name="${esc(n)}">${esc(n)}</button>`).join('');
+  show('step-name');
+}
+
+async function pickName(name) {
+  state.name = name; store.set('cls_name', name);
+  show('step-name', false);
+  $('hello').textContent = name + '，你好';
+  ['step-form', 'step-info', 'step-dl'].forEach(id => show(id));
+  renderTabs(); renderSession();
+  try {
+    const r = await api({ action: 'mine', pw: state.pw, name });
+    if (!r.ok) throw new Error(r.error);
+    state.latest = r.latest || {};
+    renderSession(); renderHandouts(r.handouts || []);
+  } catch (e) {
+    $('dl-err').textContent = '讀取資料失敗，請重新整理頁面。'; show('dl-err');
+  }
+}
+
+function renderTabs() {
+  const cur = currentIndex();
+  $('tabs').innerHTML = SESSIONS.map((s, i) => i < cur ? '' :
+    `<button type="button" class="tab" role="tab" data-i="${i}" aria-selected="${i === state.idx}">${s.key}${i === cur ? '（本週）' : ''}</button>`).join('');
+}
+
+function renderSession() {
+  const s = SESSIONS[state.idx];
+  const mine = state.latest[s.key];
+  state.day = mine ? mine.day : ''; state.mode = mine ? mine.mode : '';
+  $('note').value = mine ? (mine.note || '') : '';
+  $('session-head').innerHTML = `<p><span class="badge">${s.key}</span>　週三 ${md(s.wed)}／週六 ${md(s.sat)}</p>` +
+    (mine ? `<div class="ok">你目前登記：${esc(summary(mine, s))}（${esc(mine.time)} 填寫）。要改的話重新選擇後送出。</div>` : '');
+  show('form-ok', false); show('form-err', false);
+  renderChoices();
+}
+
+function summary(m, s) {
+  if (m.day === '請假') return '請假，看回放';
+  return `${m.day} ${md(m.day === '週三' ? s.wed : s.sat)}・${m.mode}`;
+}
+
+function renderChoices() {
+  const s = SESSIONS[state.idx];
+  const days = [['週三', '週三班', md(s.wed)], ['週六', '週六班', md(s.sat)], ['請假', '請假', '看回放']];
+  $('days').innerHTML = days.map(([v, t, sub]) =>
+    `<button type="button" class="choice" data-day="${v}" aria-pressed="${state.day === v}">${t}<small>${sub}</small></button>`).join('');
+  const needMode = state.day && state.day !== '請假';
+  show('mode-wrap', needMode);
+  if (s.modes.length === 1 && needMode) state.mode = s.modes[0];
+  $('modes').innerHTML = ['實體', '線上'].map(m => {
+    const ok = s.modes.includes(m);
+    return `<button type="button" class="choice" data-mode="${m}" aria-pressed="${state.mode === m}" ${ok ? '' : 'disabled'}>${m === '實體' ? '實體（到教室）' : '線上（Google Meet）'}${ok ? '' : '<small>本堂不開放</small>'}</button>`;
+  }).join('');
+  $('mode-note').textContent = s.note || '';
+}
+
+async function submit() {
+  const s = SESSIONS[state.idx];
+  show('form-err', false); show('form-ok', false);
+  if (!state.day) { $('form-err').textContent = '請先選這堂上哪一天。'; show('form-err'); return; }
+  if (state.day !== '請假' && !s.modes.includes(state.mode)) { $('form-err').textContent = '請選上課方式。'; show('form-err'); return; }
+  $('submit').disabled = true;
+  try {
+    const r = await api({ action: 'submit', pw: state.pw, name: state.name, session: s.key, day: state.day, mode: state.mode, note: $('note').value.trim() });
+    if (!r.ok) throw new Error(r.error);
+    state.latest = r.latest || state.latest;
+    renderSession();
+    $('form-ok').textContent = `已收到！${s.key}：${summary(state.latest[s.key], s)}。謝謝你，老師那邊已經看得到了。`;
+    show('form-ok');
+  } catch (e) {
+    $('form-err').textContent = '送出失敗，請再按一次；一直不行請聯絡小幫手。'; show('form-err');
+  } finally { $('submit').disabled = false; }
+}
+
+function renderHandouts(list) {
+  show('dl-empty', list.length === 0);
+  $('dl-list').innerHTML = list.map(h =>
+    `<li><span><span class="badge">${esc(h.session)}</span> ${esc(h.title)}</span><button type="button" class="btn" data-id="${esc(h.id)}">下載</button></li>`).join('');
+}
+
+async function download(btn) {
+  const old = btn.textContent; btn.disabled = true; btn.textContent = '準備中…'; show('dl-err', false);
+  try {
+    const r = await api({ action: 'download', pw: state.pw, name: state.name, id: btn.dataset.id });
+    if (!r.ok) throw new Error(r.error);
+    const bytes = Uint8Array.from(atob(r.data), c => c.charCodeAt(0));
+    const url = URL.createObjectURL(new Blob([bytes], { type: r.mime || 'application/pdf' }));
+    const a = document.createElement('a'); a.href = url; a.download = r.filename; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  } catch (e) {
+    $('dl-err').textContent = '下載失敗，請再試一次；一直不行請聯絡小幫手。'; show('dl-err');
+  } finally { btn.disabled = false; btn.textContent = old; }
+}
+
+$('pw-form').addEventListener('submit', e => { e.preventDefault(); const v = $('pw').value.trim(); if (v) login(v); });
+$('names').addEventListener('click', e => { const b = e.target.closest('[data-name]'); if (b) pickName(b.dataset.name); });
+$('switch-name').addEventListener('click', () => { store.del('cls_name'); state.latest = {}; renderNames(); });
+$('tabs').addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (!b) return; state.idx = +b.dataset.i; renderTabs(); renderSession(); });
+$('days').addEventListener('click', e => { const b = e.target.closest('[data-day]'); if (!b) return; state.day = b.dataset.day; if (state.day === '請假') state.mode = ''; renderChoices(); });
+$('modes').addEventListener('click', e => { const b = e.target.closest('[data-mode]'); if (!b || b.disabled) return; state.mode = b.dataset.mode; renderChoices(); });
+$('submit').addEventListener('click', submit);
+$('dl-list').addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) download(b); });
+
+const savedPw = store.get('cls_pw');
+if (savedPw) login(savedPw);
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+// 2026 精油側寫培訓｜學員專區共用設定
+// 後台網址（Google Apps Script 網頁應用程式）。空字串＝本機測試模式（資料只存在這台瀏覽器）。
+const API_URL = 'https://script.google.com/macros/s/AKfycbzEkFLR0-CD8u9pTHLzwaxZSVYb9EQOGz3f7WTWS8RWsPzYDxv-wzIT-VrtSau0-kH3wg/exec';
+
+const SESSIONS = [
+  { key: '第1堂', wed: '2026-11-18', sat: '2026-11-21', modes: ['實體', '線上'] },
+  { key: '第2堂', wed: '2026-11-25', sat: '2026-11-28', modes: ['實體', '線上'] },
+  { key: '第3堂', wed: '2026-12-02', sat: '2026-12-05', modes: ['實體', '線上'] },
+  { key: '第4堂', wed: '2026-12-09', sat: '2026-12-12', modes: ['實體'],
+    note: '這堂要在現場抽精油，請一定到場，不提供線上。' },
+  { key: '成果發表會', wed: '2027-01-06', sat: '2027-01-09', modes: ['實體'],
+    note: '成果發表會是同學用油心路歷程的現場分享，只有實體，不提供線上。' },
+];
+
+function md(iso) { const [, m, d] = iso.split('-'); return `${+m}/${+d}`; }
+function todayISO() {
+  const t = new Date(Date.now() + 8 * 3600 * 1000); // 台灣時間
+  return t.toISOString().slice(0, 10);
+}
+// 這週對應的堂次：週六上課日還沒過的第一堂
+function currentIndex() {
+  const t = todayISO();
+  const i = SESSIONS.findIndex(s => s.sat >= t);
+  return i < 0 ? SESSIONS.length - 1 : i;
+}
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+async function api(body) {
+  if (!API_URL) return mockApi(body);
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error('連線失敗（' + res.status + '）');
+  return res.json();
+}
+
+// ---- 本機測試模式：模擬後台，資料存在這台瀏覽器 ----
+function mockApi(r) {
+  const STUDENTS = ['測試學員A', '測試學員B', '測試學員C'];
+  const rows = JSON.parse(localStorage.getItem('mock_rows') || '[]');
+  const latest = () => {
+    const m = {};
+    rows.forEach(x => { (m[x.name] = m[x.name] || {})[x.session] = { day: x.day, mode: x.mode, note: x.note, time: x.time }; });
+    return m;
+  };
+  if (r.action === 'stats') return r.key === 'test' ? { ok: true, students: STUDENTS, latest: latest() } : { ok: false, error: 'key' };
+  if (r.pw !== 'test') return { ok: false, error: 'pw' };
+  if (r.action === 'login') return { ok: true, students: STUDENTS };
+  if (r.action === 'mine') return { ok: true, latest: latest()[r.name] || {}, handouts: [] };
+  if (r.action === 'submit') {
+    const d = new Date();
+    rows.push({ ...r, mode: r.day === '請假' ? '' : r.mode, time: `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}` });
+    localStorage.setItem('mock_rows', JSON.stringify(rows));
+    return { ok: true, latest: latest()[r.name] || {} };
+  }
+  return { ok: false, error: 'action' };
+}
