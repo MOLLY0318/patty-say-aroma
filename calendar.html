@@ -3,16 +3,6 @@
   <h2 class="section-title">課程行事曆</h2>
   <p class="course-intro">海賊嫚說芳療所有課程與活動的上課日期，一次幫你整理在這裡。</p>
 
-  <div class="cal-month-heading">2026 年 10 月</div>
-  <div class="cal-item">
-    <div class="cal-date"><div class="day">7</div><div class="weekday">三</div></div>
-    <div class="cal-body">
-      <span class="cal-tag">精油側寫師線上共學</span> <span class="cal-tag cal-tag-internal">內部訓練</span>
-      <div class="cal-title">線上共學（每月一次，時間每月更新）</div>
-      <div class="cal-time">20:00–22:00</div>
-    </div>
-  </div>
-
   <div class="cal-month-heading">2026 年 11 月</div>
   <div class="cal-item">
     <div class="cal-date"><div class="day">18</div><div class="weekday">三</div></div>
@@ -239,4 +229,28 @@
     <a href="https://www.instagram.com/peimanzhang/" target="_blank">Instagram</a>
   </p>
   <p class="footer-disclaimer">本網站所提供之精油側寫服務，不具醫療診斷功能，僅作為身心覺察之參考工具。</p>
-<div class="footer-navigation"><a href="index.html">首頁</a><a href="about.html">關於海賊嫚</a><a href="profiling.html">精油側寫</a><a href="team.html">講師團隊</a><a href="courses.html">課程</a><a href="events.html">活動專區</a><a href="faq.html">常見問題</a></div></footer><script src="site.js" defer></script></body></html>
+<div class="footer-navigation"><a href="index.html">首頁</a><a href="about.html">關於海賊嫚</a><a href="profiling.html">精油側寫</a><a href="team.html">講師團隊</a><a href="courses.html">課程</a><a href="events.html">活動專區</a><a href="faq.html">常見問題</a></div></footer><script src="site.js" defer></script>
+<script>
+/* 行事曆：上課日過了就自動隱藏（台灣時間），整個月都過了就連月份標題一起藏 */
+(function () {
+  var today = new Date(Date.now() + 8 * 3600 * 1000).toISOString().slice(0, 10);
+  var heads = document.querySelectorAll('.cal-month-heading');
+  heads.forEach(function (h) {
+    var m = h.textContent.match(/(\d{4})\s*年\s*(\d{1,2})\s*月/);
+    if (!m) return;
+    var visible = 0, el = h.nextElementSibling;
+    while (el && !el.classList.contains('cal-month-heading') && !el.classList.contains('cal-note')) {
+      if (el.classList.contains('cal-item')) {
+        var d = el.querySelector('.cal-date .day');
+        var day = d && d.textContent.match(/^\s*(\d{1,2})\s*$/);
+        if (day) {
+          var iso = m[1] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + day[1]).slice(-2);
+          if (iso < today) { el.style.display = 'none'; } else { visible++; }
+        } else { visible++; }
+      }
+      el = el.nextElementSibling;
+    }
+    if (!visible) h.style.display = 'none';
+  });
+})();
+</script></body></html>
