@@ -7,7 +7,7 @@
 <title>學員專區｜海賊嫚說芳療</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=11">
+<link rel="stylesheet" href="style.css?v=12">
 </head>
 <body>
 <header class="top">
@@ -87,6 +87,7 @@
       <h3 id="agree-title" style="margin-top:6px">學習保證書</h3>
       <p class="muted" style="margin:0 0 6px">下載講義前，請先閱讀並簽署。只要填一次。</p>
       <div class="agree-text">
+        <div class="agree-notice" id="agree-notice"></div>
         <p id="agree-intro"></p>
         <ol id="agree-items"></ol>
       </div>
@@ -131,7 +132,7 @@
   </section>
 </main>
 
-<script src="common.js?v=11"></script>
+<script src="common.js?v=12"></script>
 <script>
 const $ = id => document.getElementById(id);
 const store = {
@@ -337,6 +338,7 @@ function renderHandouts() {
 
 function renderAgreement() {
   $('agree-title').textContent = AGREEMENT.title;
+  $('agree-notice').innerHTML = (AGREEMENT.notice || []).map(t => `<p>${esc(t)}</p>`).join('');
   $('agree-intro').textContent = AGREEMENT.intro;
   $('agree-items').innerHTML = AGREEMENT.items.map(t => `<li>${esc(t)}</li>`).join('');
 }
