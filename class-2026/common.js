@@ -70,7 +70,7 @@ function mockApi(r) {
   const STUDENTS = ['測試學員A', '測試學員B', '測試學員C'];
   const rows = get('mock_rows', '[]');
   const pins = get('mock_pins', '{}');
-  const handouts = n => [{ id: 'h1-' + n, session: '第1堂', title: '構面與單方精油', size: 1 }];
+  const handouts = n => [{ id: 'h1-' + n, session: '第1堂', title: '構面與單方精油', size: 1 }, { id: '', session: '第2堂', title: '精油側寫講義（二）', locked: true, opens: '11/24（二）早上 8 點' }];
   const latest = () => {
     const m = {};
     rows.forEach(x => { (m[x.name] = m[x.name] || {})[x.session] = { day: x.day, mode: x.mode, note: x.note, time: x.time }; });
