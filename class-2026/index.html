@@ -7,7 +7,7 @@
 <title>學員專區｜海賊嫚說芳療</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <header class="top">
@@ -115,7 +115,7 @@
   </section>
 </main>
 
-<script src="common.js?v=3"></script>
+<script src="common.js?v=4"></script>
 <script>
 const $ = id => document.getElementById(id);
 const store = {
@@ -262,7 +262,7 @@ function renderChoices() {
   if (s.modes.length === 1 && needMode) state.mode = s.modes[0];
   $('modes').innerHTML = ['實體', '線上'].map(m => {
     const ok = s.modes.includes(m);
-    return `<button type="button" class="choice" data-mode="${m}" aria-pressed="${state.mode === m}" ${ok ? '' : 'disabled'}>${m === '實體' ? '實體（到教室）' : '線上（Google Meet）'}${ok ? '' : '<small>本堂不開放</small>'}</button>`;
+    return `<button type="button" class="choice" data-mode="${m}" aria-pressed="${state.mode === m}" ${ok ? '' : 'disabled'}>${m === '實體' ? '實體（到教室）' : '線上（Google Meet）'}${ok ? (s.suggest === m ? '<small>建議這堂到現場</small>' : '') : '<small>本堂不開放</small>'}</button>`;
   }).join('');
   $('mode-note').textContent = s.note || '';
 }
