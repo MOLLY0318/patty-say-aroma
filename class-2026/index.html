@@ -7,7 +7,7 @@
 <title>學員專區｜海賊嫚說芳療</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <header class="top">
@@ -115,7 +115,7 @@
   </section>
 </main>
 
-<script src="common.js?v=4"></script>
+<script src="common.js?v=5"></script>
 <script>
 const $ = id => document.getElementById(id);
 const store = {
@@ -234,7 +234,7 @@ function renderSession() {
 }
 
 function summary(m, s) {
-  if (m.day === '請假') return '請假，看回放';
+  if (m.day === '請假') return s.noReplay ? '請假（這堂沒有回放）' : '請假，看回放';
   return `${m.day} ${md(m.day === '週三' ? s.wed : s.sat)}・${m.mode}`;
 }
 
@@ -248,7 +248,7 @@ function renderChoices() {
   const s = SESSIONS[state.idx];
   const now = Date.now();
   const locked = lockedPrev();
-  const days = [['週三', '週三班', md(s.wed)], ['週六', '週六班', md(s.sat)], ['請假', '請假', '看回放']];
+  const days = [['週三', '週三班', md(s.wed)], ['週六', '週六班', md(s.sat)], ['請假', '請假', s.noReplay ? '這堂沒有回放' : '看回放']];
   $('days').innerHTML = days.map(([v, t, sub]) => {
     const closed = now > deadlineOf(s, v);
     return `<button type="button" class="choice" data-day="${v}" aria-pressed="${state.day === v}" ${closed || locked ? 'disabled' : ''}>${t}<small>${sub}</small>` +

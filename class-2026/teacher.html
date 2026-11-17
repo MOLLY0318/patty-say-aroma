@@ -8,7 +8,7 @@
 <title>出席統計｜海賊嫚說芳療</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <header class="top">
@@ -40,7 +40,7 @@
   </section>
 
   <section class="card hidden" id="leave-card">
-    <h2>請假（看回放）</h2>
+    <h2 id="leave-title">請假（看回放）</h2>
     <p class="names-line" id="leave"></p>
   </section>
 
@@ -58,7 +58,7 @@
   <div class="alert hidden" id="err"></div>
 </main>
 
-<script src="common.js?v=4"></script>
+<script src="common.js?v=5"></script>
 <script>
 const $ = id => document.getElementById(id);
 const key = new URLSearchParams(location.search).get('k') || '';
@@ -105,6 +105,7 @@ function render() {
     return `<div class="daybox"><h3>${d} ${md(iso)}</h3>${stat('實體')}${stat('線上')}</div>`;
   }).join('');
   $('missing').textContent = missing.join('、'); show('missing-card', missing.length > 0);
+  $('leave-title').textContent = s.noReplay ? '請假（這堂沒有回放）' : '請假（看回放）';
   $('leave').textContent = leave.join('、'); show('leave-card', leave.length > 0);
   $('notes').innerHTML = notes.join(''); show('notes-card', notes.length > 0);
 
