@@ -38,6 +38,21 @@ function esc(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
+// 學習保證書（改內容時，version 要跟後台 AGREE_VERSION 一起換，大家會被要求重新同意）
+const AGREEMENT = {
+  version: 'v1',
+  title: '學習保證書',
+  intro: '本人參加「2026 精油側寫培訓」（講師：張珮嫚老師），下載講義前承諾：',
+  items: [
+    '課程講義、投影片與上課內容，僅供本人學習使用。',
+    '上課錄影回放僅供本人學習使用，不側錄、不公開，也不分享或傳閱給他人。',
+    '不轉傳、不複製、不公開上傳，也不提供給沒有參加課程的人。',
+    '不把講義內容改成自己的課程、文章或商品對外使用。',
+    '課堂上同學分享的個案與個人故事，不對外透露。',
+    '我了解講義印有我的名字，若外流可以追溯來源；如有違反，願意負相關責任。',
+  ],
+};
+
 async function api(body) {
   if (!API_URL) return mockApi(body);
   const res = await fetch(API_URL, {
@@ -71,13 +86,15 @@ function mockApi(r) {
   }
   if (!pins[r.name]) return { ok: false, error: 'unclaimed' };
   if (pins[r.name] !== r.pin) return { ok: false, error: 'pin' };
-  if (r.action === 'login' || r.action === 'mine') return { ok: true, latest: latest()[r.name] || {}, handouts: handouts(r.name) };
+  if (r.action === 'login' || r.action === 'mine') return { ok: true, latest: latest()[r.name] || {}, handouts: handouts(r.name), agreed: !!get('mock_agree', '{}')[r.name] };
+  if (r.action === 'agree') { const a = get('mock_agree', '{}'); a[r.name] = r.sign; localStorage.setItem('mock_agree', JSON.stringify(a)); return { ok: true, agreed: true }; }
   if (r.action === 'submit') {
     const d = new Date();
     rows.push({ ...r, mode: r.day === '請假' ? '' : r.mode, time: `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}` });
     localStorage.setItem('mock_rows', JSON.stringify(rows));
     return { ok: true, latest: latest()[r.name] || {}, handouts: handouts(r.name) };
   }
+  if (r.action === 'download' && !get('mock_agree', '{}')[r.name]) return { ok: false, error: 'agree' };
   if (r.action === 'download') return { ok: true, filename: 'test.txt', mime: 'text/plain', data: btoa('test') };
   return { ok: false, error: 'action' };
 }

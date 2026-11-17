@@ -7,7 +7,7 @@
 <title>學員專區｜海賊嫚說芳療</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <header class="top">
@@ -83,6 +83,20 @@
   <section class="card hidden" id="step-dl">
     <h2>我的講義</h2>
     <p class="muted">每份講義都印有你的名字，僅供個人學習使用，請不要轉傳。老師更新內容時，會標示「有新版」，請重新下載。</p>
+    <div class="agree hidden" id="agree-box">
+      <h3 id="agree-title" style="margin-top:6px">學習保證書</h3>
+      <p class="muted" style="margin:0 0 6px">下載講義前，請先閱讀並簽署。只要填一次。</p>
+      <div class="agree-text">
+        <p id="agree-intro"></p>
+        <ol id="agree-items"></ol>
+      </div>
+      <label class="agree-check"><input type="checkbox" id="agree-ok"> 我已閱讀，並同意以上內容</label>
+      <label for="agree-sign" class="muted" style="display:block;margin-top:10px">請輸入你的全名（當作簽名）</label>
+      <input type="text" id="agree-sign" maxlength="30" autocomplete="name" placeholder="例如：王小明">
+      <button class="btn" type="button" id="agree-btn">簽署並開始下載講義</button>
+      <div class="alert hidden" id="agree-err"></div>
+    </div>
+    <p class="ok hidden" id="agree-done"></p>
     <ul class="dl" id="dl-list"></ul>
     <p class="muted hidden" id="dl-empty">講義還沒上傳，上課前會放上來。</p>
     <div class="alert hidden" id="dl-err"></div>
@@ -115,7 +129,7 @@
   </section>
 </main>
 
-<script src="common.js?v=8"></script>
+<script src="common.js?v=9"></script>
 <script>
 const $ = id => document.getElementById(id);
 const store = {
@@ -123,7 +137,7 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
   del(k) { try { localStorage.removeItem(k); } catch (e) {} },
 };
-const state = { roster: [], name: '', pin: '', claimed: false, latest: {}, handouts: [], idx: currentIndex(), day: '', mode: '' };
+const state = { roster: [], name: '', pin: '', claimed: false, agreed: false, latest: {}, handouts: [], idx: currentIndex(), day: '', mode: '' };
 const LOGGED_IN = ['step-form', 'step-dl', 'step-info'];
 
 function show(id, on = true) { $(id).classList.toggle('hidden', !on); }
@@ -141,6 +155,8 @@ function errText(code) {
     deadline: '這個選項已經過了截止時間（上課前一天晚上 8 點），有狀況請私訊小馨子。',
     locked_prev: '這堂你原本的登記已經截止，不能再更改，有狀況請私訊小馨子。',
     file: '找不到這份講義，請找小馨子。',
+    agree: '請先簽署下方的學習保證書，才能下載講義。',
+    sign: '請勾選同意，並輸入你的全名。',
   })[code] || '系統忙碌中，請稍後再試，或找小馨子。（' + code + '）';
 }
 
@@ -201,7 +217,7 @@ async function submitPin() {
 async function login(name, pin) {
   const r = await api({ action: 'login', name, pin });
   if (!r.ok) { state.lastError = r.error; return false; }
-  state.name = name; state.pin = pin; state.latest = r.latest || {}; state.handouts = r.handouts || [];
+  state.name = name; state.pin = pin; state.latest = r.latest || {}; state.handouts = r.handouts || []; state.agreed = !!r.agreed;
   store.set('cls_name', name); store.set('cls_pin', pin);
   $('hello').textContent = name + '，你好';
   only(LOGGED_IN);
@@ -211,7 +227,7 @@ async function login(name, pin) {
 
 function logout() {
   store.del('cls_name'); store.del('cls_pin');
-  state.name = ''; state.pin = ''; state.latest = {}; state.handouts = [];
+  state.name = ''; state.pin = ''; state.latest = {}; state.handouts = []; state.agreed = false;
   loadRoster();
 }
 
@@ -281,7 +297,9 @@ async function submit() {
     $('form-ok').textContent = `已收到！${s.key}：${summary(state.latest[s.key], s)}。謝謝你，老師那邊已經看得到了。`;
     show('form-ok');
     const these = state.handouts.filter(h => h.session === s.key);
-    $('after-dl').innerHTML = these.length
+    $('after-dl').innerHTML = these.length && !state.agreed
+      ? `<p class="muted" style="margin-top:12px">這堂的講義已經上傳了！第一次下載前，請先到下方「我的講義」簽署學習保證書。</p>`
+      : these.length
       ? `<h3>順便領這堂的講義</h3><ul class="dl">${these.map(dlItem).join('')}</ul>`
       : `<p class="muted" style="margin-top:12px">這堂的講義還沒上傳，放上來後會出現在下方「我的講義」。</p>`;
   } catch (e) {
@@ -304,7 +322,31 @@ function dlItem(h) {
 function renderHandouts() {
   const list = state.handouts;
   show('dl-empty', list.length === 0);
-  $('dl-list').innerHTML = list.map(dlItem).join('');
+  show('agree-box', list.length > 0 && !state.agreed);
+  $('dl-list').innerHTML = state.agreed ? list.map(dlItem).join('')
+    : list.map(h => `<li><span><span class="badge">${esc(h.session)}</span> ${esc(h.title)}<br><small class="muted">簽署保證書後即可下載</small></span></li>`).join('');
+}
+
+function renderAgreement() {
+  $('agree-title').textContent = AGREEMENT.title;
+  $('agree-intro').textContent = AGREEMENT.intro;
+  $('agree-items').innerHTML = AGREEMENT.items.map(t => `<li>${esc(t)}</li>`).join('');
+}
+
+async function agree() {
+  const sign = $('agree-sign').value.trim();
+  show('agree-err', false);
+  if (!$('agree-ok').checked || !sign) { $('agree-err').textContent = errText('sign'); show('agree-err'); return; }
+  $('agree-btn').disabled = true;
+  try {
+    const r = await api({ action: 'agree', name: state.name, pin: state.pin, sign, version: AGREEMENT.version });
+    if (!r.ok) throw new Error(r.error);
+    state.agreed = true;
+    $('agree-done').textContent = '已收到你的學習保證書，謝謝！現在可以下載講義了。'; show('agree-done');
+    renderHandouts();
+  } catch (e) {
+    $('agree-err').textContent = e.message === 'sign' ? errText('sign') : '送出失敗，請再試一次；一直不行請找小馨子。'; show('agree-err');
+  } finally { $('agree-btn').disabled = false; }
 }
 
 async function download(btn) {
@@ -320,7 +362,8 @@ async function download(btn) {
     if (h) { h.downloaded = true; h.isNew = false; }
     renderHandouts();
   } catch (e) {
-    $('dl-err').textContent = '下載失敗，請再試一次；一直不行請找小馨子。'; show('dl-err');
+    if (e.message === 'agree') { state.agreed = false; renderHandouts(); }
+    $('dl-err').textContent = e.message === 'agree' ? errText('agree') : '下載失敗，請再試一次；一直不行請找小馨子。'; show('dl-err');
     btn.disabled = false; btn.textContent = old;
   }
 }
@@ -334,6 +377,8 @@ $('tabs').addEventListener('click', e => { const b = e.target.closest('[data-i]'
 $('days').addEventListener('click', e => { const b = e.target.closest('[data-day]'); if (!b) return; state.day = b.dataset.day; if (state.day === '請假') state.mode = ''; renderChoices(); });
 $('modes').addEventListener('click', e => { const b = e.target.closest('[data-mode]'); if (!b || b.disabled) return; state.mode = b.dataset.mode; renderChoices(); });
 $('submit').addEventListener('click', submit);
+$('agree-btn').addEventListener('click', agree);
+renderAgreement();
 document.addEventListener('click', e => { const b = e.target.closest('.dl [data-id]'); if (b && !b.disabled) download(b); });
 
 (async () => {

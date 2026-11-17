@@ -8,7 +8,7 @@
 <title>出席統計｜海賊嫚說芳療</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <header class="top">
@@ -51,18 +51,18 @@
 
   <section class="card hidden" id="overview-card">
     <h2>全期總覽</h2>
-    <p class="muted">三＝週三、六＝週六；實＝實體、線＝線上；－＝還沒填。</p>
+    <p class="muted">三＝週三、六＝週六；實＝實體、線＝線上；－＝還沒填。保證書：✓＝已簽署。</p>
     <div class="table-wrap"><table class="overview" id="overview"></table></div>
   </section>
 
   <div class="alert hidden" id="err"></div>
 </main>
 
-<script src="common.js?v=8"></script>
+<script src="common.js?v=9"></script>
 <script>
 const $ = id => document.getElementById(id);
 const key = new URLSearchParams(location.search).get('k') || '';
-const state = { idx: currentIndex(), students: [], latest: {} };
+const state = { idx: currentIndex(), students: [], latest: {}, agreed: [] };
 function show(id, on = true) { $(id).classList.toggle('hidden', !on); }
 
 async function load() {
@@ -70,7 +70,7 @@ async function load() {
   try {
     const r = await api({ action: 'stats', key });
     if (!r.ok) { if (r.error === 'key') { show('nokey'); show('board', false); return; } throw new Error(r.error); }
-    state.students = r.students; state.latest = r.latest || {};
+    state.students = r.students; state.latest = r.latest || {}; state.agreed = r.agreed || [];
     ['board', 'overview-card'].forEach(id => show(id));
     render();
   } catch (e) {
@@ -110,11 +110,11 @@ function render() {
   $('notes').innerHTML = notes.join(''); show('notes-card', notes.length > 0);
 
   const short = m => m ? (m.day === '請假' ? '請假' : `${m.day.slice(1)}${m.mode.slice(0, 1)}`) : '－';
-  $('overview').innerHTML = `<tr><th>學員</th>${SESSIONS.map(x => `<th>${x.key.replace('成果發表會', '發表會')}</th>`).join('')}</tr>` +
+  $('overview').innerHTML = `<tr><th>學員</th>${SESSIONS.map(x => `<th>${x.key.replace('成果發表會', '發表會')}</th>`).join('')}<th>保證書</th></tr>` +
     state.students.map(n => `<tr><td>${esc(n)}</td>${SESSIONS.map(x => {
       const m = (state.latest[n] || {})[x.key];
       return `<td class="${!m ? 'empty' : m.day === '請假' ? 'leave' : ''}">${short(m)}</td>`;
-    }).join('')}</tr>`).join('');
+    }).join('')}<td class="${state.agreed.includes(n) ? '' : 'empty'}">${state.agreed.includes(n) ? '✓' : '－'}</td></tr>`).join('');
 }
 
 $('tabs').addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (!b) return; state.idx = +b.dataset.i; render(); });
