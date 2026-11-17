@@ -7,7 +7,7 @@
 <title>學員專區｜海賊嫚說芳療</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
 <header class="top">
@@ -91,8 +91,10 @@
         <ol id="agree-items"></ol>
       </div>
       <label class="agree-check"><input type="checkbox" id="agree-ok"> 我已閱讀，並同意以上內容</label>
-      <label for="agree-sign" class="muted" style="display:block;margin-top:10px">請輸入你的全名（當作簽名）</label>
-      <input type="text" id="agree-sign" maxlength="30" autocomplete="name" placeholder="例如：王小明">
+      <label for="agree-sign" class="muted" style="display:block;margin-top:10px">中文全名</label>
+      <input type="text" id="agree-sign" maxlength="10" autocomplete="name" placeholder="例如：王小明">
+      <div class="row" style="margin-top:12px"><span class="muted">親筆簽名（用手指或滑鼠在框內簽）</span><button class="btn ghost" type="button" id="sig-clear">清除重簽</button></div>
+      <canvas id="sig" class="sig" aria-label="簽名區"></canvas>
       <button class="btn" type="button" id="agree-btn">簽署並開始下載講義</button>
       <div class="alert hidden" id="agree-err"></div>
     </div>
@@ -129,7 +131,7 @@
   </section>
 </main>
 
-<script src="common.js?v=9"></script>
+<script src="common.js?v=10"></script>
 <script>
 const $ = id => document.getElementById(id);
 const store = {
@@ -156,7 +158,7 @@ function errText(code) {
     locked_prev: '這堂你原本的登記已經截止，不能再更改，有狀況請私訊小馨子。',
     file: '找不到這份講義，請找小馨子。',
     agree: '請先簽署下方的學習保證書，才能下載講義。',
-    sign: '請勾選同意，並輸入你的全名。',
+    sign: '請勾選同意，輸入中文全名並親筆簽名。',
   })[code] || '系統忙碌中，請稍後再試，或找小馨子。（' + code + '）';
 }
 
@@ -322,7 +324,10 @@ function dlItem(h) {
 function renderHandouts() {
   const list = state.handouts;
   show('dl-empty', list.length === 0);
-  show('agree-box', list.length > 0 && !state.agreed);
+  const needSign = list.length > 0 && !state.agreed;
+  const wasHidden = $('agree-box').classList.contains('hidden');
+  show('agree-box', needSign);
+  if (needSign && wasHidden) sigSetup();
   $('dl-list').innerHTML = state.agreed ? list.map(dlItem).join('')
     : list.map(h => `<li><span><span class="badge">${esc(h.session)}</span> ${esc(h.title)}<br><small class="muted">簽署保證書後即可下載</small></span></li>`).join('');
 }
@@ -334,18 +339,21 @@ function renderAgreement() {
 }
 
 async function agree() {
-  const sign = $('agree-sign').value.trim();
+  const sign = $('agree-sign').value.replace(/\s/g, '');
   show('agree-err', false);
-  if (!$('agree-ok').checked || !sign) { $('agree-err').textContent = errText('sign'); show('agree-err'); return; }
+  const err = !$('agree-ok').checked ? '請先勾選「我已閱讀，並同意以上內容」。'
+    : !/^[\u4e00-\u9fff‧·．]{2,10}$/.test(sign) ? '請輸入中文全名（例如：王小明）。'
+    : sig.strokes < 1 || sig.ink < 60 ? '請在框內親筆簽名。' : '';
+  if (err) { $('agree-err').textContent = err; show('agree-err'); return; }
   $('agree-btn').disabled = true;
   try {
-    const r = await api({ action: 'agree', name: state.name, pin: state.pin, sign, version: AGREEMENT.version });
+    const r = await api({ action: 'agree', name: state.name, pin: state.pin, sign, sig: sigImage(), version: AGREEMENT.version });
     if (!r.ok) throw new Error(r.error);
     state.agreed = true;
     $('agree-done').textContent = '已收到你的學習保證書，謝謝！現在可以下載講義了。'; show('agree-done');
     renderHandouts();
   } catch (e) {
-    $('agree-err').textContent = e.message === 'sign' ? errText('sign') : '送出失敗，請再試一次；一直不行請找小馨子。'; show('agree-err');
+    $('agree-err').textContent = e.message === 'sign' || e.message === 'sig' ? errText('sign') : '送出失敗，請再試一次；一直不行請找小馨子。'; show('agree-err');
   } finally { $('agree-btn').disabled = false; }
 }
 
@@ -367,6 +375,36 @@ async function download(btn) {
     btn.disabled = false; btn.textContent = old;
   }
 }
+
+// ---------- 手寫簽名 ----------
+const sig = { strokes: 0, ink: 0, drawing: false, last: null };
+function sigSetup() {
+  const c = $('sig'), ctx = c.getContext('2d');
+  const ratio = window.devicePixelRatio || 1;
+  const w = c.clientWidth || 300, h = c.clientHeight || 160;
+  c.width = w * ratio; c.height = h * ratio;
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#141A29';
+  sig.strokes = 0; sig.ink = 0;
+}
+function sigPos(e) { const r = $('sig').getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+function sigImage() {
+  // 白底縮成寬 600 的 PNG
+  const c = $('sig'), out = document.createElement('canvas');
+  out.width = 600; out.height = Math.round(600 * c.height / c.width);
+  const o = out.getContext('2d'); o.fillStyle = '#fff'; o.fillRect(0, 0, out.width, out.height);
+  o.drawImage(c, 0, 0, out.width, out.height);
+  return out.toDataURL('image/png');
+}
+$('sig').addEventListener('pointerdown', e => { e.preventDefault(); $('sig').setPointerCapture(e.pointerId); sig.drawing = true; sig.last = sigPos(e); sig.strokes++; });
+$('sig').addEventListener('pointermove', e => {
+  if (!sig.drawing) return; e.preventDefault();
+  const p = sigPos(e), ctx = $('sig').getContext('2d');
+  ctx.beginPath(); ctx.moveTo(sig.last.x, sig.last.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+  sig.ink += Math.hypot(p.x - sig.last.x, p.y - sig.last.y); sig.last = p;
+});
+['pointerup', 'pointercancel', 'pointerleave'].forEach(t => $('sig').addEventListener(t, () => { sig.drawing = false; }));
+$('sig-clear').addEventListener('click', sigSetup);
 
 // ---------- 事件 ----------
 $('names').addEventListener('click', e => { const b = e.target.closest('[data-name]'); if (b) askPin(b.dataset.name); });

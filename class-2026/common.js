@@ -87,7 +87,7 @@ function mockApi(r) {
   if (!pins[r.name]) return { ok: false, error: 'unclaimed' };
   if (pins[r.name] !== r.pin) return { ok: false, error: 'pin' };
   if (r.action === 'login' || r.action === 'mine') return { ok: true, latest: latest()[r.name] || {}, handouts: handouts(r.name), agreed: !!get('mock_agree', '{}')[r.name] };
-  if (r.action === 'agree') { const a = get('mock_agree', '{}'); a[r.name] = r.sign; localStorage.setItem('mock_agree', JSON.stringify(a)); return { ok: true, agreed: true }; }
+  if (r.action === 'agree') { if (!/^data:image\/png;base64,/.test(r.sig || '')) return { ok: false, error: 'sig' }; const a = get('mock_agree', '{}'); a[r.name] = r.sign; localStorage.setItem('mock_agree', JSON.stringify(a)); return { ok: true, agreed: true }; }
   if (r.action === 'submit') {
     const d = new Date();
     rows.push({ ...r, mode: r.day === '請假' ? '' : r.mode, time: `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}` });
